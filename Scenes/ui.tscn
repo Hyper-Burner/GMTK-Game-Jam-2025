@@ -68,7 +68,15 @@ custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 texture_normal = ExtResource("2_qdvrb")
 
-[node name="TimeCapsule" type="TextureRect" parent="."]
+[node name="TimeCapsule" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 600.0
+offset_top = 320.0
+offset_right = 640.0
+offset_bottom = 360.0
+texture = ExtResource("2_qdvrb")
+
+[node name="TimeCapsulePanel" type="Panel" parent="."]
 layout_mode = 0
 offset_left = 600.0
 offset_top = 320.0
