@@ -74,21 +74,12 @@ offset_left = 600.0
 offset_top = 320.0
 offset_right = 640.0
 offset_bottom = 360.0
-texture = ExtResource("2_qdvrb")
 
 [node name="TimeCapsulePanel" type="Panel" parent="."]
 layout_mode = 0
 offset_left = 600.0
 offset_top = 320.0
 offset_right = 640.0
-offset_bottom = 360.0
-texture = ExtResource("2_qdvrb")
-
-[node name="TimeCapsulePanel" type="Panel" parent="."]
-layout_mode = 0
-offset_left = 346.0
-offset_top = 320.0
-offset_right = 602.0
 offset_bottom = 360.0
 
 [node name="InventoryGrid" type="GridContainer" parent="TimeCapsulePanel"]
@@ -126,3 +117,10 @@ layout_mode = 2
 
 [node name="InventorySlot8" parent="TimeCapsulePanel/InventoryGrid" instance=ExtResource("3_nf4gj")]
 layout_mode = 2
+
+[node name="TimeCapsulePanel2" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 346.0
+offset_top = 320.0
+offset_right = 602.0
+offset_bottom = 360.0
