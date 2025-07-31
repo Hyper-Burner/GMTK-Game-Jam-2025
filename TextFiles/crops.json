@@ -17,7 +17,8 @@
 			"soil_ph": 50
 		},
 		"optimal_growth_speed_scale": 44,
-		"atlas_coords": 0
+		"atlas_coords_x": 0,
+		"atlas_coords_y": 1
 	},
 	"Spring Onion": {
 		"description": "These grow wild during the spring.",
@@ -36,7 +37,9 @@
 			"nutrients": 75,
 			"soil_ph": 75
 		},
-		"optimal_growth_duration": 16
+		"optimal_growth_duration": 16,
+		"atlas_coords_x": 0,
+		"atlas_coords_y": 3
 	},
 	"Potato": {
 		"description": "A widely cultivated tuber.",
@@ -57,7 +60,7 @@
 		},
 		"optimal_growth_duration": 20,
 		"atlas_coords_x": 0,
-		"atlas_coords_y": 0
+		"atlas_coords_y": 5
 	},
 	"Onion": {
 		"description": "Adds a wonderful zestiness to dishes. High quality onion can be pretty spicy.",
@@ -76,6 +79,8 @@
 			"nutrients": 75,
 			"soil_ph": 75
 		},
-		"optimal_growth_duration": 28
+		"optimal_growth_duration": 28,
+		"atlas_coords_x": 0,
+		"atlas_coords_y": 7
 	}
 }

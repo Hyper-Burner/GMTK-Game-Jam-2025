@@ -1,6 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://bladiq6riya7a"]
+[gd_scene load_steps=3 format=3 uid="uid://ov0fkj4vkx08"]
 
-[ext_resource type="Script" uid="uid://8o7ak6tcunc" path="res://Scripts/loop_summary.gd" id="1_0ieok"]
+[ext_resource type="Script" path="res://Scripts/loop_summary.gd" id="1_0ieok"]
 [ext_resource type="Texture2D" uid="uid://cnwpowrwrkpi5" path="res://icon.svg" id="2_gu3dm"]
 
 [node name="Control" type="Control"]

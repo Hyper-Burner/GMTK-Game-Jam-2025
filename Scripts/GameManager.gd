@@ -9,9 +9,9 @@ const DATA_PATH_MILESTONES: String = "res://TextFiles/milestones.json"
 const DEFAULT_GRID_WIDTH: int = 5
 const DEFAULT_GRID_HEIGHT: int = 5
 const DEFAULT_LOOP_DURATION: float = 120.0 # seconds
-const DEFAULT_TIME_CAPSULE_CAPACITY: int = 3
+const DEFAULT_TIME_CAPSULE_CAPACITY: int = 100
 const DEFAULT_STARTING_SEEDS_ID: String = "Potato" # Now a String ID
-const DEFAULT_STARTING_SEEDS_QUANTITY: int = 3
+const DEFAULT_STARTING_SEEDS_QUANTITY: int = 100
 
 # --- Game Modes (Updated Enum for interaction states) ---
 enum GameMode {
@@ -73,7 +73,7 @@ var placement_preview_controller: Node2D = null # Now a direct reference to the 
 
 var seconds_passed: int = 0
 
-const TILE_SIZE: int = 32 # Example: 32x32 pixel tiles
+const TILE_SIZE: int = 16 # Example: 16x16 pixel tiles
 
 
 func _ready() -> void:
@@ -561,7 +561,8 @@ func _place_item(grid_x: int, grid_y: int) -> void:
 	var coords_key: String = str(grid_x) + "," + str(grid_y)
 	
 	if not placed_items_grid.get(coords_key, "").is_empty(): # Cell already occupied (check for empty string)
-		print("Cannot place: Cell at (%d,%d) is already occupied by ID %s." % [grid_x, grid_y, placed_items_grid[coords_key]])
+		print(placed_items_grid)
+		#print("Cannot place: Cell at (%d,%d) is already occupied by ID %s." % [grid_x, grid_y, placed_items_grid[coords_key]])
 		return
 
 	# Check inventory for the item (now a String ID).
