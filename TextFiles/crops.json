@@ -2,9 +2,19 @@
 	"Potato":
 	{
 		"description": "A common seed, grows quickly.",
-		"atlas_coords": [0,0],
+		"atlas_coords": 1,
 		"growth_time": 15.0,
 		"harvest_yield": 1,
-		"harvest_seeds": 2
+		"harvest_seeds": 2,
+		"fertilizer": -10,
+		"nitrogen": 20,
+		"hydration":-10,
+		"juiced_conditions": {
+			"fertilizer": 30,
+			"nitrogen": 0,
+			"hydration":30
+		},
+		"juiced_growth_time": 10
+
 	}
 }

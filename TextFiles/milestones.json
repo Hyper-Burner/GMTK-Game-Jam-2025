@@ -1,21 +1,38 @@
-[
-  {
-	"display_name": "First Harvest",
+{
+  "First Harvest": 
+	{
 	"description": "Harvest some basic seeds to prove your farming skills.",
 	"requirements": {
 	  "harvested_crops": {
-		"0": 5
+		"Potatoes": 5
 	  }
 	},
 	"rewards": {
-	  "unlocked_plants": [1],
-	  "unlocked_upgrades": 
-			[
-				{
-				  "type": "time_capsule_capacity_increase",
-				  "value": 2
-				}
-			]
+	  "unlocked_plants": 0,
+	  "unlocked_upgrades": [
+		{
+		  "type": "time_capsule_capacity_increase",
+		  "value": 2
 		}
+	  ]
 	}
-]
+  },
+"Saved the seeds":
+	{
+	"description": "Learn to use Time Capsule",
+	"requirements": {
+	  "harvested_crops": {
+		"Potatoes": 15
+	  }
+	},
+	"rewards": {
+	  "unlocked_plants": 0,
+	  "unlocked_upgrades": [
+		{
+		  "type": "time_capsule_capacity_increase",
+		  "value": 2
+		}
+	  ]
+	}
+  }
+}

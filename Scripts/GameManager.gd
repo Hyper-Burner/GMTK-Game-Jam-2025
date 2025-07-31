@@ -40,7 +40,7 @@ var time_capsule_capacity: int = DEFAULT_TIME_CAPSULE_CAPACITY
 # The contents to be transferred to the NEXT loop (item_id: quantity).
 # Cleared at start of each loop. Keys are now String.
 var time_capsule_contents: Dictionary = {}
-# Persistent dictionary storing the current properties of each soil tile (e.g., {"0,0": {"fertility": 50, ...}}).
+# Persistent dictionary storing the current properties of each soil tile (e.g., {"0,0": {"fertilizer": 50, ...}}).
 # This data persists across loops.
 var soil_grid_data: Dictionary = {}
 # Persistent dictionary storing which items are placed on each grid tile (e.g., {"0,0": item_id_string}).
@@ -376,8 +376,8 @@ func _load_all_game_data() -> void:
 		push_warning("Item data in '%s' is not an Array, expecting Array. Received: %s" % [DATA_PATH_ITEMS, typeof(loaded_items_array)])
 
 	# Load Milestone Data - (no changes needed here related to item IDs, remains as array)
-	var loaded_milestones_raw: Array = _load_json_data(DATA_PATH_MILESTONES)
-	if loaded_milestones_raw is Array:
+	var loaded_milestones_raw: Dictionary = _load_json_data(DATA_PATH_MILESTONES)
+	if loaded_milestones_raw is Dictionary:
 		milestone_stages.clear()
 		for milestone_def in loaded_milestones_raw:
 			if milestone_def is Dictionary:
@@ -509,7 +509,7 @@ func _initialize_default_soil_grid(width: int, height: int) -> void:
 	for y in range(height):
 		for x in range(width):
 			var coords_key: String = str(x) + "," + str(y)
-			soil_grid_data[coords_key] = {"fertility": 100, "moisture": 100, "purity": 100} # Added moisture, purity
+			soil_grid_data[coords_key] = {"fertilizer": 100, "hydration": 100, "nitrogen": 100} # Added hydration, nitrogen
 	print("Initialized default soil grid (%dx%d)." % [width, height])
 
 
@@ -581,7 +581,7 @@ func _place_item(grid_x: int, grid_y: int) -> void:
 
 	# After successful placement, emit the signal for visual placement
 	# This signal will be received by tile_maps.gd to instantiate the visual
-	Signals.plant_seed.emit(selected_item_for_placement, grid_x, grid_y) # Emitting with item_id, grid_x, grid_y
+	Signals.plant_seed.emit(selected_item_for_placement) # Emitting with item_id, grid_x, grid_y
 
 	# After successful placement, you typically remain in placement mode to allow rapid placement.
 	# To revert to normal automatically after one placement: set_game_mode(GameMode.NORMAL)
@@ -667,15 +667,15 @@ func _check_milestone_met() -> bool:
 	# quality requirement (remains) ---
 	if requirements.has("soil_quality_target_avg"):
 		var target_soil_avg: Dictionary = requirements["soil_quality_target_avg"] # Corrected from soil_soil_quality_target_avg
-		var soil_stat_sums: Dictionary = {"fertility": 0, "moisture": 0, "purity": 0}
+		var soil_stat_sums: Dictionary = {"fertilizer": 0, "hydration": 0, "nitrogen": 0}
 		var tile_count: int = soil_grid_data.size()
 
 		if tile_count > 0:
 			for coords_key: String in soil_grid_data:
 				var props: Dictionary = soil_grid_data[coords_key]
-				soil_stat_sums["fertility"] += props.get("fertility", 0)
-				soil_stat_sums["moisture"] += props.get("moisture", 0)
-				soil_stat_sums["purity"] += props.get("purity", 0)
+				soil_stat_sums["fertilizer"] += props.get("fertilizer", 0)
+				soil_stat_sums["hydration"] += props.get("hydration", 0)
+				soil_stat_sums["nitrogen"] += props.get("nitrogen", 0)
 
 			for stat_name: String in target_soil_avg:
 				var avg_value: float = float(soil_stat_sums.get(stat_name, 0)) / tile_count

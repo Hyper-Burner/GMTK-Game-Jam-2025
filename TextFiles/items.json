@@ -1,1 +1,15 @@
-[{}]
+{
+	"Sprinkler":
+		{
+			"display_name": "Automatic Sprinkler",
+			"description": "Automatically increases hydration of adjacent soil tiles each loop.",
+			"type": "automation",
+			"effect": {
+				"type": "area_soil_stat_increase_per_loop",
+				"stat": "hydration",
+				"value": 5,
+				"range": 1
+			},
+			"sprite_path": ""
+		}
+}
