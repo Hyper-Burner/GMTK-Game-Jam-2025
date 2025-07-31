@@ -56,4 +56,5 @@ func placement_mode_exited() -> void:
 	highlight.clear()
 
 func plant_seed(seed: String) -> void:
-	crops.set_cell(get_tile_position(get_global_mouse_position()), 0, seeds[seed]["atlas_coords"])
+	var atlas_coords = Vector2i(seeds[seed]["atlas_coords_x"],seeds[seed]["atlas_coords_y"] )
+	crops.set_cell(get_tile_position(get_global_mouse_position()), 0, atlas_coords)

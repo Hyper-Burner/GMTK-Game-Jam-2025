@@ -16,7 +16,8 @@
 			"nutrients": 75,
 			"soil_ph": 50
 		},
-		"optimal_growth_speed_scale": 44
+		"optimal_growth_speed_scale": 44,
+		"atlas_coords": 0
 	},
 	"Spring Onion": {
 		"description": "These grow wild during the spring.",
@@ -54,7 +55,9 @@
 			"nutrients": 75,
 			"soil_ph": 25
 		},
-		"optimal_growth_duration": 20
+		"optimal_growth_duration": 20,
+		"atlas_coords_x": 0,
+		"atlas_coords_y": 0
 	},
 	"Onion": {
 		"description": "Adds a wonderful zestiness to dishes. High quality onion can be pretty spicy.",
