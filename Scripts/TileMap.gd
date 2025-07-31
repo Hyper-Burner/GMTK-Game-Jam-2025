@@ -9,17 +9,23 @@ var source_id: int
 var selected_tile: Vector2i
 var placement_mode: bool = false
 
+var ground_properties = []
+
 func _ready() -> void:
 	Signals.planting_mode_entered.connect(planting_mode_entered)
 	Signals.planting_mode_exited.connect(placement_mode_exited)
 	Signals.plant_seed.connect(plant_seed)
+	
+	ground_properties = create_matrix([5, 5], [50, 50, 50])
+	
+	print(ground_properties)
 
 func _physics_process(delta: float) -> void:
 	if placement_mode:
-		if !crops.get_cell_tile_data(get_tile_position(get_global_mouse_position())):
-			highlight.modulate = Color(1, 0, 0, 1)
-		else:
+		if crops.get_cell_tile_data(get_tile_position(get_global_mouse_position())):
 			highlight.modulate = Color(1, 0, 0, 0.5)
+		else:
+			highlight.modulate = Color(0, 1, 0, 0.5)
 
 		highlight.clear()
 		highlight.set_cell(get_tile_position(get_global_mouse_position()), 0, Vector2i(0, 0))
@@ -29,13 +35,25 @@ func get_tile_position(global_position: Vector2) -> Vector2i:
 	var tile_position = ground.local_to_map(local_position)
 	
 	return tile_position
+	
+func is_optimal_condition(tile, seed):
+	pass
+	
+func create_matrix(shape: Array, fill_value) -> Array:
+	var matrix = []
+	for x in shape[0]:
+		var row = []
+		for y in shape[1]:
+			row.append(fill_value)
+		matrix.append(row)
+	return matrix
 
-func planting_mode_entered(seed: String):
-	print("smol sproot - planting mode entered for seed:", seed)
+func planting_mode_entered(seed: String) -> void:
 	placement_mode = true
 
-func placement_mode_exited():
+func placement_mode_exited() -> void:
 	placement_mode = false
+	highlight.clear()
 
-func plant_seed(seed: String):
+func plant_seed(seed: String) -> void:
 	crops.set_cell(get_tile_position(get_global_mouse_position()), 0, seeds[seed]["atlas_coords"])

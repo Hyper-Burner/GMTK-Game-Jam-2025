@@ -360,8 +360,8 @@ func _load_all_game_data() -> void:
 		push_warning("Crop data in '%s' is not an Array, expecting Array. Received: %s" % [DATA_PATH_CROPS, typeof(loaded_crops_array)])
 
 	# Load Item Data
-	var loaded_items_array: Array = _load_json_data(DATA_PATH_ITEMS)
-	if loaded_items_array is Array:
+	var loaded_items_array: Dictionary = _load_json_data(DATA_PATH_ITEMS)
+	if loaded_items_array is Dictionary:
 		item_data_map.clear() # Clear existing data
 		for item_def in loaded_items_array:
 			if item_def is Dictionary and item_def.has("name"):
