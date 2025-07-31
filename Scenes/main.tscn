@@ -1,20 +1,15 @@
-[gd_scene load_steps=5 format=3 uid="uid://rjuf0oqtkuyo"]
+[gd_scene load_steps=3 format=3 uid="uid://rjuf0oqtkuyo"]
 
-[ext_resource type="PackedScene" path="res://Scenes/tile_maps.tscn" id="1_jjvhh"]
+[ext_resource type="PackedScene" path="res://Scenes/tile_map.tscn" id="2_bo1nx"]
 [ext_resource type="PackedScene" uid="uid://5s4n8kmxc8y5" path="res://Scenes/ui.tscn" id="2_kry3j"]
-[ext_resource type="PackedScene" uid="uid://cq27xjduinpbj" path="res://Scenes/crop.tscn" id="3_21xkr"]
-[ext_resource type="PackedScene" uid="uid://ov0fkj4vkx08" path="res://Scenes/loop_summary.tscn" id="4_6bp64"]
 
 [node name="Main" type="Node2D"]
 
-[node name="UI" parent="." instance=ExtResource("2_kry3j")]
+[node name="Control" parent="." instance=ExtResource("2_kry3j")]
+offset_left = -1.0
+offset_top = 3.0
+offset_right = -1.0
+offset_bottom = 3.0
 
-[node name="TileMaps" parent="." instance=ExtResource("1_jjvhh")]
-
-[node name="Crop" parent="." instance=ExtResource("3_21xkr")]
-
-[node name="LoopSummary" parent="." instance=ExtResource("4_6bp64")]
-[gd_scene load_steps=3 format=3 uid="uid://dcq1jlvgrd4iu"]
-
-[ext_resource type="PackedScene" uid="uid://bbvt6yh5earpa" path="res://Scenes/tile_maps.tscn" id="1_bo1nx"]
-[ext_resource type="PackedScene" uid="uid://5s4n8kmxc8y5" path="res://Scenes/ui.tscn" id="2_8gbba"]
+[node name="TileMap" parent="." instance=ExtResource("2_bo1nx")]
+position = Vector2(2, 3)
