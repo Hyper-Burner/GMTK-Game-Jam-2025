@@ -1,0 +1,18 @@
+{
+	"ph_adapter": {
+		"description": "Adapt the ph of a soil tile to an unlocked seed of your choice",
+		"effects": "PlaceHolder",
+	},
+	"hydration_booster": {
+		"description": "Boost the hydration level of a soil tile by 25",
+		"effects": "PlaceHolder",
+	},
+	"nutrients_pack": {
+		"description": "Boost the nutrients level of a soil tile by 25",
+		"effects": "PlaceHolder",
+	},
+	"time_capsule_capacity_increase": {
+		"description":	 "Increase the time capsule capacity",
+		"effects": "PlaceHolder"
+	}
+}
