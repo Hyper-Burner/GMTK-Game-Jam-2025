@@ -4,29 +4,74 @@
 	"description": "Harvest some basic seeds to prove your farming skills.",
 	"requirements": {
 	  "harvested_crops": {
-		"Potatoes": 5
+		"Potato": 5
 	  }
 	},
 	"rewards": {
-	  "unlocked_plants": 0,
+	  "unlocked_plants": "Strawberry",
 	  "unlocked_upgrades": [
 		{
-		  "type": "time_capsule_capacity_increase",
-		  "value": 2
+		  "type": "ph_adapter",
+		  "value": 1
 		}
 	  ]
 	}
   },
+
+"Second Harvest":
+	{
+	"description": "More crops means better upgrades.",
+	"requirements": {
+		"harvested_crops": {
+			"Strawberry": 5,
+			"Potato": 10
+		}
+	},
+	"rewards": {
+	  "unlocked_plants": "Spring Onion",
+	  "unlocked_upgrades": [
+		{
+		  "type": "hydration_booster",
+		  "value": 2
+		}
+	  ]
+	}	
+  },
+
+"Third Harvest":
+	{
+	"description": "Last one before your first day ends!",
+	"requirements": {
+		"harvested_crops": {
+			"Strawberry": 10,
+			"Potato": 10,
+			"Spring Onion": 5
+		}
+	},
+	"rewards": {
+	  "unlocked_plants": "Onion",
+	  "unlocked_upgrades": [
+		{
+		  "type": "nutrients_pack",
+		  "value": 2
+		}
+	  ]
+	}	
+  },
+	
 "Saved the seeds":
 	{
 	"description": "Learn to use Time Capsule",
 	"requirements": {
 	  "harvested_crops": {
-		"Potatoes": 15
+		"Potato": 15,
+		"Strawberry": 15,
+		"Spring Onion": 15,
+		"Onion": 10
 	  }
 	},
 	"rewards": {
-	  "unlocked_plants": 0,
+	  "unlocked_plants": null,
 	  "unlocked_upgrades": [
 		{
 		  "type": "time_capsule_capacity_increase",
