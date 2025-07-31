@@ -38,7 +38,6 @@ func _physics_process(delta: float) -> void:
 func get_tile_position(global_position: Vector2) -> Vector2i:
 	var local_position = ground.to_local(global_position)
 	var tile_position = ground.local_to_map(local_position)
-	
 	return tile_position
 	
 func is_optimal_condition(tile, seed):
