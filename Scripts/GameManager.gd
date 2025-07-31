@@ -26,7 +26,7 @@ signal loop_duration_changed(new_duration: float)
 # Emitted when the current active game interaction mode changes.
 signal game_mode_changed(new_mode: int)
 # Emitted when placement mode is activated for a specific item.
-signal placement_mode_active(item_id: String)
+signal placement_mode_entered(item_id: String)
 # Emitted when placement mode is exited (e.g., by canceling or placing).
 signal placement_mode_exited()
 # Emitted when Harvest mode is activated (useful for UI cursor changes).
@@ -40,9 +40,9 @@ signal update_placement_preview(grid_coords: Vector2i, is_valid: bool)
 
 
 # --- Constants ---
-const DATA_PATH_CROPS: String = "res://Data/crops.json"
-const DATA_PATH_ITEMS: String = "res://Data/items.json"
-const DATA_PATH_MILESTONES: String = "res://Data/milestones.json"
+const DATA_PATH_CROPS: String = "res://TextFiles/crops.json"
+const DATA_PATH_ITEMS: String = "res://TextFiles/items.json"
+const DATA_PATH_MILESTONES: String = "res://TextFiles/milestones.json"
 
 const DEFAULT_GRID_WIDTH: int = 5
 const DEFAULT_GRID_HEIGHT: int = 5
@@ -356,27 +356,28 @@ func _load_json_data(path: String) -> Variant:
 	file.close()
 
 	var json_parser = JSON.new() # Create an instance of the JSON utility class for parsing.
-	var parse_result = json_parser.parse_string(json_string) # Use the instance to parse.
+	
+	# --- FIX STARTS HERE ---
+	# In Godot 4, parse_string returns the parsed data on success, or null on failure.
+	# Error details are retrieved from the JSON parser object itself.
+	var parsed_data = json_parser.parse_string(json_string) 
 
-	if parse_result != OK: # Check if the parsing process itself failed (e.g., malformed JSON syntax).
+	if parsed_data == null: # Check if parsing failed (result is null)
 		push_error("ERROR: Could not parse JSON from %s. Parse Error: %s at line %d" % [path, json_parser.get_error_message(), json_parser.get_error_line()])
 		return {} # Return empty dict/array on parsing error.
-
-	# The actual parsed data is stored in the 'data' property of the parser instance.
-	var parsed_data = json_parser.data
+	# --- FIX ENDS HERE ---
 
 	# This check is useful if the JSON *parsed* successfully but the content itself was just "null".
-	if parsed_data == null:
+	if parsed_data == null: # This check is redundant with the one above if `parse_string` returns null.
+							 # However, it's harmless and can act as a fallback.
 		push_error("ERROR: JSON file '%s' parsed successfully but resulted in a null data object. Content might be 'null'." % path)
 		# Assuming most config JSONs will be objects/arrays, returning empty dict is a safer default.
 		return {}
 
 	return parsed_data
 
-
 func _load_all_game_data() -> void:
-	"""Loads all game data (crops, items, milestones) from JSON files."""
-	# Load Crop Data
+	# Load Crop Data (assuming this part is already correct and working)
 	var loaded_crops: Array = _load_json_data(DATA_PATH_CROPS)
 	if loaded_crops is Array:
 		for crop_def in loaded_crops:
@@ -384,8 +385,8 @@ func _load_all_game_data() -> void:
 				crop_data_map[crop_def["id"]] = crop_def
 			else:
 				push_warning("Crop definition in '%s' missing 'id' or invalid format: %s" % [DATA_PATH_CROPS, crop_def])
-	
-	# Load Item Data
+
+	# Load Item Data (assuming this part is already correct and working)
 	var loaded_items: Array = _load_json_data(DATA_PATH_ITEMS)
 	if loaded_items is Array:
 		for item_def in loaded_items:
@@ -394,11 +395,23 @@ func _load_all_game_data() -> void:
 			else:
 				push_warning("Item definition in '%s' missing 'id' or invalid format: %s" % [DATA_PATH_ITEMS, item_def])
 
-	# Load Milestone Data
-	var loaded_milestones: Array = _load_json_data(DATA_PATH_MILESTONES)
-	if loaded_milestones is Array:
-		milestone_stages = loaded_milestones
-	
+	# Load Milestone Data - THIS IS THE SECTION WE'RE FIXING
+	var loaded_milestones_raw: Array = _load_json_data(DATA_PATH_MILESTONES)
+
+	# Check if the loaded data is an array before processing
+	if loaded_milestones_raw is Array:
+		# Clear the existing milestone_stages array
+		milestone_stages.clear()
+	# Iterate through the raw loaded data and append only valid Dictionaries
+		for milestone_def in loaded_milestones_raw:
+			if milestone_def is Dictionary:
+				milestone_stages.append(milestone_def)
+			else:
+				push_warning("Invalid milestone definition found in '%s': Expected Dictionary, but found %s. Skipping this entry." % [DATA_PATH_MILESTONES, typeof(milestone_def)])
+	else:
+		# If the root JSON itself wasn't an array
+		push_warning("Milestone data in '%s' is not an Array, expecting Array. Received: %s" % [DATA_PATH_MILESTONES, typeof(loaded_milestones_raw)])
+
 	print("Loaded %d crop definitions." % crop_data_map.size())
 	print("Loaded %d item definitions." % item_data_map.size())
 	print("Loaded %d milestone stages." % milestone_stages.size())
