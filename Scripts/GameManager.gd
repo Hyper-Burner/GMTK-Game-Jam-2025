@@ -71,6 +71,8 @@ var selected_item_for_placement: String = "" # Now a String ("" for no item sele
 # Reference to the separate preview controller instance.
 var placement_preview_controller: Node2D = null # Now a direct reference to the controller
 
+var seconds_passed: int = 0
+
 const TILE_SIZE: int = 32 # Example: 32x32 pixel tiles
 
 
@@ -868,3 +870,7 @@ func load_game() -> void:
 			push_error("Error parsing save file: Invalid JSON format.")
 	else:
 		push_error("Could not open file for loading: %s" % file_path)
+
+func _on_timeout():
+	seconds_passed += 1
+	emit_signal("time_updated", seconds_passed, seconds_passed)
