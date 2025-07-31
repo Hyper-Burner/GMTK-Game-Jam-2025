@@ -1,7 +1,7 @@
 extends Control
 
 
-@onready var time_label : Label = $TimeLabel
+@onready var time_label : Label = $LoopTimer/TimeLabel
 @onready var seed_pouch : TextureButton = $Tools/SeedPouch
 @onready var scythe : TextureButton = $Tools/Scythe
 @onready var soil_scanner : TextureButton = $Tools/SoilScanner
@@ -13,9 +13,9 @@ func _ready():
 	soil_scanner.pressed.connect(_on_soil_scanner_pressed)
 
 
-func _on_time_updated(new_time : int) -> void:
-	#time_label.text = str(new_time)
-	pass
+func _on_time_updated(new_time : float, other : float) -> void:
+	time_label.text = str(truncate_to(new_time, 1))
+
 
 func _on_seed_pouch_pressed():
 	# change to seed placement mode
@@ -25,12 +25,15 @@ func _on_seed_pouch_pressed():
 
 func _on_scythe_pressed():
 	# change to harvesting mode
-	Global.emit_signal("harvesting_mode_entered")
+	Signals.emit_signal("harvesting_mode_entered")
 	print("Harvesting Mode")
 	
 
 func _on_soil_scanner_pressed():
 	# change to scanning mode
-	Global.emit_signal("inspecting_mode_entered")
+	Signals.emit_signal("inspecting_mode_entered")
 	print("Inspecting Mode")
 	
+func truncate_to(value: float, decimals: int) -> float:
+	var factor = 10.0 ** decimals
+	return float(int(value * factor)) / factor

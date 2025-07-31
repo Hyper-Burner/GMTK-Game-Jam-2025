@@ -1,0 +1,74 @@
+[gd_scene load_steps=3 format=3 uid="uid://calsc02cav8du"]
+
+[ext_resource type="Script" uid="uid://c3yyagh42ab2r" path="res://Scripts/ui.gd" id="1_jxero"]
+[ext_resource type="Texture2D" uid="uid://cnwpowrwrkpi5" path="res://icon.svg" id="2_qdvrb"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_jxero")
+
+[node name="LoopTimer" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="TimeLabel" type="Label" parent="LoopTimer"]
+layout_mode = 0
+offset_left = 89.0
+offset_top = -1.0
+offset_right = 268.0
+offset_bottom = 22.0
+
+[node name="Label" type="Label" parent="LoopTimer"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Loop Time:"
+
+[node name="Milestone" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Label" type="Label" parent="Milestone"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="Tools" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.267
+anchor_bottom = 0.556
+offset_top = -64.12
+offset_right = 128.0
+offset_bottom = 223.84
+
+[node name="SeedPouch" type="TextureButton" parent="Tools"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+texture_normal = ExtResource("2_qdvrb")
+
+[node name="Scythe" type="TextureButton" parent="Tools"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+texture_normal = ExtResource("2_qdvrb")
+
+[node name="SoilScanner" type="TextureButton" parent="Tools"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+texture_normal = ExtResource("2_qdvrb")
+
+[node name="TimeCapsule" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 598.0
+offset_top = 321.0
+offset_right = 638.0
+offset_bottom = 361.0

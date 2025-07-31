@@ -1,4 +1,4 @@
-[gd_scene load_steps=2 format=3 uid="uid://cmkhqup2ace1"]
+[gd_scene load_steps=2 format=3 uid="uid://bu00qyanhvelf"]
 
 [ext_resource type="Script" uid="uid://c3yyagh42ab2r" path="res://Scripts/ui.gd" id="1_fyqef"]
 
@@ -18,12 +18,18 @@ offset_bottom = 40.0
 
 [node name="TimeLabel" type="Label" parent="LoopTimer"]
 layout_mode = 0
+offset_left = 98.0
+offset_top = 1.0
+offset_right = 217.0
+offset_bottom = 27.0
 
 [node name="Label" type="Label" parent="LoopTimer"]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0
-text = "LOOP:"
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 93.0
+offset_bottom = 24.0
+text = "Loop Timer:"
 
 [node name="Milestone" type="TextureRect" parent="."]
 layout_mode = 0
