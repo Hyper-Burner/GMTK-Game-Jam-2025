@@ -26,9 +26,9 @@ signal loop_duration_changed(new_duration: float)
 # Emitted when the current active game interaction mode changes.
 signal game_mode_changed(new_mode: int)
 # Emitted when placement mode is activated for a specific item.
-signal placement_mode_entered(item_id: String)
+signal planting_mode_entered(item_id: String)
 # Emitted when placement mode is exited (e.g., by canceling or placing).
-signal placement_mode_exited()
+signal planting_mode_exited()
 # Emitted when Harvest mode is activated (useful for UI cursor changes).
 signal harvest_mode_active()
 # Emitted when Inspect mode is activated (useful for UI cursor changes).
@@ -53,7 +53,7 @@ const DEFAULT_STARTING_SEEDS_QUANTITY: int = 3
 # --- Game Modes (Updated Enum for interaction states) ---
 enum GameMode {
 	NORMAL,        # Default interaction mode (e.g., general observation, or simple click for inspect)
-	PLACEMENT,     # Player is actively placing objects on the grid
+	PLANTING,     # Player is actively planting objects on the grid
 	HARVEST,       # Player is actively clicking on mature plants/resources to harvest them
 	INSPECT        # Player is actively clicking on objects to view detailed information
 }
@@ -132,13 +132,13 @@ func _process(delta: float) -> void: # Changed to _process for smoother mouse fo
 	# Update game loop timer
 	if current_loop_time > 0:
 		current_loop_time -= delta
-		emit_signal("timer_updated", current_loop_time, loop_duration)
+		emit_signal("timer_updated", current_loop_time)
 		if current_loop_time <= 0:
 			current_loop_time = 0.0 # Ensure it doesn't go negative
 			_end_loop()
 
 	# Continuously update preview if in placement mode
-	if current_game_mode == GameMode.PLACEMENT:
+	if current_game_mode == GameMode.PLANTING:
 		_send_placement_preview_update()
 
 
@@ -170,7 +170,9 @@ func _input(event: InputEvent) -> void:
 	
 	# Your UI buttons would call set_game_mode(GameMode.PLACEMENT, "item_id") directly.
 	# This section is just for example keyboard triggers if you need them during development.
-
+	if event.is_action_pressed("plant_mode_key"):
+		# You'll likely want to plant a specific item, like your DEFAULT_STARTING_SEEDS_ID
+		set_game_mode(GameMode.PLANTING, DEFAULT_STARTING_SEEDS_ID)
 
 # --- Input Handling Helpers ---
 func _get_grid_coords_under_mouse(mouse_pos: Vector2) -> Vector2i:
@@ -225,7 +227,7 @@ func _handle_left_click(mouse_pos: Vector2) -> void:
 			else:
 				_inspect_soil(grid_x, grid_y) # Inspect soil if no item
 
-		GameMode.PLACEMENT:
+		GameMode.PLANTING:
 			if selected_item_for_placement:
 				_place_item(grid_x, grid_y)
 			else:
@@ -724,10 +726,10 @@ func set_game_mode(mode: int, item_id_for_placement: String = "") -> void:
 
 	# Clean up logic for the OLD mode before transitioning.
 	# --- Cleanup for PLACEMENT mode ---
-	if current_game_mode == GameMode.PLACEMENT:
+	if current_game_mode == GameMode.PLANTING:
 		_destroy_placement_preview_controller() # Remove the controller instance.
 		selected_item_for_placement = "" # Clear the selected item.
-		emit_signal("placement_mode_exited") # Notify UI/other systems.
+		emit_signal("planting_mode_exited") # Notify UI/other systems.
 	
 	# Add cleanup for Harvest/Inspect modes if they had specific visual cues (e.g., a cursor change, highlight)
 	# if current_game_mode == GameMode.HARVEST:
@@ -743,14 +745,15 @@ func set_game_mode(mode: int, item_id_for_placement: String = "") -> void:
 	match current_game_mode:
 		GameMode.NORMAL:
 			print("Game Mode: NORMAL")
-		GameMode.PLACEMENT:
+		GameMode.PLANTING:
 			if not item_id_for_placement:
 				push_warning("Attempted to enter PLACEMENT mode without an item_id. Reverting to NORMAL.")
 				set_game_mode(GameMode.NORMAL) # Cannot enter placement without an item.
 				return
 			
 			selected_item_for_placement = item_id_for_placement
-			emit_signal("placement_mode_active", selected_item_for_placement) # Notify UI.
+			print("my yn")
+			emit_signal("planting_mode_entered", selected_item_for_placement) # Notify UI.
 			print("Game Mode: PLACEMENT for item '%s'" % selected_item_for_placement)
 		GameMode.HARVEST:
 			print("Game Mode: HARVEST")

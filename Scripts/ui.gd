@@ -14,7 +14,8 @@ func _ready():
 
 
 func _on_time_updated(new_time : int) -> void:
-	time_label.text = str(new_time)
+	#time_label.text = str(new_time)
+	pass
 
 func _on_seed_pouch_pressed():
 	# change to seed placement mode
