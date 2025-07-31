@@ -21,7 +21,7 @@ func _on_time_updated(new_time : float, other : float) -> void:
 
 func _on_seed_pouch_pressed():
 	# change to seed placement mode
-	Signals.emit_signal("planting_mode_entered")
+	Signals.planting_mode_entered.emit("potato")
 	print("Planting Mode")
 	
 
