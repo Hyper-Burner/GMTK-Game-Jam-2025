@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://5s4n8kmxc8y5"]
+[gd_scene load_steps=4 format=3 uid="uid://5s4n8kmxc8y5"]
 
 [ext_resource type="Script" uid="uid://c3yyagh42ab2r" path="res://Scripts/ui.gd" id="1_jxero"]
-[ext_resource type="Texture2D" uid="uid://cnwpowrwrkpi5" path="res://icon.svg" id="2_qdvrb"]
+[ext_resource type="Texture2D" uid="uid://vy7kfwpi6goc" path="res://PlaceholderAssets/Objects/BluePlant32.png" id="2_qdvrb"]
+[ext_resource type="PackedScene" uid="uid://3j1e8ld7h76h" path="res://Scenes/inventory_slot.tscn" id="3_nf4gj"]
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -45,9 +46,10 @@ layout_mode = 1
 anchors_preset = -1
 anchor_top = 0.267
 anchor_bottom = 0.556
-offset_top = -64.12
-offset_right = 128.0
-offset_bottom = 223.84
+offset_left = 3.0
+offset_top = 23.88
+offset_right = 35.0
+offset_bottom = 23.84
 
 [node name="SeedPouch" type="TextureButton" parent="Tools"]
 custom_minimum_size = Vector2(32, 32)
@@ -68,7 +70,51 @@ texture_normal = ExtResource("2_qdvrb")
 
 [node name="TimeCapsule" type="TextureRect" parent="."]
 layout_mode = 0
-offset_left = 598.0
-offset_top = 321.0
-offset_right = 638.0
-offset_bottom = 361.0
+offset_left = 600.0
+offset_top = 320.0
+offset_right = 640.0
+offset_bottom = 360.0
+texture = ExtResource("2_qdvrb")
+
+[node name="TimeCapsulePanel" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 346.0
+offset_top = 320.0
+offset_right = 602.0
+offset_bottom = 360.0
+
+[node name="InventoryGrid" type="GridContainer" parent="TimeCapsulePanel"]
+layout_direction = 2
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -20.0
+offset_right = 256.0
+offset_bottom = 20.0
+grow_vertical = 2
+columns = 8
+
+[node name="InventorySlot" parent="TimeCapsulePanel/InventoryGrid" instance=ExtResource("3_nf4gj")]
+layout_mode = 2
+
+[node name="InventorySlot2" parent="TimeCapsulePanel/InventoryGrid" instance=ExtResource("3_nf4gj")]
+layout_mode = 2
+
+[node name="InventorySlot3" parent="TimeCapsulePanel/InventoryGrid" instance=ExtResource("3_nf4gj")]
+layout_mode = 2
+
+[node name="InventorySlot4" parent="TimeCapsulePanel/InventoryGrid" instance=ExtResource("3_nf4gj")]
+layout_mode = 2
+
+[node name="InventorySlot5" parent="TimeCapsulePanel/InventoryGrid" instance=ExtResource("3_nf4gj")]
+layout_mode = 2
+
+[node name="InventorySlot6" parent="TimeCapsulePanel/InventoryGrid" instance=ExtResource("3_nf4gj")]
+layout_mode = 2
+
+[node name="InventorySlot7" parent="TimeCapsulePanel/InventoryGrid" instance=ExtResource("3_nf4gj")]
+layout_mode = 2
+
+[node name="InventorySlot8" parent="TimeCapsulePanel/InventoryGrid" instance=ExtResource("3_nf4gj")]
+layout_mode = 2

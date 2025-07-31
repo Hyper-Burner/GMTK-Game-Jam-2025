@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://dcq1jlvgrd4iu"]
+
+[ext_resource type="PackedScene" uid="uid://bbvt6yh5earpa" path="res://Scenes/tile_maps.tscn" id="1_bo1nx"]
+[ext_resource type="PackedScene" uid="uid://5s4n8kmxc8y5" path="res://Scenes/ui.tscn" id="2_8gbba"]
+
+[node name="Main" type="Node2D"]
+
+[node name="TileMaps" parent="." instance=ExtResource("1_bo1nx")]
+position = Vector2(207, 141)
+
+[node name="Control" parent="." instance=ExtResource("2_8gbba")]
+offset_left = 1.0
+offset_right = 1.0

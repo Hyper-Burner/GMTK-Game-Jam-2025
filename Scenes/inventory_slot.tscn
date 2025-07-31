@@ -1,0 +1,27 @@
+[gd_scene load_steps=2 format=3 uid="uid://3j1e8ld7h76h"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_km6kw"]
+
+[node name="InventorySlot" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+
+[node name="Background" type="Panel" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_km6kw")
+
+[node name="ItemIcon" type="TextureRect" parent="Background"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+stretch_mode = 3
+
+[node name="Label" type="Label" parent="Background"]
+layout_mode = 0
+offset_left = 29.0
+offset_top = 17.0
+offset_right = 39.0
+offset_bottom = 40.0
+text = "0"
