@@ -38,7 +38,6 @@ signal inspect_mode_active()
 # Emitted when the mouse moves over a grid cell while in placement mode.
 signal update_placement_preview(grid_coords: Vector2i, is_valid: bool)
 
-
 # --- Constants ---
 const DATA_PATH_CROPS: String = "res://TextFiles/crops.json"
 const DATA_PATH_ITEMS: String = "res://TextFiles/items.json"
