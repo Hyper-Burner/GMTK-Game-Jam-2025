@@ -10,13 +10,13 @@ var selected_tile: Vector2i
 var placement_mode: bool = false
 
 func _ready() -> void:
-	Global.placement_mode_entered.connect(placement_mode_entered)
-	Global.placement_mode_exited.connect(placement_mode_exited)
-	Global.plant_seed.connect(plant_seed)
+	Signals.planting_mode_entered.connect(planting_mode_entered)
+	Signals.planting_mode_exited.connect(placement_mode_exited)
+	Signals.plant_seed.connect(plant_seed)
 
 func _physics_process(delta: float) -> void:
 	if placement_mode:
-		if crops.get_cell_tile_data():
+		if !crops.get_cell_tile_data(get_tile_position(get_global_mouse_position())):
 			highlight.modulate = Color(1, 0, 0, 1)
 		else:
 			highlight.modulate = Color(1, 0, 0, 0.5)
@@ -30,7 +30,8 @@ func get_tile_position(global_position: Vector2) -> Vector2i:
 	
 	return tile_position
 
-func placement_mode_entered(seed: String):
+func planting_mode_entered(seed: String):
+	print("smol sproot - planting mode entered for seed:", seed)
 	placement_mode = true
 
 func placement_mode_exited():

@@ -7,7 +7,7 @@ extends Control
 @onready var soil_scanner : TextureButton = $Tools/SoilScanner
 
 func _ready():
-	Global.timer_updated.connect(_on_time_updated)
+	Signals.timer_updated.connect(_on_time_updated)
 	seed_pouch.pressed.connect(_on_seed_pouch_pressed)
 	scythe.pressed.connect(_on_scythe_pressed)
 	soil_scanner.pressed.connect(_on_soil_scanner_pressed)
@@ -19,7 +19,7 @@ func _on_time_updated(new_time : int) -> void:
 
 func _on_seed_pouch_pressed():
 	# change to seed placement mode
-	Global.emit_signal("planting_mode_entered")
+	Signals.emit_signal("planting_mode_entered")
 	print("Planting Mode")
 	
 

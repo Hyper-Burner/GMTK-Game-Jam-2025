@@ -1,1 +1,21 @@
-[{}]
+[
+  {
+	"display_name": "First Harvest",
+	"description": "Harvest some basic seeds to prove your farming skills.",
+	"requirements": {
+	  "harvested_crops": {
+		"0": 5
+	  }
+	},
+	"rewards": {
+	  "unlocked_plants": [1],
+	  "unlocked_upgrades": 
+			[
+				{
+				  "type": "time_capsule_capacity_increase",
+				  "value": 2
+				}
+			]
+		}
+	}
+]

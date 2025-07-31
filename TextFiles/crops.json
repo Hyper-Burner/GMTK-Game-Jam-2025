@@ -1,5 +1,10 @@
-[
+{
+	"Potato":
 	{
-		"Potato": "Potato"
+		"description": "A common seed, grows quickly.",
+		"atlas_coords": [0,0],
+		"growth_time": 15.0,
+		"harvest_yield": 1,
+		"harvest_seeds": 2
 	}
-]
+}

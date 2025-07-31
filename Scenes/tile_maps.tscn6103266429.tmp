@@ -1,0 +1,29 @@
+[gd_scene load_steps=7 format=3 uid="uid://bbvt6yh5earpa"]
+
+[ext_resource type="Script" uid="uid://dy66r1h3t7cw6" path="res://Scripts/TileMap.gd" id="1_134a1"]
+[ext_resource type="Texture2D" uid="uid://cnwpowrwrkpi5" path="res://icon.svg" id="2_3yt68"]
+
+[sub_resource type="TileSet" id="TileSet_134a1"]
+
+[sub_resource type="TileSet" id="TileSet_3yt68"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_d0gbv"]
+texture = ExtResource("2_3yt68")
+texture_region_size = Vector2i(128, 128)
+0:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_l3uww"]
+sources/0 = SubResource("TileSetAtlasSource_d0gbv")
+
+[node name="TileMaps" type="Node2D"]
+script = ExtResource("1_134a1")
+
+[node name="Ground" type="TileMapLayer" parent="."]
+tile_set = SubResource("TileSet_134a1")
+
+[node name="Crops" type="TileMapLayer" parent="."]
+tile_set = SubResource("TileSet_3yt68")
+
+[node name="Highlight" type="TileMapLayer" parent="."]
+modulate = Color(1, 1, 1, 0.313726)
+tile_set = SubResource("TileSet_l3uww")
