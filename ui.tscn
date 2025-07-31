@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://cmkhqup2ace1"]
 
-[ext_resource type="Script" uid="uid://8mgb2x2qhvhm" path="res://Scripts/loop_timer.gd" id="1_fyqef"]
+[ext_resource type="Script" uid="uid://c3yyagh42ab2r" path="res://Scripts/ui.gd" id="1_fyqef"]
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -9,14 +9,15 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_fyqef")
 
 [node name="LoopTimer" type="TextureRect" parent="."]
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
-script = ExtResource("1_fyqef")
 
-[node name="Timer" type="Timer" parent="LoopTimer"]
+[node name="TimeLabel" type="Label" parent="LoopTimer"]
+layout_mode = 0
 
 [node name="Label" type="Label" parent="LoopTimer"]
 layout_mode = 0
@@ -35,11 +36,31 @@ offset_right = 40.0
 offset_bottom = 23.0
 
 [node name="Tools" type="VBoxContainer" parent="."]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.267
+anchor_bottom = 0.556
+offset_top = -0.12001
+offset_right = 32.0
+offset_bottom = -0.160019
+
+[node name="SeedPouch" type="TextureButton" parent="Tools"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="Scythe" type="TextureButton" parent="Tools"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+
+[node name="SoilScanner" type="TextureButton" parent="Tools"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
 
 [node name="TimeCapsule" type="TextureRect" parent="."]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = 598.0
+offset_top = 321.0
+offset_right = 638.0
+offset_bottom = 361.0
