@@ -1,10 +1,10 @@
 extends Node2D
 
 @onready var ground = $Ground
-@onready var crops = $Crops
 @onready var highlight = $Highlight
 
 var seeds: Dictionary = JSON.parse_string(FileAccess.get_file_as_string("res://TextFiles/crops.json"))
+var crops = preload("res://Scenes/crop.tscn")
 var source_id: int
 var selected_tile: Vector2i
 var placement_mode: bool = false
@@ -16,7 +16,12 @@ func _ready() -> void:
 	Signals.planting_mode_exited.connect(placement_mode_exited)
 	Signals.plant_seed.connect(plant_seed)
 	
-	ground_properties = create_matrix([5, 5], [50, 50, 50])
+	ground_properties = create_matrix([5, 5], {
+		"Hydration": 50,
+		"Nutrients": 50,
+		"Soil PH": 50,
+		"Planted": 0
+	})
 	
 	print(ground_properties)
 
@@ -57,4 +62,4 @@ func placement_mode_exited() -> void:
 
 func plant_seed(seed: String) -> void:
 	var atlas_coords = Vector2i(seeds[seed]["atlas_coords_x"],seeds[seed]["atlas_coords_y"] )
-	crops.set_cell(get_tile_position(get_global_mouse_position()), 0, atlas_coords)
+	crops.create()
