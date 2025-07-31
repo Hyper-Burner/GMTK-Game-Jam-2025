@@ -1,5 +1,4 @@
 extends Sprite2D
-class_name Crop
 
 static var crop = preload("res://Scenes/crop.tscn")
 static var crops = JSON.parse_string(FileAccess.get_file_as_string("res://TextFiles/crops.json"))
