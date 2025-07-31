@@ -34,6 +34,10 @@ signal harvest_mode_active()
 # Emitted when Inspect mode is activated (useful for UI cursor changes).
 signal inspect_mode_active()
 
+# --- NEW SIGNAL FOR PREVIEW CONTROLLER COMMUNICATION ---
+# Emitted when the mouse moves over a grid cell while in placement mode.
+signal update_placement_preview(grid_coords: Vector2i, is_valid: bool)
+
 
 # --- Constants ---
 const DATA_PATH_CROPS: String = "res://Data/crops.json"
@@ -75,7 +79,7 @@ var time_capsule_contents: Dictionary = {}
 # Persistent dictionary storing the current properties of each soil tile (e.g., {"0,0": {"fertility": 50, ...}}).
 # This data persists across loops.
 var soil_grid_data: Dictionary = {}
-# Persistent dictionary storing which items are placed on each grid tile (e.g., {"0,0": "plant_id"}).
+# Persistent dictionary storing which items are placed on each grid tile (e.g., {"0,0": "item_id"}).
 # This data also persists across loops.
 var placed_items_grid: Dictionary = {}
 # The current total duration of a single time loop. Can be upgraded.
@@ -97,13 +101,10 @@ var current_loop_score: Dictionary = {}
 var current_game_mode: int = GameMode.NORMAL
 # The ID of the item currently selected for placement (only relevant in PLACEMENT mode).
 var selected_item_for_placement: String = ""
-# Reference to the visual preview instance (ghost object) shown during placement.
-var placement_preview_instance: Node3D = null
+# Reference to the separate preview controller instance.
+var placement_preview_controller: Node2D = null # Now a direct reference to the controller
 
-# --- Preload Scene for Placement Preview ---
-# Make sure to create this scene! It's a visual cue for placing objects.
-# Example: a Node3D with a MeshInstance3D (e.g., CubeMesh) and a transparent material.
-#const PLACEMENT_PREVIEW_SCENE: PackedScene = preload("res://Scenes/PlacementPreview.tscn")
+const TILE_SIZE: int = 32 # Example: 32x32 pixel tiles
 
 
 func _ready() -> void:
@@ -128,7 +129,7 @@ func _ready() -> void:
 	start_loop()
 
 
-func _physics_process(delta: float) -> void:
+func _process(delta: float) -> void: # Changed to _process for smoother mouse following
 	# Update game loop timer
 	if current_loop_time > 0:
 		current_loop_time -= delta
@@ -137,9 +138,9 @@ func _physics_process(delta: float) -> void:
 			current_loop_time = 0.0 # Ensure it doesn't go negative
 			_end_loop()
 
-	# Update placement preview position if in placement mode
-	if current_game_mode == GameMode.PLACEMENT and placement_preview_instance:
-		_update_placement_preview_position()
+	# Continuously update preview if in placement mode
+	if current_game_mode == GameMode.PLACEMENT:
+		_send_placement_preview_update()
 
 
 func _input(event: InputEvent) -> void:
@@ -175,36 +176,32 @@ func _input(event: InputEvent) -> void:
 # --- Input Handling Helpers ---
 func _get_grid_coords_under_mouse(mouse_pos: Vector2) -> Vector2i:
 	"""
-	Performs a raycast from the camera through the mouse position to the 3D world.
-	Assumes a flat ground plane or a `CollisionShape3D` on your grid objects.
-	Returns Vector2i(grid_x, grid_y) or Vector2i(-1, -1) if no valid grid hit.
-	Adjust `hit_position.x` and `hit_position.z` conversion if your grid origin/cell size differs.
+	Converts global mouse position to grid coordinates.
+	Assumes a TileMap or a custom grid system where (0,0) is the top-left of the grid
+	and cells are TILE_SIZE by TILE_SIZE.
+	If you're using a TileMap, you can use `tilemap.local_to_map(tilemap.to_local(mouse_pos))`
+	for more robust tile coordinate conversion.
 	"""
-	var camera: Camera3D = get_viewport().get_camera_3d()
-	if not camera:
-		return Vector2i(-1, -1)
+	# If you have a TileMap, get its reference and use its methods:
+	# var tilemap: TileMap = get_node_or_null("/root/MainScene/TileMap") # Adjust path to your TileMap
+	# if tilemap:
+	#    var local_mouse_pos = tilemap.to_local(mouse_pos)
+	#    var map_coords = tilemap.local_to_map(local_mouse_pos)
+	#    # Validate map_coords against your game's grid size (DEFAULT_GRID_WIDTH/HEIGHT) if necessary
+	#    if map_coords.x >= 0 and map_coords.x < DEFAULT_GRID_WIDTH and map_coords.y >= 0 and map_coords.y < DEFAULT_GRID_HEIGHT:
+	#        return map_coords
+	#    else:
+	#        return Vector2i(-1, -1)
 
-	var from: Vector3 = camera.project_ray_origin(mouse_pos)
-	# Ray length; adjust based on your scene scale.
-	var to: Vector3 = from + camera.project_ray_normal(mouse_pos) * 1000
+	# Simple direct conversion (assumes global coords map directly to grid, considering TILE_SIZE)
+	var grid_x: int = floor(mouse_pos.x / TILE_SIZE)
+	var grid_y: int = floor(mouse_pos.y / TILE_SIZE)
 
-	var space_state: PhysicsDirectSpaceState3D = get_world_3d().direct_space_state
-	var query = PhysicsRayQueryParameters3D.new()
-	query.from = from
-	query.to = to
-	query.collide_with_areas = true # Ray will detect Area3Ds
-	query.collide_with_bodies = true # Ray will detect PhysicsBody3Ds (e.g., StaticBody3D for ground)
-
-	var result: Dictionary = space_state.intersect_ray(query)
-
-	if result:
-		var hit_position: Vector3 = result.position
-		# Convert world position to grid coordinates (assuming 1x1 grid cells centered at integers)
-		var grid_x: int = round(hit_position.x)
-		var grid_y: int = round(hit_position.z) # Assuming Z is your 'depth' axis for a top-down view
+	# Validate if within your defined grid bounds (DEFAULT_GRID_WIDTH/HEIGHT)
+	if grid_x >= 0 and grid_x < DEFAULT_GRID_WIDTH and grid_y >= 0 and grid_y < DEFAULT_GRID_HEIGHT:
 		return Vector2i(grid_x, grid_y)
 	
-	return Vector2i(-1, -1)
+	return Vector2i(-1, -1) # Invalid coordinates
 
 
 func _handle_left_click(mouse_pos: Vector2) -> void:
@@ -312,7 +309,7 @@ func _inspect_item(grid_x: int, grid_y: int, item_id: String) -> void:
 		
 		# You could add runtime properties here, e.g., if it's a plant, its current growth stage.
 		# Example:
-		# var plant_instance_node = _get_3d_instance_at_grid(grid_x, grid_y)
+		# var plant_instance_node = _get_2d_instance_at_grid(grid_x, grid_y) # You'd need to implement this
 		# if plant_instance_node and plant_instance_node.has_method("get_growth_stage"):
 		#     print("  Growth Stage: %s" % plant_instance_node.get_growth_stage())
 
@@ -438,11 +435,8 @@ func _end_loop() -> void:
 	if _check_milestone_met():
 		_apply_milestone_reward()
 	
-	# The accumulation of Temporal Energy from harvested crops has been removed.
-	# Any value from crops would now be handled via direct inventory/currency systems.
-
 	emit_signal("loop_ended")
-	print("Loop Ended!") # Removed Temporal Energy display as it's no longer tracked.
+	print("Loop Ended!")
 
 	# Start the next loop after a brief delay (e.g., for showing a summary screen).
 	get_tree().create_timer(1.0).timeout.connect(start_loop)
@@ -620,7 +614,7 @@ func _check_milestone_met() -> bool:
 
 	# --- Check average soil quality requirement (remains) ---
 	if requirements.has("soil_quality_target_avg"):
-		var target_soil_avg: Dictionary = requirements["soil_quality_target_avg"]
+		var target_soil_avg: Dictionary = requirements["soil_soil_quality_target_avg"]
 		var soil_stat_sums: Dictionary = {"fertility": 0, "moisture": 0, "purity": 0}
 		var tile_count: int = soil_grid_data.size()
 
@@ -637,9 +631,6 @@ func _check_milestone_met() -> bool:
 					met_all = false
 					print("Milestone requirement not met: Average %s (%.1f) below target (%d)." % [stat_name, avg_value, target_soil_avg[stat_name]])
 					break
-		else:
-			met_all = false # Cannot meet soil quality without any tiles.
-			print("Milestone requirement not met: No soil tiles to check average quality.")
 		if not met_all:
 			return false
 
@@ -654,15 +645,6 @@ func _apply_milestone_reward() -> void:
 	"""Applies the rewards defined in the `current_milestone_data`."""
 	var rewards: Dictionary = current_milestone_data.get("rewards", {})
 	
-	# The "temporal_energy" reward type has been removed as per the new design.
-	# If you want a different form of 'currency' or direct item reward, add it here.
-	# Example:
-	# if rewards.has("granted_items"):
-	#     for item_id in rewards["granted_items"]:
-	#         var quantity_to_grant = rewards["granted_items"][item_id]
-	#         add_item_to_inventory(item_id, quantity_to_grant)
-
-
 	# Unlock new plants
 	if rewards.has("unlocked_plants"):
 		for plant_id: String in rewards["unlocked_plants"]:
@@ -729,9 +711,9 @@ func set_game_mode(mode: int, item_id_for_placement: String = "") -> void:
 		return # No change needed if already in this mode.
 
 	# Clean up logic for the OLD mode before transitioning.
-	# Clean up placement mode visuals/state if we're leaving it.
+	# --- Cleanup for PLACEMENT mode ---
 	if current_game_mode == GameMode.PLACEMENT:
-		_clear_placement_preview() # Remove the visual preview.
+		_destroy_placement_preview_controller() # Remove the controller instance.
 		selected_item_for_placement = "" # Clear the selected item.
 		emit_signal("placement_mode_exited") # Notify UI/other systems.
 	
@@ -756,7 +738,6 @@ func set_game_mode(mode: int, item_id_for_placement: String = "") -> void:
 				return
 			
 			selected_item_for_placement = item_id_for_placement
-			#_create_placement_preview() # Create the visual preview.
 			emit_signal("placement_mode_active", selected_item_for_placement) # Notify UI.
 			print("Game Mode: PLACEMENT for item '%s'" % selected_item_for_placement)
 		GameMode.HARVEST:
@@ -766,42 +747,26 @@ func set_game_mode(mode: int, item_id_for_placement: String = "") -> void:
 			print("Game Mode: INSPECT")
 			emit_signal("inspect_mode_active") # Inform UI about new mode.
 
-
-#func _create_placement_preview() -> void:
-	#"""Instantiates and sets up the visual preview for placement."""
-	#if PLACEMENT_PREVIEW_SCENE:
-		#if placement_preview_instance: # Ensure any old preview is removed first.
-			#_clear_placement_preview()
-		#
-		#placement_preview_instance = PLACEMENT_PREVIEW_SCENE.instantiate()
-		## Add the preview to the scene tree (e.g., as a child of the root viewport or a dedicated Node3D).
-		#get_tree().get_root().add_child(placement_preview_instance)
-		#_update_placement_preview_position() # Set its initial position.
-	#else:
-		#push_error("Placement preview scene not loaded! Check PLACEMENT_PREVIEW_SCENE path constant.")
+func _destroy_placement_preview_controller() -> void:
+	"""Removes the placement preview controller instance from the scene."""
+	if placement_preview_controller and is_instance_valid(placement_preview_controller):
+		# Disconnect the signal before freeing to prevent errors.
+		if is_connected("update_placement_preview", Callable(placement_preview_controller, "_on_update_preview_data")):
+			disconnect("update_placement_preview", Callable(placement_preview_controller, "_on_update_preview_data"))
+		
+		placement_preview_controller.queue_free() # Safely delete the node.
+		placement_preview_controller = null
+		print("Placement Preview Controller destroyed.")
 
 
-func _update_placement_preview_position() -> void:
-	"""Updates the position of the placement preview to follow the mouse on the grid."""
-	if placement_preview_instance and get_viewport():
+func _send_placement_preview_update() -> void:
+	"""Emits a signal to the preview controller to update its position and validation."""
+	if placement_preview_controller:
 		var mouse_pos: Vector2 = get_viewport().get_mouse_position()
 		var grid_coords: Vector2i = _get_grid_coords_under_mouse(mouse_pos)
+		var is_valid: bool = _is_valid_placement(grid_coords.x, grid_coords.y) if grid_coords != Vector2i(-1, -1) else false
 		
-		if grid_coords != Vector2i(-1, -1): # If mouse is over a valid grid cell.
-			# Position the preview. Adjust offset (Y=0.01) to avoid Z-fighting with ground.
-			# Assumes 1x1 grid cells, centered on integer coordinates for x and z.
-			placement_preview_instance.global_position = Vector3(grid_coords.x, 0.01, grid_coords.y)
-			placement_preview_instance.visible = true
-			# Future improvement: Change preview color/material based on `_is_valid_placement(grid_coords)`
-		else:
-			placement_preview_instance.visible = false # Hide preview if mouse is not over a valid grid cell.
-
-
-func _clear_placement_preview() -> void:
-	"""Removes the placement preview instance from the scene."""
-	if placement_preview_instance and is_instance_valid(placement_preview_instance):
-		placement_preview_instance.queue_free() # Safely delete the node.
-		placement_preview_instance = null
+		emit_signal("update_placement_preview", grid_coords, is_valid)
 
 
 func _is_valid_placement(grid_x: int, grid_y: int) -> bool:
@@ -809,38 +774,43 @@ func _is_valid_placement(grid_x: int, grid_y: int) -> bool:
 	Checks if the current selected item can be placed at the given grid coordinates.
 	Expand this with more game-specific rules (e.g., must be soil, specific soil type).
 	"""
+	# Handle invalid grid coordinates first to prevent errors
+	if grid_x == -1 or grid_y == -1:
+		return false
+
 	var coords_key: String = str(grid_x) + "," + str(grid_y)
 	
 	# Rule 1: Is the tile within the initialized grid bounds?
+	# This is already partly handled by _get_grid_coords_under_mouse, but good to double check.
 	if not soil_grid_data.has(coords_key):
-		print("Invalid placement: Outside grid bounds at (%d,%d)." % [grid_x, grid_y])
+		# print("Invalid placement: Outside grid bounds at (%d,%d)." % [grid_x, grid_y]) # Don't spam console
 		return false
 	
 	# Rule 2: Is the tile already occupied by another item?
 	if placed_items_grid.get(coords_key, "") != "":
-		print("Invalid placement: Tile (%d,%d) already occupied by '%s'." % [grid_x, grid_y, placed_items_grid[coords_key]])
+		# print("Invalid placement: Tile (%d,%d) already occupied by '%s'." % [grid_x, grid_y, placed_items_grid[coords_key]])
 		return false
 	
 	# Rule 3: Does the player have enough of the item in inventory?
 	if not current_inventory.get(selected_item_for_placement, 0) > 0:
-		print("Invalid placement: Not enough '%s' in inventory." % selected_item_for_placement)
+		# print("Invalid placement: Not enough '%s' in inventory." % selected_item_for_placement)
 		return false
 
 	# Add more specific rules here, e.g.:
 	# - If placing a plant, check if the soil_grid_data for this tile has suitable properties.
 	#   var soil_props = get_soil_properties(grid_x, grid_y)
 	#   if selected_item_for_placement.ends_with("seed") and soil_props.get("fertility", 0) < 30:
-	#       print("Invalid placement: Soil too infertile for planting.")
+	#       # print("Invalid placement: Soil too infertile for planting.")
 	#       return false
 	# - Check if the item type (e.g., "machine" vs "plant") can be placed on that tile type.
 
-	print("Valid placement at (%d,%d)." % [grid_x, grid_y])
+	# print("Valid placement at (%d,%d)." % [grid_x, grid_y])
 	return true
 
 
 func _place_item(grid_x: int, grid_y: int) -> void:
 	"""
-	Instantiates and places the `selected_item_for_placement` at the given grid coordinates.
+	Instantiates and places the `selected_item_for_placement` at the given grid coordinates (2D version).
 	Consumes item from inventory and updates the `placed_items_grid`.
 	"""
 	if not _is_valid_placement(grid_x, grid_y):
@@ -858,29 +828,29 @@ func _place_item(grid_x: int, grid_y: int) -> void:
 	placed_items_grid[coords_key] = selected_item_for_placement
 	print("Placed '%s' at (%d,%d)." % [selected_item_for_placement, grid_x, grid_y])
 
-	# Instantiate the actual 3D model for the item.
+	# Instantiate the actual 2D sprite/node for the item.
 	# You will need to ensure your `crop_data_map` or `item_data_map` contains a path
-	# to the PackedScene for each item, e.g., "scene_path": "res://Scenes/Plants/basic_plant.tscn".
+	# to the PackedScene for each item, e.g., "scene_path": "res://Scenes/Plants/basic_plant_2d.tscn".
 	var item_data = crop_data_map.get(selected_item_for_placement) if crop_data_map.has(selected_item_for_placement) else item_data_map.get(selected_item_for_placement)
 	var item_scene_path: String = item_data.get("scene_path", "") # Assumes your JSON has "scene_path" for visuals.
 
 	if item_scene_path:
 		var item_scene: PackedScene = load(item_scene_path)
 		if item_scene:
-			var item_instance: Node3D = item_scene.instantiate()
+			var item_instance: Node2D = item_scene.instantiate() # Changed to Node2D
 			# Give it a unique name for easier debugging/lookup in scene tree.
 			item_instance.name = "%s_%d_%d" % [selected_item_for_placement, grid_x, grid_y]
-			# Position the item instance correctly on the grid (centered on cell).
-			item_instance.global_position = Vector3(grid_x, 0, grid_y) # Adjust Y based on your model's pivot.
+			# Position the item instance correctly on the grid (e.g., top-left of cell).
+			item_instance.global_position = Vector2(grid_x * TILE_SIZE, grid_y * TILE_SIZE) # Use TILE_SIZE here!
 			
-			# Add the item to a logical parent in your scene tree (e.g., a "PlacedItems" Node3D).
+			# Add the item to a logical parent in your scene tree (e.g., a "PlacedItems" Node2D).
 			# For simplicity, adding to root, but consider a dedicated parent for organization.
-			get_tree().get_root().add_child(item_instance)
-			print("Instantiated 3D item: %s" % item_instance.name)
+			get_tree().get_root().add_child(item_instance) # Adjust parent as needed
+			print("Instantiated 2D item: %s" % item_instance.name)
 		else:
 			push_error("Could not load scene for item: '%s' at path '%s'." % [selected_item_for_placement, item_scene_path])
 	else:
-		push_warning("No 'scene_path' defined for item '%s' in data. No 3D model will be placed." % selected_item_for_placement)
+		push_warning("No 'scene_path' defined for item '%s' in data. No 2D model will be placed." % selected_item_for_placement)
 
 	# After successful placement, you typically remain in placement mode to allow rapid placement.
 	# To revert to normal automatically after one placement: set_game_mode(GameMode.NORMAL)
@@ -888,28 +858,28 @@ func _place_item(grid_x: int, grid_y: int) -> void:
 
 func _remove_item_from_grid(grid_x: int, grid_y: int) -> void:
 	"""
-	Removes an item visually from the scene and clears its entry from the placed_items_grid.
+	Removes an item visually from the scene and clears its entry from the placed_items_grid (2D version).
 	This is used for harvesting, or future 'deconstruction' modes.
 	"""
 	var coords_key: String = str(grid_x) + "," + str(grid_y)
 	var item_id_to_remove: String = placed_items_grid.get(coords_key, "")
 
 	if item_id_to_remove:
-		# Find and remove the 3D instance by its expected name.
+		# Find and remove the 2D instance by its expected name.
 		# This might need refinement for more complex scenes (e.g., if items are parented differently).
 		var item_found = false
-		for child in get_tree().get_root().get_children():
-			# Check if the child is a Node3D and matches the name pattern
-			if child is Node3D and child.name == "%s_%d_%d" % [item_id_to_remove, grid_x, grid_y]:
-				child.queue_free() # Safely delete the 3D node.
-				print("Removed 3D instance of '%s' at (%d,%d)." % [item_id_to_remove, grid_x, grid_y])
+		for child in get_tree().get_root().get_children(): # Adjust where you search for children if items are parented elsewhere
+			# Check if the child is a Node2D and matches the name pattern
+			if child is Node2D and child.name == "%s_%d_%d" % [item_id_to_remove, grid_x, grid_y]:
+				child.queue_free() # Safely delete the 2D node.
+				print("Removed 2D instance of '%s' at (%d,%d)." % [item_id_to_remove, grid_x, grid_y])
 				item_found = true
 				break
 		
 		if item_found:
 			placed_items_grid[coords_key] = "" # Clear the grid data after successful removal.
 		else:
-			push_warning("Could not find 3D instance for '%s' at (%d,%d) to remove." % [item_id_to_remove, grid_x, grid_y])
+			push_warning("Could not find 2D instance for '%s' at (%d,%d) to remove." % [item_id_to_remove, grid_x, grid_y])
 	else:
 		print("No item to remove at (%d,%d)." % [grid_x, grid_y])
 
