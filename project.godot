@@ -18,7 +18,8 @@ config/icon="res://icon.svg"
 [autoload]
 
 Global="*res://Scripts/GameManager.gd"
-Signals="*res://Scripts/Signals.gd"
+Signals="*res://Scripts/signals.gd"
+TileMapData="*res://Scripts/tile_map_data.gd"
 
 [display]
 

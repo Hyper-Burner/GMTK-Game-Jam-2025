@@ -3,6 +3,8 @@ signal plant_seed(seed: String)
 signal harvesting_mode_entered()
 signal harvesting_mode_exited
 signal harvest_crop(crop: String)
+signal inspecting_mode_entered()
+signal inspecting_mode_exited()
  
 # --- Signals ---
 # Emitted when a new game loop starts.
@@ -29,7 +31,7 @@ signal loop_duration_changed(new_duration: float)
 # Emitted when the current active game interaction mode changes.
 signal game_mode_changed(new_mode: int)
 # Emitted when placement mode is activated for a specific item.
-signal planting_mode_entered(item_id: int)
+signal planting_mode_entered(item: String)
 # Emitted when placement mode is exited (e.g., by canceling or placing).
 signal planting_mode_exited()
 # Emitted when Harvest mode is activated (useful for UI cursor changes).
