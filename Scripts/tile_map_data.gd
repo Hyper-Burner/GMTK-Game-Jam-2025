@@ -17,7 +17,9 @@ func create_matrix(shape: Array, fill_value: Variant) -> Array:
 func clear_crops():
 	for x in tile_map_data:
 		for y in x:
-			y["Plant"] = false
+			if y["Plant"]:
+				y["Plant"].queue_free()
+				y["Plant"] = false
 
 func plant_seed(tile_position: Vector2i, seed: String):
 	var tile = tile_map_data[tile_position[0]][tile_position[1]]
@@ -45,3 +47,4 @@ func _ready() -> void:
 		"Soil PH": 50,
 		"Plant": false
 	})
+	Signals.loop_ended.connect(clear_crops)
