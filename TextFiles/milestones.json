@@ -10,14 +10,14 @@
 			"unlocked_plants": "Strawberry",
 			"unlocked_upgrades": [
 				{
-					"unlock_type": "seed",
+					"type": "seed",
 					"seed_name": "Strawberry",
 					"quantity": 5
 				},
 				{
-					"unlock_type": "seed",
+					"type": "seed",
 					"seed_name": "Potato",
-					"quantity": 5
+					"quantity": 10
 				}
 			]
 		}
@@ -31,6 +31,7 @@
 			}
 		},
 		"rewards": {
+			"unlocked_plants": "Spring Onion",
 			"unlocked_upgrades": [
 				{
 					"type": "time_capsule_expansion",
@@ -38,8 +39,8 @@
 				},
 				{
 					"type": "seed",
-					"seed_name": "Sprint Onion",
-					"value": 1
+					"seed_name": "Spring Onion",
+					"value": 3
 				}
 			]
 		}
@@ -58,12 +59,17 @@
 				{
 					"unlock_type": "seed",
 					"seed_name": "Strawberry",
-					"quantity": 5
+					"quantity": 10
 				},
 				{
 					"unlock_type": "seed",
 					"seed_name": "Potato",
-					"quantity": 5
+					"quantity": 10
+				},
+				{
+					"unlock_type": "seed",
+					"seed_name": "Spring Onion",
+					"quantity": 10
 				}
 			]
 		}
