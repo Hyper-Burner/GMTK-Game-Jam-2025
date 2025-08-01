@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://bwxlplah14ngc"]
 
 [ext_resource type="PackedScene" path="res://Scenes/inspect_info.tscn" id="1_8gbba"]
-[ext_resource type="PackedScene" path="res://Scenes/tile_map.tscn" id="2_bo1nx"]
+[ext_resource type="PackedScene" uid="uid://doa0566bfhb2q" path="res://Scenes/tile_map.tscn" id="2_bo1nx"]
 [ext_resource type="PackedScene" uid="uid://5s4n8kmxc8y5" path="res://Scenes/ui.tscn" id="2_kry3j"]
 
 [node name="Main" type="Node2D"]
@@ -15,4 +15,4 @@ offset_right = -1.0
 offset_bottom = 3.0
 
 [node name="TileMap" parent="." instance=ExtResource("2_bo1nx")]
-position = Vector2(2, 3)
+z_index = -2
