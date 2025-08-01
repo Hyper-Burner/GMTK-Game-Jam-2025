@@ -19,7 +19,7 @@ signal inventory_changed(item_id: String, new_quantity: int)
 # Emitted when the current active milestone changes.
 signal milestone_updated(milestone_data: Dictionary)
 # Emitted when a new plant type is unlocked.
-signal plant_unlocked(plant_id: String)
+signal plant_unlocked(plant_id: String,quantity: int)
 # Emitted when a game upgrade is unlocked.
 signal upgrade_unlocked(upgrade_id: String)
 # Emitted when the time capsule capacity changes.
