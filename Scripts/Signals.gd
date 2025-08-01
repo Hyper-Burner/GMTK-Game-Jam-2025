@@ -12,6 +12,8 @@ signal inspect(Vector2i)
 signal loop_started()
 # Emitted when the current game loop ends.
 signal loop_ended()
+# New loop after first 
+signal loop_continued()
 # Emitted regularly to update the timer display.
 signal timer_updated(current_time: float, total_time: float)
 # Emitted when an item's quantity in the current inventory changes.

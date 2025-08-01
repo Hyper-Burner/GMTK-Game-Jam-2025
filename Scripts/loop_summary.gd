@@ -14,4 +14,5 @@ func _on_loop_ended():
 # when the player presses the continue button, hide the summary and start the next loop
 func _on_continue_pressed():
 	visible = false
-	Signals.loop_started.emit("loop_started")
+	Signals.loop_continued.emit()
+	print("Loop started!")

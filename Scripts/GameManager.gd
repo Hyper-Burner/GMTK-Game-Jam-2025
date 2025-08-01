@@ -6,7 +6,7 @@ const DATA_PATH_CROPS: String = "res://TextFiles/crops.json"
 const DATA_PATH_ITEMS: String = "res://TextFiles/items.json"
 const DATA_PATH_MILESTONES: String = "res://TextFiles/milestones.json"
 
-const DEFAULT_LOOP_DURATION: float = 120.0 # seconds
+const DEFAULT_LOOP_DURATION: float = 5.0 # seconds
 const DEFAULT_TIME_CAPSULE_CAPACITY: int = 100
 const DEFAULT_STARTING_SEEDS_ID: String = "Potato"
 
@@ -51,6 +51,7 @@ func _ready() -> void:
 
 	_load_all_game_data()
 	Inventory.reset_inventory()
+	Signals.loop_continued.connect(start_loop)
 	# Set the initial milestone.
 	if not milestone_stages.is_empty():
 		# IMPORTANT: We need to set the initial milestone by its key (e.g., "First Harvest")
@@ -65,6 +66,7 @@ func _ready() -> void:
 	else:
 		push_error("ERROR: No milestone stages loaded from '%s'. Game may not progress." % DATA_PATH_MILESTONES)
 	start_loop()
+	
 
 
 func _process(delta: float) -> void: # Changed to _process for smoother mouse following
@@ -76,7 +78,7 @@ func _process(delta: float) -> void: # Changed to _process for smoother mouse fo
 		if current_loop_time <= 0:
 			current_loop_time = 0.0 # Ensure it doesn't go negative
 			_end_loop()
-
+	
 # --- Load Json Data ---
 func _load_json_data(path: String) -> Variant:
 	"""
@@ -184,7 +186,7 @@ func _end_loop() -> void:
 	print("Loop Ended!")
 
 	# Start the next loop after a brief delay (e.g., for showing a summary screen).
-	get_tree().create_timer(1.0).timeout.connect(start_loop)
+	# get_tree().create_timer(1.0).timeout.connect(start_loop)
 
 # item_id is now a String.
 func add_item_to_time_capsule(item_id: String, quantity: int = 1) -> bool:
