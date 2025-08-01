@@ -2,7 +2,7 @@
 	"Strawberry": {
 		"description": "A sweet, juicy favorite with an appealing red color.",
 		"frame_coords": [0, 1],
-		"growth_stages": 6,
+		"growth_stages": 5,
 		"crop_yield": 3,
 		"seed_yield": 3,
 		"condition_change": {
@@ -17,13 +17,11 @@
 			"soil_ph": 50
 		},
 		"optimal_growth_speed_scale": 44,
-		"atlas_coords_x": 0,
-		"atlas_coords_y": 1
 	},
 	"Spring Onion": {
 		"description": "These grow wild during the spring.",
 		"frame_coords": [0, 3],
-		"growth_stages": 6,
+		"growth_stages": 5,
 		"crop_yield": 1,
 		"seed_yield": 3,
 		"condition_change": {
@@ -38,13 +36,11 @@
 			"soil_ph": 75
 		},
 		"optimal_growth_duration": 16,
-		"atlas_coords_x": 0,
-		"atlas_coords_y": 3
 	},
 	"Potato": {
 		"description": "A widely cultivated tuber.",
 		"frame_coords": [0, 5],
-		"growth_stages": 7,
+		"growth_stages": 5,
 		"crop_yield": 1,
 		"seed_yield": 2,
 		"condition_change": {
@@ -59,13 +55,11 @@
 			"soil_ph": 25
 		},
 		"optimal_growth_duration": 20,
-		"atlas_coords_x": 0,
-		"atlas_coords_y": 5
 	},
 	"Onion": {
 		"description": "Adds a wonderful zestiness to dishes. High quality onion can be pretty spicy.",
 		"frame_coords": [0, 7],
-		"growth_stages": 6,
+		"growth_stages": 5,
 		"crop_yield": 1,
 		"seed_yield": 2,
 		"condition_change": {
@@ -80,7 +74,81 @@
 			"soil_ph": 75
 		},
 		"optimal_growth_duration": 28,
-		"atlas_coords_x": 0,
-		"atlas_coords_y": 7
+	},
+	"Onion2": {
+		"description": "Adds a wonderful zestiness to dishes. High quality onion can be pretty spicy.",
+		"frame_coords": [0, 7],
+		"growth_stages": 5,
+		"crop_yield": 1,
+		"seed_yield": 2,
+		"condition_change": {
+			"hydration": 0,
+			"nutrients": 0,
+			"soil_ph": 0
+		},
+		"growth_duration": 40,
+		"optimal_conditions": {
+			"hydration": 25,
+			"nutrients": 75,
+			"soil_ph": 75
+		},
+		"optimal_growth_duration": 28,
+	},
+	"Onion3": {
+		"description": "Adds a wonderful zestiness to dishes. High quality onion can be pretty spicy.",
+		"frame_coords": [0, 7],
+		"growth_stages": 5,
+		"crop_yield": 1,
+		"seed_yield": 2,
+		"condition_change": {
+			"hydration": 0,
+			"nutrients": 0,
+			"soil_ph": 0
+		},
+		"growth_duration": 40,
+		"optimal_conditions": {
+			"hydration": 25,
+			"nutrients": 75,
+			"soil_ph": 75
+		},
+		"optimal_growth_duration": 28,
+	},
+	"Onion4": {
+		"description": "Adds a wonderful zestiness to dishes. High quality onion can be pretty spicy.",
+		"frame_coords": [0, 7],
+		"growth_stages": 5,
+		"crop_yield": 1,
+		"seed_yield": 2,
+		"condition_change": {
+			"hydration": 0,
+			"nutrients": 0,
+			"soil_ph": 0
+		},
+		"growth_duration": 40,
+		"optimal_conditions": {
+			"hydration": 25,
+			"nutrients": 75,
+			"soil_ph": 75
+		},
+		"optimal_growth_duration": 28,
+	},
+	"Onion5": {
+		"description": "Adds a wonderful zestiness to dishes. High quality onion can be pretty spicy.",
+		"frame_coords": [0, 7],
+		"growth_stages": 5,
+		"crop_yield": 1,
+		"seed_yield": 2,
+		"condition_change": {
+			"hydration": 0,
+			"nutrients": 0,
+			"soil_ph": 0
+		},
+		"growth_duration": 40,
+		"optimal_conditions": {
+			"hydration": 25,
+			"nutrients": 75,
+			"soil_ph": 75
+		},
+		"optimal_growth_duration": 28,
 	}
 }

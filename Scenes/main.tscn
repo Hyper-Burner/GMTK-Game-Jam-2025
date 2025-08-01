@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://bwxlplah14ngc"]
+[gd_scene load_steps=5 format=3 uid="uid://iosw62qel8wr"]
 
-[ext_resource type="PackedScene" uid="uid://brv3pfacurip8" path="res://Scenes/inspect_info.tscn" id="1_8gbba"]
-[ext_resource type="PackedScene" uid="uid://doa0566bfhb2q" path="res://Scenes/tile_map.tscn" id="2_bo1nx"]
+[ext_resource type="PackedScene" uid="uid://bak32yogfktsc" path="res://Scenes/inspect_info.tscn" id="1_8gbba"]
+[ext_resource type="PackedScene" path="res://Scenes/tile_map.tscn" id="2_bo1nx"]
 [ext_resource type="PackedScene" uid="uid://5s4n8kmxc8y5" path="res://Scenes/ui.tscn" id="2_kry3j"]
+[ext_resource type="PackedScene" uid="uid://sfrbshm573rc" path="res://Scenes/loop_summary.tscn" id="4_jjvhh"]
 
 [node name="Main" type="Node2D"]
 
@@ -16,3 +17,5 @@ offset_bottom = 3.0
 
 [node name="TileMap" parent="." instance=ExtResource("2_bo1nx")]
 z_index = -2
+
+[node name="EndLoop" parent="." instance=ExtResource("4_jjvhh")]
