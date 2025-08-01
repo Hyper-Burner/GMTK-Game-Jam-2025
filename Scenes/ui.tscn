@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://c3yyagh42ab2r" path="res://Scripts/ui.gd" id="1_jxero"]
 [ext_resource type="Texture2D" uid="uid://vy7kfwpi6goc" path="res://PlaceholderAssets/Objects/BluePlant32.png" id="2_qdvrb"]
-[ext_resource type="PackedScene" uid="uid://3j1e8ld7h76h" path="res://Scenes/inventory_slot.tscn" id="3_nf4gj"]
+[ext_resource type="PackedScene" uid="uid://dhajj7w86ogjo" path="res://Scenes/inventory_slot.tscn" id="3_nf4gj"]
 
 [node name="Control" type="Control"]
 layout_mode = 3

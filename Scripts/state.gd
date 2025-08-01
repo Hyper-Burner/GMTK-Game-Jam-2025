@@ -8,5 +8,3 @@ enum Actions {
 }
 
 var current_action = Actions.NONE
-
-if State.current_action = 

@@ -6,7 +6,8 @@ extends Node2D
 var seeds: Dictionary = JSON.parse_string(FileAccess.get_file_as_string("res://TextFiles/crops.json"))
 var crops = preload("res://Scenes/crop.tscn")
 
-var selected_seed: String = "Potato"
+var selected_seed: String = "Strawberry"
+var instance
 
 func _physics_process(delta: float) -> void:
 	if State.current_action == State.Actions.PLANTING:
@@ -19,7 +20,7 @@ func _physics_process(delta: float) -> void:
 	elif State.current_action == State.Actions.HARVESTING:
 		pass
 	elif State.current_action == State.Actions.INSPECTING:
-		get_world_position(get_tile_position(get_global_mouse_position()))
+		pass
 
 func get_tile_position(global_position: Vector2) -> Vector2i:
 	var local_position = ground.to_local(global_position)
@@ -35,12 +36,14 @@ func _input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
 		if event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
 			var mouse_position = event.global_position
-			if State.current_action == State.Actions.PLANTING:
-				var instance = TileMapData.plant_seed(get_tile_position(mouse_position), selected_seed)
+			if true:
+				instance = TileMapData.plant_seed(get_tile_position(mouse_position), selected_seed)
 				if instance:
+					instance.position = get_world_position(get_tile_position(mouse_position))
 					add_child(instance)
 			elif State.current_action == State.Actions.HARVESTING:
 				TileMapData.harvest_crop(get_tile_position(mouse_position))
 			elif State.current_action == State.Actions.INSPECTING:
+				var tile_position = get_tile_position(get_global_mouse_position())
 				TileMapData.inspect(get_tile_position(mouse_position))
-				Signals.inspect.emit()
+				Signals.inspect.emit(get_world_position(tile_position), TileMapData.tile_map_data[tile_position[0]][tile_position[1]])
