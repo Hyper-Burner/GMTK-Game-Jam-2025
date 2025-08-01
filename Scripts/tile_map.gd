@@ -6,7 +6,7 @@ extends Node2D
 var seeds: Dictionary = JSON.parse_string(FileAccess.get_file_as_string("res://TextFiles/crops.json"))
 var crops = preload("res://Scenes/crop.tscn")
 
-var selected_seed: String = "Strawberry"
+var selected_seed: String = "Potato"
 var instance
 
 func _physics_process(delta: float) -> void:
@@ -31,19 +31,31 @@ func get_world_position(tile_position: Vector2i) -> Vector2:
 	var local_position = ground.map_to_local(tile_position)
 	var global_postion = ground.to_global(local_position)
 	return global_postion
+	
+func planting(tile_position: Vector2i):
+	print(ground.get_cell_tile_data(tile_position).has_custom_data("Farmland"))
+	if ground.get_cell_tile_data(tile_position).get_custom_data("Farmland"):
+		instance = TileMapData.plant_seed(tile_position, selected_seed)
+		if instance:
+			instance.position = get_world_position(tile_position)
+			add_child(instance)
+	
+func harvesting(tile_position: Vector2i):
+	TileMapData.harvest_crop(tile_position)
+	
+func inspecting(tile_position: Vector2i):
+	TileMapData.inspect(tile_position)
+	Signals.inspect.emit(get_world_position(tile_position), TileMapData.tile_map_data[tile_position[0]][tile_position[1]])
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
 		if event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
 			var mouse_position = event.global_position
+			var tile_position = get_tile_position(mouse_position)
 			if true:
-				instance = TileMapData.plant_seed(get_tile_position(mouse_position), selected_seed)
-				if instance:
-					instance.position = get_world_position(get_tile_position(mouse_position))
-					add_child(instance)
+				planting(tile_position)
 			elif State.current_action == State.Actions.HARVESTING:
-				TileMapData.harvest_crop(get_tile_position(mouse_position))
+				harvesting(tile_position)
 			elif State.current_action == State.Actions.INSPECTING:
-				var tile_position = get_tile_position(get_global_mouse_position())
 				TileMapData.inspect(get_tile_position(mouse_position))
 				Signals.inspect.emit(get_world_position(tile_position), TileMapData.tile_map_data[tile_position[0]][tile_position[1]])

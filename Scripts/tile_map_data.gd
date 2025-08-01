@@ -2,8 +2,8 @@ extends Node
 
 var crop = preload("res://Scripts/crop.gd")
 var tile_map_data = []
-var farm_width = 5
-var farm_height = 5
+var farm_width = 20
+var farm_height = 12
 
 func create_matrix(shape: Array, fill_value: Variant) -> Array:
 	var matrix = []
@@ -13,6 +13,11 @@ func create_matrix(shape: Array, fill_value: Variant) -> Array:
 			row.append(fill_value.duplicate(true))
 		matrix.append(row)
 	return matrix
+
+func clear_crops():
+	for x in tile_map_data:
+		for y in x:
+			y["Plant"] = false
 
 func plant_seed(tile_position: Vector2i, seed: String):
 	var tile = tile_map_data[tile_position[0]][tile_position[1]]

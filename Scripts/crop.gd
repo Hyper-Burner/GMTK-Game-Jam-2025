@@ -6,19 +6,19 @@ static var crop_text_file = JSON.parse_string(FileAccess.get_file_as_string("res
 var Name
 var growth_duration: int
 var max_growth_stage: int
-var current_growth_stage: int = 0
+var current_growth_stage: int = 1
 var frame_coordinates: Vector2i
 var position_coordinates: Vector2
 
 static func instance(crop_name: String, optimal_conditions: bool):
 	var instance = crop_scene.instantiate()
 	var crop = crop_text_file[crop_name]
+	instance.max_growth_stage = crop["growth_stages"] - 1
+	instance.frame_coordinates = Vector2i(crop["frame_coords"][0], crop["frame_coords"][1])
 	if optimal_conditions:
 		instance.growth_duration = crop["optimal_growth_duration"]
 	else:
 		instance.growth_duration = crop["growth_duration"]
-	instance.max_growth_stage = crop["growth_stages"]
-	instance.frame_coordinates = Vector2i(crop["frame_coords"][0], crop["frame_coords"][1])
 	return instance
 
 func _ready() -> void:
