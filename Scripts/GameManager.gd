@@ -11,15 +11,6 @@ const DEFAULT_TIME_CAPSULE_CAPACITY: int = 100
 const DEFAULT_STARTING_SEEDS_ID: String = "Potato" # Now a String ID
 const DEFAULT_STARTING_SEEDS_QUANTITY: int = 100
 
-# --- Game Modes (Updated Enum for interaction states) ---
-enum GameMode {
-	NORMAL,        # Default interaction mode (e.g., general observation, or simple click for inspect)
-	PLANTING,     # Player is actively planting objects on the grid
-	HARVEST,    
-	# Player is actively clicking on mature plants/resources to harvest them
-	INSPECT        # Player is actively clicking on objects to view detailed information
-}
-
 # --- Game Data Definitions (Loaded from JSON files) ---
 # Now a Dictionary, where key is the item ID (String).
 var crop_data_map: Dictionary = {}
@@ -52,23 +43,17 @@ var current_milestone_index: int = 0
 var current_loop_time: float = 0.0
 # Dictionary holding the data for the active milestone.
 var current_milestone_data: Dictionary = {}
-# Items available in the current loop's inventory (item_id: quantity). Resets each loop.
-# Keys are now String.
-var current_inventory: Dictionary = {}
+
 # Tracks harvested crops/generated resources *within the current loop* for milestone requirements.
 # Resets each loop.
 # Keys are now String.
 var current_loop_score: Dictionary = {}
-# The current active interaction mode of the game.
-var current_game_mode: int = GameMode.NORMAL
 # The ID of the item currently selected for placement (only relevant in PLACEMENT mode).
 var selected_item_for_placement: String = "" # Now a String ("" for no item selected)
 # Reference to the separate preview controller instance.
 var placement_preview_controller: Node2D = null # Now a direct reference to the controller
 
 var seconds_passed: int = 0
-
-const TILE_SIZE: int = 16 # Example: 16x16 pixel tiles
 
 
 func _ready() -> void:
@@ -183,18 +168,18 @@ func start_loop() -> void:
 	"""Initiates a new game loop, resetting transient states and delivering time-capsuled items."""
 	current_loop_time = loop_duration # Reset timer for the
 	# new loop.
-	current_inventory.clear()       # Clear transient inventory for the new loop.
+	Inventory.current_inventory.reset()       # Clear transient inventory for the new loop.
 	current_loop_score.clear()      # Reset loop score for milestone checks (progress must be made
 	# in current loop).
 	# Add default starting seeds for the loop.
 	# No validation if user doesn't want it.
 	# Assumes DEFAULT_STARTING_SEEDS_ID is always valid.
-	add_item_to_inventory(DEFAULT_STARTING_SEEDS_ID, DEFAULT_STARTING_SEEDS_QUANTITY)
+	Inventory.add_item_to_inventory(DEFAULT_STARTING_SEEDS_ID, DEFAULT_STARTING_SEEDS_QUANTITY)
 	
 	# Transfer time-capsuled items from the previous loop.
 	# time_capsule_contents keys are now String.
 	for item_id_str in time_capsule_contents:
-		add_item_to_inventory(item_id_str, time_capsule_contents[item_id_str])
+		Inventory.add_item_to_inventory(item_id_str, time_capsule_contents[item_id_str])
 	time_capsule_contents.clear() # Clear capsule contents for the current loop's packing.
 	# EMIT GLOBAL SIGNAL
 	Signals.loop_started.emit()
@@ -218,36 +203,6 @@ func _end_loop() -> void:
 	get_tree().create_timer(1.0).timeout.connect(start_loop)
 
 
-# --- Inventory & Item Management ---
-# item_id is now a String.
-func add_item_to_inventory(item_id: String, quantity: int = 1) -> void:
-	"""Adds items to the current loop's inventory."""
-	# No validation if user doesn't want it.
-	# The `if not (...) return` block is entirely removed.
-	if quantity <= 0:
-		push_warning("Attempted to add non-positive quantity of item to inventory: ID %s, quantity: %d" % [item_id, quantity])
-		return
-
-	current_inventory[item_id] = current_inventory.get(item_id, 0) + quantity
-	# EMIT GLOBAL SIGNAL
-	Signals.inventory_changed.emit(item_id, current_inventory[item_id])
-	print("Added %d x ID %s to inventory. Current: %s" % [quantity, item_id, current_inventory])
-
-# item_id is now a String.
-func remove_item_from_inventory(item_id: String, quantity: int = 1) -> bool:
-	"""Removes items from the current loop's inventory."""
-	if not current_inventory.has(item_id) or current_inventory[item_id] < quantity:
-		push_warning("Not enough of item ID %s in inventory to remove %d. Current: %d" % [item_id, quantity, current_inventory.get(item_id, 0)])
-		return false
-	
-	current_inventory[item_id] -= quantity
-	if current_inventory[item_id] <= 0:
-		current_inventory.erase(item_id)
-	
-	# EMIT GLOBAL SIGNAL
-	Signals.inventory_changed.emit(item_id, current_inventory.get(item_id, 0))
-	print("Removed %d x ID %s from inventory. Current: %s" % [quantity, item_id, current_inventory])
-	return true
 
 # item_id is now a String.
 func add_item_to_time_capsule(item_id: String, quantity: int = 1) -> bool:
@@ -266,15 +221,6 @@ func add_item_to_time_capsule(item_id: String, quantity: int = 1) -> bool:
 	if not time_capsule_contents.has(item_id) and time_capsule_contents.size() >= time_capsule_capacity:
 		push_warning("Time capsule is full! Cannot add new item ID %s. Current unique items: %d, Capacity: %d" % [item_id, time_capsule_contents.size(), time_capsule_capacity])
 		return false
-	
-	# If we have enough in inventory, move it to time capsule.
-	# This emits inventory_changed.
-	if remove_item_from_inventory(item_id, quantity):
-		time_capsule_contents[item_id] = time_capsule_contents.get(item_id, 0) + quantity
-		print("Added %d x ID %s to time capsule. Current capsule: %s" % [quantity, item_id, time_capsule_contents])
-		return true
-	
-	print("Failed to add %d x ID %s to time capsule (insufficient inventory)." % [quantity, item_id])
 	return false
 
 # crop_id is now a String.

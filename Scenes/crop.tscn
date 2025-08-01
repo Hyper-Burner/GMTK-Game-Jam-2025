@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://cq27xjduinpbj"]
 
 [ext_resource type="Texture2D" uid="uid://dkh0nnsyo11ah" path="res://PlaceholderAssets/Objects/Spring Crops.png" id="1_djpt6"]
-[ext_resource type="Script" path="res://Scenes/crop.gd" id="2_rqw3c"]
+[ext_resource type="Script" uid="uid://ve4odd8vwo41" path="res://Scenes/crop.gd" id="2_rqw3c"]
 
 [node name="Crop" type="Sprite2D"]
 texture = ExtResource("1_djpt6")
