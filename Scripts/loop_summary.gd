@@ -5,7 +5,7 @@ extends Control
 func _ready():
 	visible = false
 	Signals.loop_ended.connect(_on_loop_ended)
-	continue_button.connect("pressed", _on_continue_pressed())
+	continue_button.connect("pressed", _on_continue_pressed)
 
 # when a loop ends, show the summary
 func _on_loop_ended():
