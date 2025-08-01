@@ -168,7 +168,7 @@ func start_loop() -> void:
 	"""Initiates a new game loop, resetting transient states and delivering time-capsuled items."""
 	current_loop_time = loop_duration # Reset timer for the
 	# new loop.
-	Inventory.current_inventory.reset()       # Clear transient inventory for the new loop.
+	Inventory.reset_inventory()       # Clear transient inventory for the new loop.
 	current_loop_score.clear()      # Reset loop score for milestone checks (progress must be made
 	# in current loop).
 	# Add default starting seeds for the loop.
