@@ -8,7 +8,7 @@ var max_growth_stage: int
 var current_growth_stage: int = 0
 var frame_coordinates: Vector2i
 
-static func create(crop_name: String, optimal_conditions: bool):
+static func instance(crop_name: String, optimal_conditions: bool):
 	var instance = crop.instantiate()
 	if optimal_conditions:
 		instance.growth_duration = crops[crop_name]["optimal_growth_duration"]

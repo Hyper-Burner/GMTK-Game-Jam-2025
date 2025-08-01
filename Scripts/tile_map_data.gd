@@ -1,5 +1,6 @@
 extends Node
 
+var crop = preload("res://Scenes/crop.tscn")
 var tile_map = []
 var farm_width = 5
 var farm_height = 5
@@ -16,18 +17,20 @@ func create_matrix(shape: Array, fill_value) -> Array:
 func plant_seed(tile_position: Vector2i, seed: String):
 	var tile = tile_map[tile_position[0]][tile_position[1]]
 	if !tile["Plant"]:
-		Signals.plant_seed.emit(seed)
+		#if Inventory.subtract_seed(seed, 1):
 		tile["Plant"] = {
 			"Name": seed,
-			"Harvestable": false
+			"Harvestable": false,
+			"Instance": crop.instance(seed, false)
 		}
 
 func harvest_crop(tile_position: Vector2i):
 	var tile = tile_map[tile_position[0]][tile_position[1]]
 	if tile["Plant"] and tile["Plant"]["Harvestable"]:
 		Signals.harvest_crop.emit(tile["Plant"]["Name"])
+		# Inventory.ha
 		tile["Plant"] = false
-	
+
 func inspect(tile_position: Vector2i) -> Dictionary:
 	var tile = tile_map[tile_position[0]][tile_position[1]]
 	return tile

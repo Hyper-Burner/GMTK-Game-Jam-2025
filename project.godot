@@ -11,6 +11,7 @@ config_version=5
 [application]
 
 config/name="GMTK Game Jam 2025"
+run/main_scene="uid://rjuf0oqtkuyo"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="res://icon.svg"
 
@@ -19,6 +20,7 @@ config/icon="res://icon.svg"
 Global="*res://Scripts/GameManager.gd"
 Signals="*res://Scripts/signals.gd"
 TileMapData="*res://Scripts/tile_map_data.gd"
+State="*res://Scripts/state.gd"
 
 [display]
 
