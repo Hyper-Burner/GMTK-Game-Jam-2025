@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://cq27xjduinpbj"]
 
-[ext_resource type="Texture2D" uid="uid://cvh5u6t0wucct" path="res://Textures/crops.png" id="1_djpt6"]
+[ext_resource type="Texture2D" uid="uid://cvh5u6t0wucct" path="res://Textures/Crops.png" id="1_djpt6"]
 [ext_resource type="Script" uid="uid://brq301y8rrmc" path="res://Scripts/crop.gd" id="2_djpt6"]
 
 [node name="Crop" type="Sprite2D"]

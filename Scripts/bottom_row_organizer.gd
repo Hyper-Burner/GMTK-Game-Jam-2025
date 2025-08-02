@@ -14,7 +14,13 @@ func set_targets(new_targets: Array):
 
 func _ready():
 	set_process(false)
-
+	Signals.loop_ended.connect(_on_loop_end)
+	_on_loop_end()
+	
+func _on_loop_end():
+	
+	labels = []
+	textures = []
 	for i in range(get_child_count()):
 		var tex = get_child(i)
 		var label = tex.get_node("Label")
@@ -53,7 +59,7 @@ func _process(delta):
 		is_animating = false
 		current_index += 1
 		if current_index < labels.size():
-			await get_tree().create_timer(0.05).timeout
+			await get_tree().create_timer(0.075).timeout
 			_reveal_and_start(current_index)
 		else:
 			set_process(false)
