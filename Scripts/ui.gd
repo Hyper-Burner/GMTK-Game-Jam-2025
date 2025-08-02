@@ -21,19 +21,22 @@ func _on_time_updated(new_time : float, other : float) -> void:
 
 func _on_seed_pouch_pressed():
 	# change to seed placement mode
-	Signals.planting_mode_entered.emit("potato")
+	#Signals.planting_mode_entered.emit("potato")
+	State.set_current_action("Planting")
 	print("Planting Mode")
 	
 
 func _on_scythe_pressed():
 	# change to harvesting mode
-	Signals.emit_signal("harvesting_mode_entered")
+	#Signals.emit_signal("harvesting_mode_entered")
+	State.set_current_action("Harvesting")
 	print("Harvesting Mode")
 	
 
 func _on_soil_scanner_pressed():
 	# change to scanning mode
-	Signals.emit_signal("inspecting_mode_entered")
+	#Signals.emit_signal("inspecting_mode_entered")
+	State.set_current_action("Inspecting")
 	print("Inspecting Mode")
 	
 func _on_milestone_updated(milestone : Dictionary):

@@ -27,7 +27,7 @@ theme_override_font_sizes/font_size = 10
 text = "Crop Description"
 autowrap_mode = 3
 
-[node name="Juiced" type="Label" parent="TextureRect"]
+[node name="Harvestable" type="Label" parent="TextureRect"]
 layout_mode = 0
 offset_top = 16.0
 offset_right = 40.0
@@ -53,7 +53,7 @@ offset_right = 72.0
 offset_bottom = 80.0
 max_value = 255.0
 
-[node name="Purity" type="TextureProgressBar" parent="TextureRect"]
+[node name="PH" type="TextureProgressBar" parent="TextureRect"]
 layout_mode = 0
 offset_top = 84.0
 offset_right = 72.0
