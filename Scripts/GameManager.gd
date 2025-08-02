@@ -8,6 +8,7 @@ const DATA_PATH_MILESTONES: String = "res://TextFiles/milestones.json"
 
 const DEFAULT_LOOP_DURATION: float = 5 # seconds
 const DEFAULT_TIME_CAPSULE_CAPACITY: int =4
+
 const DEFAULT_STARTING_SEEDS_ID: String = "Potato"
 
 # --- Game Data Definitions (Loaded from JSON files) ---

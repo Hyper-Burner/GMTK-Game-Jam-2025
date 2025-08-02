@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://iosw62qel8wr"]
+[gd_scene load_steps=8 format=3 uid="uid://iosw62qel8wr"]
 
 [ext_resource type="PackedScene" uid="uid://bak32yogfktsc" path="res://Scenes/inspect_info.tscn" id="1_8gbba"]
 [ext_resource type="PackedScene" uid="uid://doa0566bfhb2q" path="res://Scenes/tile_map.tscn" id="2_bo1nx"]
 [ext_resource type="PackedScene" uid="uid://5s4n8kmxc8y5" path="res://Scenes/ui.tscn" id="2_kry3j"]
 [ext_resource type="PackedScene" uid="uid://sfrbshm573rc" path="res://Scenes/loop_summary.tscn" id="4_jjvhh"]
+[ext_resource type="Script" uid="uid://whq3hj5mq581" path="res://Scenes/top_row_organizer.gd" id="5_21xkr"]
 [ext_resource type="Texture2D" uid="uid://vy7kfwpi6goc" path="res://PlaceholderAssets/Objects/BluePlant32.png" id="5_kry3j"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_jjvhh"]
@@ -59,6 +60,7 @@ offset_right = 270.0
 offset_bottom = 68.2353
 theme_override_constants/separation = 75
 alignment = 1
+script = ExtResource("5_21xkr")
 metadata/_edit_lock_ = true
 
 [node name="Spring Onion" type="TextureRect" parent="EndLoop/Harvested/Top Row Organizer"]
@@ -68,6 +70,15 @@ texture = ExtResource("5_kry3j")
 expand_mode = 2
 metadata/_edit_lock_ = true
 
+[node name="Label" type="Label" parent="EndLoop/Harvested/Top Row Organizer/Spring Onion"]
+layout_mode = 0
+offset_left = 47.0588
+offset_top = 9.4118
+offset_right = 102.059
+offset_bottom = 32.4118
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 15
+
 [node name="Potato" type="TextureRect" parent="EndLoop/Harvested/Top Row Organizer"]
 layout_mode = 2
 size_flags_horizontal = 3
@@ -75,12 +86,30 @@ texture = ExtResource("5_kry3j")
 expand_mode = 2
 metadata/_edit_lock_ = true
 
+[node name="Label" type="Label" parent="EndLoop/Harvested/Top Row Organizer/Potato"]
+layout_mode = 0
+offset_left = 47.0588
+offset_top = 9.4118
+offset_right = 102.059
+offset_bottom = 32.4118
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 15
+
 [node name="Strawberry" type="TextureRect" parent="EndLoop/Harvested/Top Row Organizer"]
 layout_mode = 2
 size_flags_horizontal = 3
 texture = ExtResource("5_kry3j")
 expand_mode = 2
 metadata/_edit_lock_ = true
+
+[node name="Label" type="Label" parent="EndLoop/Harvested/Top Row Organizer/Strawberry"]
+layout_mode = 0
+offset_left = 47.0588
+offset_top = 9.4118
+offset_right = 102.059
+offset_bottom = 32.4118
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 15
 
 [node name="Divider" type="Line2D" parent="EndLoop"]
 position = Vector2(-573.636, 70.5882)
