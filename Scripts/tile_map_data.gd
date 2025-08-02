@@ -33,13 +33,16 @@ func plant_seed(tile_position: Vector2i, seed: String):
 
 func harvest_crop(tile_position: Vector2i):
 	var tile = tile_map_data[tile_position[0]][tile_position[1]]
-	if tile["crop"] and tile["crop"].harvastable:
-		var crop_name = tile["crop"].crop_name
-		tile["hydration"] = crop_text_file[crop_name]["hydration"]
-		tile["nutrients"] = crop_text_file[crop_name]["nutrients"]
-		tile["soil_ph"] = crop_text_file[crop_name]["soil_ph"]
+	var crop = tile["crop"]
+	if crop and crop.harvestable:
+		var crop_name = crop.crop_name
+		var condition_change = crop_text_file[crop_name]["condition_change"]
+		tile["hydration"] = condition_change["hydration"]
+		tile["nutrients"] = condition_change["nutrients"]
+		tile["soil_ph"] = condition_change["soil_ph"]
+		Signals.harvest_crop.emit(crop_name)
+		crop.queue_free()
 		tile["crop"] = false
-		Signals.harvest_crop.emit(tile["crop"].crop_name)
 
 func inspect(tile_position: Vector2i, world_position) -> void:
 	var tile = tile_map_data[tile_position[0]][tile_position[1]]
