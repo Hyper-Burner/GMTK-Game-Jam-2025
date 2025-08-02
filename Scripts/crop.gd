@@ -3,12 +3,12 @@ extends Sprite2D
 static var crop_scene = preload("res://Scenes/crop.tscn")
 static var crop_text_file = JSON.parse_string(FileAccess.get_file_as_string("res://TextFiles/crops.json"))
 
-var Name
+var crop_name: String
+var harvestable: bool = false
 var growth_duration: int
 var max_growth_stage: int
 var current_growth_stage: int = 1
 var frame_coordinates: Vector2i
-var position_coordinates: Vector2
 
 static func instance(crop_name: String, optimal_conditions: bool):
 	var instance = crop_scene.instantiate()
@@ -24,10 +24,10 @@ static func instance(crop_name: String, optimal_conditions: bool):
 func _ready() -> void:
 	$GrowthStageDuration.wait_time = growth_duration / max_growth_stage
 	self.frame_coords = frame_coordinates
-	self.position = position_coordinates
 
 func _on_growth_stage_duration_timeout() -> void:
 	current_growth_stage += 1
 	frame += 1
 	if current_growth_stage == max_growth_stage:
+		harvestable = true
 		$GrowthStageDuration.stop()

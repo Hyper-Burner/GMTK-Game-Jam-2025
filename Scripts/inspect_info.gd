@@ -29,14 +29,14 @@ func _on_inspecting_mode_entered(position, tile_data):
 	panel.visible = true
 	panel.set_position(position)
 	
-	crop_name.text = tile_data["Name"]
-	crop_desc.text = tile_data["Plant"].crop_description
+	crop_name.text = tile_data["crop"].crop_name
+	#crop_desc.text = tile_data["crop"].crop_description
 
-	growth.value = tile_data["Plant"].current_growth_stage
-	hydration.value = tile_data["Hydration"]
-	fertilizer.value = tile_data["Nutrients"]
-	ph.value = tile_data["Soil PH"]
+	growth.value = tile_data["crop"].current_growth_stage
+	hydration.value = tile_data["hydration"]
+	fertilizer.value = tile_data["nutrients"]
+	ph.value = tile_data["soil_ph"]
 	
-	harvestable.text = tile_data["Harvestable"]
+	#harvestable.text = tile_data["crop"].harvestable
 
 	

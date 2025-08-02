@@ -1,17 +1,17 @@
 extends Node2D
 
 @onready var ground = $Ground
+@onready var preview = $Preview
 @onready var highlight = $Highlight
 
 var seeds: Dictionary = JSON.parse_string(FileAccess.get_file_as_string("res://TextFiles/crops.json"))
 var crops = preload("res://Scenes/crop.tscn")
 
 var selected_seed: String = "Potato"
-var instance
 
 func _physics_process(delta: float) -> void:
 	if State.current_action == State.Actions.PLANTING:
-		if crops.get_cell_tile_data(get_tile_position(get_global_mouse_position())):
+		if ground.get_cell_tile_data(get_tile_position(get_global_mouse_position())):
 			highlight.modulate = Color(1, 0, 0, 0.5)
 		else:
 			highlight.modulate = Color(0, 1, 0, 0.5)
@@ -33,29 +33,26 @@ func get_world_position(tile_position: Vector2i) -> Vector2:
 	return global_postion
 	
 func planting(tile_position: Vector2i):
-	print(ground.get_cell_tile_data(tile_position).has_custom_data("Farmland"))
 	if ground.get_cell_tile_data(tile_position).get_custom_data("Farmland"):
-		instance = TileMapData.plant_seed(tile_position, selected_seed)
+		var instance = TileMapData.plant_seed(tile_position, selected_seed)
 		if instance:
-			instance.position = get_world_position(tile_position)
+			instance.global_position = get_world_position(tile_position) - Vector2(0, 32)
 			add_child(instance)
 	
 func harvesting(tile_position: Vector2i):
 	TileMapData.harvest_crop(tile_position)
 	
 func inspecting(tile_position: Vector2i):
-	TileMapData.inspect(tile_position)
+	TileMapData.inspect(tile_position, get_world_position(tile_position))
 	Signals.inspect.emit(get_world_position(tile_position), TileMapData.tile_map_data[tile_position[0]][tile_position[1]])
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
 		if event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
-			var mouse_position = event.global_position
-			var tile_position = get_tile_position(mouse_position)
-			if true:
+			var tile_position = get_tile_position(event.global_position)
+			if State.current_action == State.Actions.PLANTING:
 				planting(tile_position)
 			elif State.current_action == State.Actions.HARVESTING:
 				harvesting(tile_position)
 			elif State.current_action == State.Actions.INSPECTING:
-				TileMapData.inspect(get_tile_position(mouse_position))
-				Signals.inspect.emit(get_world_position(tile_position), TileMapData.tile_map_data[tile_position[0]][tile_position[1]])
+				inspecting(tile_position)

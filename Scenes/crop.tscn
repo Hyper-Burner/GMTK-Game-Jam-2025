@@ -1,14 +1,12 @@
 [gd_scene load_steps=3 format=3 uid="uid://cq27xjduinpbj"]
 
-[ext_resource type="Texture2D" uid="uid://dkh0nnsyo11ah" path="res://PlaceholderAssets/Objects/Spring Crops.png" id="1_djpt6"]
-[ext_resource type="Script" uid="uid://ve4odd8vwo41" path="res://Scenes/crop.gd" id="2_rqw3c"]
+[ext_resource type="Texture2D" uid="uid://cvh5u6t0wucct" path="res://Textures/Crops.png" id="1_djpt6"]
+[ext_resource type="Script" uid="uid://brq301y8rrmc" path="res://Scripts/crop.gd" id="2_djpt6"]
 
 [node name="Crop" type="Sprite2D"]
 texture = ExtResource("1_djpt6")
-hframes = 14
-vframes = 8
-frame = 14
-script = ExtResource("2_rqw3c")
+hframes = 40
+script = ExtResource("2_djpt6")
 
 [node name="GrowthStageDuration" type="Timer" parent="."]
 autostart = true

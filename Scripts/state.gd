@@ -8,3 +8,14 @@ enum Actions {
 }
 
 var current_action = Actions.NONE
+
+func set_current_action(action: String):
+	match action:
+		"None":
+			current_action = Actions.NONE
+		"Planting":
+			current_action = Actions.PLANTING
+		"Harvesting":
+			current_action = Actions.HARVESTING
+		"Inspecting":
+			current_action = Actions.INSPECTING
