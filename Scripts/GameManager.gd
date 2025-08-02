@@ -6,7 +6,7 @@ const DATA_PATH_CROPS: String = "res://TextFiles/crops.json"
 const DATA_PATH_ITEMS: String = "res://TextFiles/items.json"
 const DATA_PATH_MILESTONES: String = "res://TextFiles/milestones.json"
 
-const DEFAULT_LOOP_DURATION: float = 5 # seconds
+const DEFAULT_LOOP_DURATION: float = 120 # seconds
 const DEFAULT_TIME_CAPSULE_CAPACITY: int =4
 
 const DEFAULT_STARTING_SEEDS_ID: String = "Potato"

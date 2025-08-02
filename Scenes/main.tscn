@@ -1,10 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://iosw62qel8wr"]
+[gd_scene load_steps=8 format=3 uid="uid://rjuf0oqtkuyo"]
 
-[ext_resource type="PackedScene" uid="uid://bak32yogfktsc" path="res://Scenes/inspect_info.tscn" id="1_8gbba"]
-[ext_resource type="PackedScene" uid="uid://doa0566bfhb2q" path="res://Scenes/tile_map.tscn" id="2_bo1nx"]
+[ext_resource type="PackedScene" uid="uid://brv3pfacurip8" path="res://Scenes/inspect_info.tscn" id="1_8gbba"]
+[ext_resource type="PackedScene" uid="uid://cri3oho84xvjk" path="res://Scenes/tile_map.tscn" id="2_bo1nx"]
 [ext_resource type="PackedScene" uid="uid://5s4n8kmxc8y5" path="res://Scenes/ui.tscn" id="2_kry3j"]
-[ext_resource type="PackedScene" uid="uid://sfrbshm573rc" path="res://Scenes/loop_summary.tscn" id="4_jjvhh"]
-[ext_resource type="Script" uid="uid://whq3hj5mq581" path="res://Scenes/top_row_organizer.gd" id="5_21xkr"]
+[ext_resource type="PackedScene" uid="uid://ov0fkj4vkx08" path="res://Scenes/loop_summary.tscn" id="4_jjvhh"]
+[ext_resource type="Script" path="res://Scenes/top_row_organizer.gd" id="5_21xkr"]
 [ext_resource type="Texture2D" uid="uid://vy7kfwpi6goc" path="res://PlaceholderAssets/Objects/BluePlant32.png" id="5_kry3j"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_jjvhh"]
