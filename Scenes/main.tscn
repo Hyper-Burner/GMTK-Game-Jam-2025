@@ -1,9 +1,12 @@
-[gd_scene load_steps=5 format=3 uid="uid://iosw62qel8wr"]
+[gd_scene load_steps=7 format=3 uid="uid://iosw62qel8wr"]
 
 [ext_resource type="PackedScene" uid="uid://bak32yogfktsc" path="res://Scenes/inspect_info.tscn" id="1_8gbba"]
 [ext_resource type="PackedScene" uid="uid://doa0566bfhb2q" path="res://Scenes/tile_map.tscn" id="2_bo1nx"]
 [ext_resource type="PackedScene" uid="uid://5s4n8kmxc8y5" path="res://Scenes/ui.tscn" id="2_kry3j"]
 [ext_resource type="PackedScene" uid="uid://sfrbshm573rc" path="res://Scenes/loop_summary.tscn" id="4_jjvhh"]
+[ext_resource type="Texture2D" uid="uid://vy7kfwpi6goc" path="res://PlaceholderAssets/Objects/BluePlant32.png" id="5_kry3j"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_jjvhh"]
 
 [node name="Main" type="Node2D"]
 
@@ -24,13 +27,102 @@ offset_top = 20.0
 offset_right = 43.0
 offset_bottom = 20.0
 scale = Vector2(0.85, 0.85)
+metadata/_edit_lock_ = true
 
-[node name="Label" type="Label" parent="EndLoop"]
+[node name="Summary" type="Label" parent="EndLoop"]
 layout_mode = 0
 offset_left = 194.118
-offset_top = 23.5294
+offset_top = -4.70588
 offset_right = 457.118
-offset_bottom = 73.5294
+offset_bottom = 45.2941
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 36
+theme_override_font_sizes/font_size = 30
 text = "Loop Summary"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="Harvested" type="Label" parent="EndLoop"]
+layout_mode = 0
+offset_left = 15.2941
+offset_top = 42.3529
+offset_right = 142.294
+offset_bottom = 65.3529
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Crops harvested"
+metadata/_edit_lock_ = true
+
+[node name="Top Row Organizer" type="HBoxContainer" parent="EndLoop/Harvested"]
+layout_mode = 0
+offset_top = 28.2353
+offset_right = 270.0
+offset_bottom = 68.2353
+theme_override_constants/separation = 75
+alignment = 1
+metadata/_edit_lock_ = true
+
+[node name="Spring Onion" type="TextureRect" parent="EndLoop/Harvested/Top Row Organizer"]
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("5_kry3j")
+expand_mode = 2
+metadata/_edit_lock_ = true
+
+[node name="Potato" type="TextureRect" parent="EndLoop/Harvested/Top Row Organizer"]
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("5_kry3j")
+expand_mode = 2
+metadata/_edit_lock_ = true
+
+[node name="Strawberry" type="TextureRect" parent="EndLoop/Harvested/Top Row Organizer"]
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("5_kry3j")
+expand_mode = 2
+metadata/_edit_lock_ = true
+
+[node name="Divider" type="Line2D" parent="EndLoop"]
+position = Vector2(-573.636, 70.5882)
+scale = Vector2(2.81818, 1)
+points = PackedVector2Array(203.529, 108.235, 430.645, 108.235)
+texture = SubResource("PlaceholderTexture2D_jjvhh")
+metadata/_edit_lock_ = true
+
+[node name="Time Capsule" type="Label" parent="EndLoop"]
+layout_mode = 0
+offset_left = 15.2941
+offset_top = 183.529
+offset_right = 180.294
+offset_bottom = 206.529
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Seeds in time capsule"
+metadata/_edit_lock_ = true
+
+[node name="Bottom Row Organizer" type="HBoxContainer" parent="EndLoop/Time Capsule"]
+offset_top = 28.2353
+offset_right = 270.0
+offset_bottom = 68.2353
+theme_override_constants/separation = 75
+alignment = 1
+
+[node name="Spring Onion" type="TextureRect" parent="EndLoop/Time Capsule/Bottom Row Organizer"]
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("5_kry3j")
+expand_mode = 2
+metadata/_edit_lock_ = true
+
+[node name="Potato" type="TextureRect" parent="EndLoop/Time Capsule/Bottom Row Organizer"]
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("5_kry3j")
+expand_mode = 2
+metadata/_edit_lock_ = true
+
+[node name="Strawberry" type="TextureRect" parent="EndLoop/Time Capsule/Bottom Row Organizer"]
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("5_kry3j")
+expand_mode = 2
+metadata/_edit_lock_ = true
