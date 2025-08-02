@@ -6,6 +6,7 @@ signal harvest_crop(crop: String)
 signal inspecting_mode_entered()
 signal inspecting_mode_exited()
 signal inspect(Vector2i)
+signal set_action(action: String)
  
 # --- Signals ---
 # Emitted when a new game loop starts.

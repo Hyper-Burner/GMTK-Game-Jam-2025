@@ -1,7 +1,8 @@
 {
 	"Strawberry": {
+		"seed_name": "Strawberry Seeds",
 		"description": "A sweet, juicy favorite with an appealing red color.",
-		"frame_coords": [20, 0],
+		"frame_coords": [5, 0],
 		"growth_stages": 5,
 		"crop_yield": 3,
 		"seed_yield": 3,

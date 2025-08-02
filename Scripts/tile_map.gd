@@ -36,7 +36,7 @@ func planting(tile_position: Vector2i):
 	if ground.get_cell_tile_data(tile_position).get_custom_data("Farmland"):
 		var instance = TileMapData.plant_seed(tile_position, selected_seed)
 		if instance:
-			instance.global_position = get_world_position(tile_position) - Vector2(0, 20)
+			instance.global_position = get_world_position(tile_position) - Vector2(0, 25)
 			add_child(instance)
 	
 func harvesting(tile_position: Vector2i):

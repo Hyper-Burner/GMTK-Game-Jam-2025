@@ -24,7 +24,7 @@ func clear_crops():
 
 func plant_seed(tile_position: Vector2i, seed: String):
 	var tile = tile_map_data[tile_position[0]][tile_position[1]]
-	if !tile["crop"] and Inventory.remove_item_from_current_inventory(seed):
+	if !tile["crop"] and Inventory.remove_item_from_inventory(Inventory.seed_inventory, seed):
 		var instance = crop_script.instance(seed, false)
 		tile["crop"] = instance
 		return instance
@@ -41,6 +41,8 @@ func harvest_crop(tile_position: Vector2i):
 		tile["nutrients"] = condition_change["nutrients"]
 		tile["soil_ph"] = condition_change["soil_ph"]
 		Signals.harvest_crop.emit(crop_name)
+		Inventory.add_item_to_inventory(Inventory.seed_inventory, crop_name)
+		Inventory.add_item_to_inventory(Inventory.crop_inventory, crop_name)
 		crop.queue_free()
 		tile["crop"] = false
 
