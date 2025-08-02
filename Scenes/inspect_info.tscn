@@ -1,6 +1,19 @@
-[gd_scene load_steps=2 format=3 uid="uid://brv3pfacurip8"]
+[gd_scene load_steps=6 format=3 uid="uid://brv3pfacurip8"]
 
 [ext_resource type="Script" uid="uid://cxyf7iq6xqv37" path="res://Scripts/inspect_info.gd" id="1_87jq0"]
+[ext_resource type="Texture2D" uid="uid://dkgo5tklxjqfn" path="res://Textures/ui_and_effects.png" id="2_b108f"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_givyc"]
+atlas = ExtResource("2_b108f")
+region = Rect2(64, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3ha5h"]
+atlas = ExtResource("2_b108f")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sk7hw"]
+atlas = ExtResource("2_b108f")
+region = Rect2(0, 32, 32, 32)
 
 [node name="Control2" type="CanvasLayer"]
 script = ExtResource("1_87jq0")
@@ -46,26 +59,50 @@ offset_right = 172.0
 offset_bottom = 30.0
 max_value = 4.0
 
+[node name="FertilizerIcon" type="TextureRect" parent="TextureRect"]
+layout_mode = 0
+offset_left = -5.0
+offset_top = 83.0
+offset_right = 35.0
+offset_bottom = 123.0
+texture = SubResource("AtlasTexture_givyc")
+
 [node name="Fertilizer" type="ProgressBar" parent="TextureRect"]
 layout_mode = 0
-offset_left = 7.0
-offset_top = 88.0
+offset_left = 35.0
+offset_top = 87.0
 offset_right = 175.0
-offset_bottom = 115.0
+offset_bottom = 114.0
 max_value = 255.0
+
+[node name="HydrationIcon" type="TextureRect" parent="TextureRect"]
+layout_mode = 0
+offset_left = -5.0
+offset_top = 112.0
+offset_right = 35.0
+offset_bottom = 152.0
+texture = SubResource("AtlasTexture_3ha5h")
 
 [node name="Hydration" type="ProgressBar" parent="TextureRect"]
 layout_mode = 0
-offset_left = 7.0
-offset_top = 117.0
-offset_right = 175.0
-offset_bottom = 144.0
+offset_left = 35.0
+offset_top = 120.0
+offset_right = 176.0
+offset_bottom = 147.0
 max_value = 255.0
+
+[node name="SoilPHIcon" type="TextureRect" parent="TextureRect"]
+layout_mode = 0
+offset_left = -4.0
+offset_top = 147.0
+offset_right = 36.0
+offset_bottom = 187.0
+texture = SubResource("AtlasTexture_sk7hw")
 
 [node name="PH" type="ProgressBar" parent="TextureRect"]
 layout_mode = 0
-offset_left = 7.0
-offset_top = 149.0
+offset_left = 35.0
+offset_top = 150.0
 offset_right = 175.0
-offset_bottom = 176.0
+offset_bottom = 177.0
 max_value = 255.0
