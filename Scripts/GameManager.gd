@@ -6,8 +6,8 @@ const DATA_PATH_CROPS: String = "res://TextFiles/crops.json"
 const DATA_PATH_ITEMS: String = "res://TextFiles/items.json"
 const DATA_PATH_MILESTONES: String = "res://TextFiles/milestones.json"
 
-const DEFAULT_LOOP_DURATION: float = 60 # seconds
-const DEFAULT_TIME_CAPSULE_CAPACITY: int = 100
+const DEFAULT_LOOP_DURATION: float = 5 # seconds
+const DEFAULT_TIME_CAPSULE_CAPACITY: int =4
 const DEFAULT_STARTING_SEEDS_ID: String = "Potato"
 
 # --- Game Data Definitions (Loaded from JSON files) ---
@@ -160,9 +160,9 @@ func start_loop() -> void:
 	"""Initiates a new game loop, resetting transient states and delivering time-capsuled items."""
 	current_loop_time = loop_duration # Reset timer for the
 	# new loop.
+	print("before reset",Inventory.current_inventory)
 	Inventory.reset_inventory()       # Clear transient inventory for the new loop.
 	Milestone.current_loop_score.clear()
-	print(Inventory.current_inventory)
 	# Transfer time-capsuled items from the previous loop.
 	# time_capsule_contents keys are now String.
 	for item_id_str in time_capsule_contents:

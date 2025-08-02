@@ -1,10 +1,8 @@
 extends Node
-
-
 # Items available in the current loop's inventory (item_id: quantity). Resets each loop.
 # Keys are now String.
 var current_inventory: Dictionary = {}
-var starting_inventory: Dictionary = {"Strawberry": 1000}
+var starting_inventory: Dictionary = {"Strawberry": 1}
 func _ready() -> void:
 	Signals.plant_unlocked.connect(plant_unlocked)
 # --- Inventory & Item Management ---
@@ -30,10 +28,7 @@ func remove_item_from_current_inventory(item_id: String, quantity: int = 1) -> b
 		push_warning("Not enough of item ID %s in inventory to remove %d. Current: %d" % [item_id, quantity, current_inventory.get(item_id, 0)])
 		return false
 	
-	current_inventory[item_id] -= quantity
-	if current_inventory[item_id] <= 0:
-		current_inventory.erase(item_id)
-	
+	current_inventory[item_id] -= quantity	
 	# EMIT GLOBAL SIGNAL
 	Signals.inventory_changed.emit(item_id, current_inventory.get(item_id, 0))
 	print("Removed %d x ID %s from inventory. Current: %s" % [quantity, item_id, current_inventory])
@@ -46,9 +41,12 @@ func add_item_to_starting_inventory(item_id: String, quantity: int = 1):
 	starting_inventory[item_id] = current_inventory.get(item_id, 0) + quantity
 	
 func set_inventory_to(new_inventory: Dictionary):
-	current_inventory = new_inventory
+	current_inventory = new_inventory.duplicate()
+	
 func reset_inventory():
+	print("inside reset", starting_inventory)
 	set_inventory_to(starting_inventory)
+	
 func plant_unlocked(new_seed: String, quantity: int):
 	add_item_to_starting_inventory(new_seed, quantity)
 	pass
