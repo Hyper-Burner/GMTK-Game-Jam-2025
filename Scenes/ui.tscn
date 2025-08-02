@@ -1,8 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://5s4n8kmxc8y5"]
+[gd_scene load_steps=6 format=3 uid="uid://5s4n8kmxc8y5"]
 
 [ext_resource type="Script" uid="uid://c3yyagh42ab2r" path="res://Scripts/ui.gd" id="1_jxero"]
 [ext_resource type="Texture2D" uid="uid://dkgo5tklxjqfn" path="res://Textures/ui_and_effects.png" id="2_nf4gj"]
-[ext_resource type="PackedScene" uid="uid://dhajj7w86ogjo" path="res://Scenes/inventory_slot.tscn" id="3_nf4gj"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2246s"]
 atlas = ExtResource("2_nf4gj")
@@ -79,56 +78,6 @@ texture_normal = SubResource("AtlasTexture_q7pk6")
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 texture_normal = SubResource("AtlasTexture_m78vo")
-
-[node name="TimeCapsule" type="TextureButton" parent="."]
-layout_mode = 0
-offset_left = 600.0
-offset_top = 320.0
-offset_right = 640.0
-offset_bottom = 360.0
-
-[node name="TimeCapsulePanel" type="Panel" parent="."]
-layout_mode = 0
-offset_left = 600.0
-offset_top = 320.0
-offset_right = 640.0
-offset_bottom = 360.0
-
-[node name="InventoryGrid" type="GridContainer" parent="TimeCapsulePanel"]
-layout_direction = 2
-layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_top = -20.0
-offset_right = 256.0
-offset_bottom = 20.0
-grow_vertical = 2
-columns = 8
-
-[node name="InventorySlot" parent="TimeCapsulePanel/InventoryGrid" instance=ExtResource("3_nf4gj")]
-layout_mode = 2
-
-[node name="InventorySlot2" parent="TimeCapsulePanel/InventoryGrid" instance=ExtResource("3_nf4gj")]
-layout_mode = 2
-
-[node name="InventorySlot3" parent="TimeCapsulePanel/InventoryGrid" instance=ExtResource("3_nf4gj")]
-layout_mode = 2
-
-[node name="InventorySlot4" parent="TimeCapsulePanel/InventoryGrid" instance=ExtResource("3_nf4gj")]
-layout_mode = 2
-
-[node name="InventorySlot5" parent="TimeCapsulePanel/InventoryGrid" instance=ExtResource("3_nf4gj")]
-layout_mode = 2
-
-[node name="InventorySlot6" parent="TimeCapsulePanel/InventoryGrid" instance=ExtResource("3_nf4gj")]
-layout_mode = 2
-
-[node name="InventorySlot7" parent="TimeCapsulePanel/InventoryGrid" instance=ExtResource("3_nf4gj")]
-layout_mode = 2
-
-[node name="InventorySlot8" parent="TimeCapsulePanel/InventoryGrid" instance=ExtResource("3_nf4gj")]
-layout_mode = 2
 
 [node name="TimeCapsulePanel2" type="Panel" parent="."]
 layout_mode = 0

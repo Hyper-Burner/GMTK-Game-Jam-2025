@@ -1,4 +1,16 @@
-[gd_scene load_steps=0 format=3 uid="uid://dpvjj4nj1a7dn"]
+[gd_scene load_steps=6 format=3 uid="uid://mr3aa8n6upuw"]
+
+[ext_resource type="Script" path="res://Scripts/time_capsule.gd" id="1_ov7qn"]
+[ext_resource type="PackedScene" uid="uid://dhajj7w86ogjo" path="res://Scenes/inventory_slot.tscn" id="1_x7tk7"]
+[ext_resource type="Texture2D" uid="uid://dkgo5tklxjqfn" path="res://Textures/ui_and_effects.png" id="2_hatof"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yv6ci"]
+atlas = ExtResource("2_hatof")
+region = Rect2(0, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_goxuk"]
+atlas = ExtResource("2_hatof")
+region = Rect2(64, 64, 64, 64)
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -7,3 +19,57 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_ov7qn")
+
+[node name="TextureButton" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 571.0
+offset_top = 287.0
+offset_right = 635.0
+offset_bottom = 351.0
+texture_normal = SubResource("AtlasTexture_yv6ci")
+texture_hover = SubResource("AtlasTexture_goxuk")
+
+[node name="TimeCapsuleMenu" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 55.0
+offset_top = 51.0
+offset_right = 588.0
+offset_bottom = 285.0
+
+[node name="GridContainer" type="GridContainer" parent="TimeCapsuleMenu"]
+visible = false
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+columns = 4
+
+[node name="InventorySlot1" parent="TimeCapsuleMenu/GridContainer" instance=ExtResource("1_x7tk7")]
+layout_mode = 2
+
+[node name="InventorySlot2" parent="TimeCapsuleMenu/GridContainer" instance=ExtResource("1_x7tk7")]
+layout_mode = 2
+
+[node name="InventorySlot3" parent="TimeCapsuleMenu/GridContainer" instance=ExtResource("1_x7tk7")]
+layout_mode = 2
+
+[node name="InventorySlot4" parent="TimeCapsuleMenu/GridContainer" instance=ExtResource("1_x7tk7")]
+layout_mode = 2
+
+[node name="InventorySlot5" parent="TimeCapsuleMenu/GridContainer" instance=ExtResource("1_x7tk7")]
+layout_mode = 2
+
+[node name="InventorySlot6" parent="TimeCapsuleMenu/GridContainer" instance=ExtResource("1_x7tk7")]
+layout_mode = 2
+
+[node name="InventorySlot7" parent="TimeCapsuleMenu/GridContainer" instance=ExtResource("1_x7tk7")]
+layout_mode = 2
+
+[node name="InventorySlot8" parent="TimeCapsuleMenu/GridContainer" instance=ExtResource("1_x7tk7")]
+layout_mode = 2
+
+[node name="Panel" type="Panel" parent="."]
+visible = false
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
