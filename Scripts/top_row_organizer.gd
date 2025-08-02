@@ -1,7 +1,5 @@
 extends HBoxContainer
 
-signal all_counters_finished
-
 var targets: Array = []
 var currents := []
 var textures := []
