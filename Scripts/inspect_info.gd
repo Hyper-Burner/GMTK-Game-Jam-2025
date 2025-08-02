@@ -1,13 +1,14 @@
 extends CanvasLayer
 
 @onready var panel : ColorRect = $TextureRect
-@onready var crop_name : Label = $TextureRect/CropName
-@onready var crop_desc : Label = $TextureRect/CropDescription
-@onready var harvestable : Label = $TextureRect/Harvestable
-@onready var growth : ProgressBar = $TextureRect/Growth
-@onready var fertilizer : ProgressBar = $TextureRect/Fertilizer
-@onready var hydration : ProgressBar = $TextureRect/Hydration
-@onready var ph : ProgressBar = $TextureRect/PH
+@onready var crop_name : Label = $TextureRect/List/CropName
+@onready var crop_desc : Label = $TextureRect/List/CropDescription
+@onready var harvestable : Label = $TextureRect/List/Harvestable
+@onready var growth : ProgressBar = $TextureRect/List/CropName/Growth
+@onready var fertilizer : ProgressBar = $TextureRect/List/Fertilizer/FertilizerBar
+@onready var hydration : ProgressBar = $TextureRect/List/Hydration/HydrationBar
+@onready var ph : ProgressBar = $TextureRect/List/SoilPH/SoilPHBar
+@onready var animation: AnimationPlayer = $TextureRect/Animation
 
 const TILE_SIZE = 32
 var previous_inspect_position : Vector2
@@ -15,9 +16,10 @@ var in_loop : bool
 var vp_size : Vector2
 
 func _ready():
+	panel.visible = false
+	
 	vp_size = get_viewport().size
 	previous_inspect_position = Vector2(-99,-99)
-	panel.visible = false
 	Signals.inspect.connect(_on_inspecting_mode_entered)
 	Signals.loop_started.connect(_on_loop_started)
 	Signals.loop_ended.connect(_on_loop_ended)
@@ -30,19 +32,13 @@ func _on_loop_started():
 	
 func _on_loop_ended():
 	in_loop = false
-		
 
-# assumned data structure for tile_data
-#{
-	#"Name": seed,
-	#"Harvestable": false,
-	#"Hydration": 50,
-	#"Nutrients": 50,
-	#"Soil PH": 50,
-	#"Plant":  {
-		#"Instance": crop.instance(seed, false)
-	#}
-#}
+func show_panel():
+	animation.play("show")
+	
+func hide_panel():
+	animation.play("hide")
+	
 func _on_inspecting_mode_entered(position : Vector2, tile_data):
 	# if the loop is not active do not show
 	if !in_loop:
@@ -50,11 +46,15 @@ func _on_inspecting_mode_entered(position : Vector2, tile_data):
 		return
 	# if same tile, toggle the panel visibility.
 	if position == previous_inspect_position:
-		panel.visible = !panel.visible
+		if panel.visible:
+			hide_panel()
+		else:
+			show_panel()
+		#panel.visible = !panel.visible
 		return
 	
 	previous_inspect_position = position
-	panel.visible = true
+	
 
 	# if the inspect position is in the bottom half of the screen, place it above the inspect position
 	if (position.y >= vp_size.y / 2):
@@ -66,6 +66,8 @@ func _on_inspecting_mode_entered(position : Vector2, tile_data):
 		
 	position.x -= panel.size.x / 2
 	panel.set_position(position)
+	#panel.visible = true
+	show_panel()
 	
 	if tile_data["crop"]:
 		crop_name.text = tile_data["crop"].crop_name
