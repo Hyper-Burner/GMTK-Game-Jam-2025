@@ -43,8 +43,8 @@ func harvesting(tile_position: Vector2i):
 	TileMapData.harvest_crop(tile_position)
 	
 func inspecting(tile_position: Vector2i):
-	TileMapData.inspect(tile_position, get_world_position(tile_position))
-	Signals.inspect.emit(get_world_position(tile_position), TileMapData.tile_map_data[tile_position[0]][tile_position[1]])
+	if ground.get_cell_tile_data(tile_position).get_custom_data("Farmland"):
+		TileMapData.inspect(tile_position, get_world_position(tile_position))
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:

@@ -41,10 +41,9 @@ func harvest_crop(tile_position: Vector2i):
 		tile["crop"] = false
 		Signals.harvest_crop.emit(tile["crop"].crop_name)
 
-func inspect(tile_position: Vector2i, world_position) -> Dictionary:
+func inspect(tile_position: Vector2i, world_position) -> void:
 	var tile = tile_map_data[tile_position[0]][tile_position[1]]
 	Signals.inspect.emit(world_position, tile)
-	return tile
 
 func _ready() -> void:
 	tile_map_data = create_matrix([farm_width, farm_height], {
