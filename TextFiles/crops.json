@@ -1,7 +1,7 @@
 {
 	"Strawberry": {
 		"description": "A sweet, juicy favorite with an appealing red color.",
-		"frame_coords": [0, 1],
+		"frame_coords": [20, 0],
 		"growth_stages": 5,
 		"crop_yield": 3,
 		"seed_yield": 3,

@@ -4,7 +4,7 @@ extends Node
 # Items available in the current loop's inventory (item_id: quantity). Resets each loop.
 # Keys are now String.
 var current_inventory: Dictionary = {}
-var starting_inventory: Dictionary = {"Potato": 5}
+var starting_inventory: Dictionary = {"Strawberry": 1000}
 func _ready() -> void:
 	Signals.plant_unlocked.connect(plant_unlocked)
 # --- Inventory & Item Management ---

@@ -13,7 +13,7 @@ var frame_coordinates: Vector2i
 static func instance(crop_name: String, optimal_conditions: bool):
 	var instance = crop_scene.instantiate()
 	var crop = crop_text_file[crop_name]
-	instance.max_growth_stage = crop["growth_stages"] - 1
+	instance.max_growth_stage = crop["growth_stages"]
 	instance.frame_coordinates = Vector2i(crop["frame_coords"][0], crop["frame_coords"][1])
 	if optimal_conditions:
 		instance.growth_duration = crop["optimal_growth_duration"]

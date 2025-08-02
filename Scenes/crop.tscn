@@ -4,8 +4,10 @@
 [ext_resource type="Script" uid="uid://brq301y8rrmc" path="res://Scripts/crop.gd" id="2_djpt6"]
 
 [node name="Crop" type="Sprite2D"]
+scale = Vector2(0.75, 0.75)
 texture = ExtResource("1_djpt6")
 hframes = 40
+frame = 30
 script = ExtResource("2_djpt6")
 
 [node name="GrowthStageDuration" type="Timer" parent="."]

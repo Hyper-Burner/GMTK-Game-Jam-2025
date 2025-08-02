@@ -7,7 +7,7 @@ extends Node2D
 var seeds: Dictionary = JSON.parse_string(FileAccess.get_file_as_string("res://TextFiles/crops.json"))
 var crops = preload("res://Scenes/crop.tscn")
 
-var selected_seed: String = "Potato"
+var selected_seed: String = "Strawberry"
 
 func _physics_process(delta: float) -> void:
 	if State.current_action == State.Actions.PLANTING:
@@ -36,7 +36,7 @@ func planting(tile_position: Vector2i):
 	if ground.get_cell_tile_data(tile_position).get_custom_data("Farmland"):
 		var instance = TileMapData.plant_seed(tile_position, selected_seed)
 		if instance:
-			instance.global_position = get_world_position(tile_position) - Vector2(0, 32)
+			instance.global_position = get_world_position(tile_position) - Vector2(0, 20)
 			add_child(instance)
 	
 func harvesting(tile_position: Vector2i):
