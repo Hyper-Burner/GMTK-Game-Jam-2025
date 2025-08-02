@@ -14,6 +14,8 @@ signal loop_started()
 signal loop_ended()
 # New loop after first 
 signal loop_continued()
+# Top Row Signal for summary
+signal top_row_done()
 # Emitted regularly to update the timer display.
 signal timer_updated(current_time: float, total_time: float)
 # Emitted when an item's quantity in the current inventory changes.
