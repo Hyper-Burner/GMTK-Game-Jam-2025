@@ -1,8 +1,20 @@
-[gd_scene load_steps=4 format=3 uid="uid://5s4n8kmxc8y5"]
+[gd_scene load_steps=7 format=3 uid="uid://5s4n8kmxc8y5"]
 
 [ext_resource type="Script" uid="uid://c3yyagh42ab2r" path="res://Scripts/ui.gd" id="1_jxero"]
-[ext_resource type="Texture2D" uid="uid://vy7kfwpi6goc" path="res://PlaceholderAssets/Objects/BluePlant32.png" id="2_qdvrb"]
+[ext_resource type="Texture2D" uid="uid://dkgo5tklxjqfn" path="res://Textures/ui_and_effects.png" id="2_nf4gj"]
 [ext_resource type="PackedScene" uid="uid://dhajj7w86ogjo" path="res://Scenes/inventory_slot.tscn" id="3_nf4gj"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2246s"]
+atlas = ExtResource("2_nf4gj")
+region = Rect2(224, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q7pk6"]
+atlas = ExtResource("2_nf4gj")
+region = Rect2(192, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m78vo"]
+atlas = ExtResource("2_nf4gj")
+region = Rect2(160, 32, 32, 32)
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -56,17 +68,17 @@ custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
-texture_normal = ExtResource("2_qdvrb")
+texture_normal = SubResource("AtlasTexture_2246s")
 
 [node name="Scythe" type="TextureButton" parent="Tools"]
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
-texture_normal = ExtResource("2_qdvrb")
+texture_normal = SubResource("AtlasTexture_q7pk6")
 
 [node name="SoilScanner" type="TextureButton" parent="Tools"]
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
-texture_normal = ExtResource("2_qdvrb")
+texture_normal = SubResource("AtlasTexture_m78vo")
 
 [node name="TimeCapsule" type="TextureButton" parent="."]
 layout_mode = 0
