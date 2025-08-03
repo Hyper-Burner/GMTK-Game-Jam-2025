@@ -13,14 +13,6 @@ var current_loop_score: Dictionary = {}
 var current_milestone_index: int = 0
 var current_milestone_key: String = "" # New: Store the key of the current milestone
 
-func add_harvested_crop_to_score(crop_id: String, quantity: int = 1) -> void:
-	"""Adds harvested crops to the current loop's score for milestone tracking."""
-	if quantity <= 0: 
-		return
-
-	current_loop_score[crop_id] = current_loop_score.get(crop_id, 0) + quantity
-	print("Added %d x ID %s to loop score. Current score: %s" % [quantity, crop_id, current_loop_score])
-
 # --- Milestone Management ---
 # New function to set milestone by key
 func _set_current_milestone_by_key(milestone_key: String) -> void:
