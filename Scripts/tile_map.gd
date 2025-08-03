@@ -14,16 +14,14 @@ func _ready():
 
 func _physics_process(delta: float) -> void:
 	if State.current_action == State.Actions.PLANTING:
-		if ground.get_cell_tile_data(get_tile_position(get_global_mouse_position())):
-			highlight.modulate = Color(1, 0, 0, 0.5)
-		else:
-			highlight.modulate = Color(0, 1, 0, 0.5)
 		highlight.clear()
 		highlight.set_cell(get_tile_position(get_global_mouse_position()), 0, Vector2i(0, 0))
 	elif State.current_action == State.Actions.HARVESTING:
-		pass
+		highlight.clear()
+		highlight.set_cell(get_tile_position(get_global_mouse_position()), 0, Vector2i(0, 0))
 	elif State.current_action == State.Actions.INSPECTING:
-		pass
+		highlight.clear()
+		highlight.set_cell(get_tile_position(get_global_mouse_position()), 0, Vector2i(0, 0))
 
 func get_tile_position(global_position: Vector2) -> Vector2i:
 	var local_position = ground.to_local(global_position)
