@@ -6,13 +6,19 @@ extends Node2D
 
 var seeds: Dictionary = JSON.parse_string(FileAccess.get_file_as_string("res://TextFiles/crops.json"))
 var crops = preload("res://Scenes/crop.tscn")
+var in_loop: bool = true
 
 func _ready():
+	Signals.loop_started.connect(func():
+		in_loop = true
+	)
+	Signals.loop_ended.connect(func():
+		in_loop = false
+	)
 	Signals.slot_selected.connect(change_selected_seed)
 
 func _process(delta: float) -> void:
 	var tile_position = get_tile_position(get_global_mouse_position())
-	print(tile_position)
 	highlight.clear()
 	if ground.get_cell_tile_data(tile_position) and ground.get_cell_tile_data(tile_position).get_custom_data("Farmland"):
 		highlight.set_cell(tile_position, 0, Vector2i(0, 0))
@@ -37,17 +43,18 @@ func get_world_position(tile_position: Vector2i) -> Vector2:
 	return global_postion
 	
 func planting(tile_position: Vector2i):
-	if ground.get_cell_tile_data(tile_position).get_custom_data("Farmland"):
+	if in_loop and ground.get_cell_tile_data(tile_position).get_custom_data("Farmland"):
 		var instance = TileMapData.plant_seed(tile_position, Global.selected_seed)
 		if instance:
 			instance.global_position = get_world_position(tile_position) - Vector2(0, 25)
 			add_child(instance)
 	
 func harvesting(tile_position: Vector2i):
-	TileMapData.harvest_crop(tile_position)
+	if in_loop:
+		TileMapData.harvest_crop(tile_position)
 	
 func inspecting(tile_position: Vector2i):
-	if ground.get_cell_tile_data(tile_position).get_custom_data("Farmland"):
+	if in_loop and ground.get_cell_tile_data(tile_position).get_custom_data("Farmland"):
 		TileMapData.inspect(tile_position, get_world_position(tile_position))
 
 func _input(event: InputEvent) -> void:
@@ -60,6 +67,7 @@ func _input(event: InputEvent) -> void:
 				harvesting(tile_position)
 			elif State.current_action == State.Actions.INSPECTING:
 				inspecting(tile_position)
+
 func change_selected_seed(item_id: String, slot_index:int):
 	print(item_id)
 	Global.selected_seed = item_id

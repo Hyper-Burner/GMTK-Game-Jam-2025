@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://rwyst7vg4yyc"]
+[gd_scene load_steps=0 format=3 uid="uid://rwyst7vg4yyc"]
 
 [node name="Milestone" type="HBoxContainer"]
 anchors_preset = 15
