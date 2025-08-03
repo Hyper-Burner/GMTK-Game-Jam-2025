@@ -41,8 +41,8 @@ func harvest_crop(tile_position: Vector2i):
 		tile["nutrients"] = condition_change["nutrients"]
 		tile["soil_ph"] = condition_change["soil_ph"]
 		Signals.harvest_crop.emit(crop_name)
-		Inventory.add_item_to_inventory(Inventory.seed_inventory, crop_name)
-		Inventory.add_item_to_inventory(Inventory.crop_inventory, crop_name)
+		Inventory.add_item_to_inventory(Inventory.seed_inventory, crop_name, crop_text_file[crop_name]["seed_yield"])
+		Inventory.add_item_to_inventory(Inventory.crop_inventory, crop_name, crop_text_file[crop_name]["crop_yield"])
 		crop.queue_free()
 		tile["crop"] = false
 

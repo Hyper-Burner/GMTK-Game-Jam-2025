@@ -1,17 +1,23 @@
-[gd_scene load_steps=3 format=3 uid="uid://bt7k6ggqwmj3s"]
+[gd_scene load_steps=5 format=3 uid="uid://bt7k6ggqwmj3s"]
 
+[ext_resource type="Script" uid="uid://b4ruxl5h6pqmr" path="res://Scripts/seed_breeding.gd" id="1_6pk40"]
 [ext_resource type="Texture2D" uid="uid://bhsxyuowv8u4p" path="res://Textures/crops.png" id="1_100hk"]
+[ext_resource type="Texture2D" uid="uid://d4mk6mtwgfsd0" path="res://Textures/seed_breeding.png" id="1_thlpr"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_100hk"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_6pk40"]
 atlas = ExtResource("1_100hk")
-region = Rect2(11, 55, 9, 9)
+region = Rect2(651, 55, 9, 9)
 
-[node name="SeedBreeding" type="Panel"]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+[node name="SeedBreeding" type="TextureRect"]
+anchors_preset = -1
+anchor_left = 0.2
+anchor_top = 0.1
+anchor_right = 0.8
+anchor_bottom = 0.9
 grow_horizontal = 2
 grow_vertical = 2
+texture = ExtResource("1_thlpr")
+script = ExtResource("1_6pk40")
 
 [node name="GridContainer" type="GridContainer" parent="."]
 layout_mode = 1
@@ -24,6 +30,35 @@ offset_right = 1.0
 offset_bottom = -25.0
 grow_horizontal = 2
 grow_vertical = 2
+columns = 4
+
+[node name="Seed1" type="Button" parent="GridContainer"]
+layout_mode = 2
+text = "1"
+
+[node name="Seed2" type="Button" parent="GridContainer"]
+layout_mode = 2
+text = "2"
+
+[node name="Seed3" type="Button" parent="GridContainer"]
+layout_mode = 2
+text = "3"
+
+[node name="Seed4" type="Button" parent="GridContainer"]
+layout_mode = 2
+text = "4"
+
+[node name="Seed5" type="Button" parent="GridContainer"]
+layout_mode = 2
+text = "5"
+
+[node name="Seed6" type="Button" parent="GridContainer"]
+layout_mode = 2
+text = "6"
+
+[node name="Seed7" type="Button" parent="GridContainer"]
+layout_mode = 2
+text = "7"
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 1
@@ -31,9 +66,9 @@ anchors_preset = -1
 anchor_left = 0.7
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = 25.0
-offset_right = -25.0
-offset_bottom = -25.0
+offset_top = 20.0
+offset_right = -20.0
+offset_bottom = -20.0
 grow_horizontal = 0
 grow_vertical = 2
 
@@ -41,5 +76,38 @@ grow_vertical = 2
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
+anchor_bottom = 0.4
+offset_left = 25.0
+offset_top = 10.0
+offset_right = -25.0
 grow_horizontal = 2
-texture = SubResource("AtlasTexture_100hk")
+texture = SubResource("AtlasTexture_6pk40")
+
+[node name="Button" type="Button" parent="Panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 15.0
+offset_right = -15.0
+offset_bottom = -15.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Breed"
+
+[node name="HSlider" type="HSlider" parent="Panel"]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 16.0
+
+[node name="Timer" type="Timer" parent="."]
+
+[connection signal="pressed" from="GridContainer/Seed1" to="." method="_on_seed_1_pressed"]
+[connection signal="pressed" from="GridContainer/Seed2" to="." method="_on_seed_2_pressed"]
+[connection signal="pressed" from="GridContainer/Seed3" to="." method="_on_seed_3_pressed"]
+[connection signal="pressed" from="GridContainer/Seed4" to="." method="_on_seed_4_pressed"]
+[connection signal="pressed" from="GridContainer/Seed5" to="." method="_on_seed_5_pressed"]
+[connection signal="pressed" from="GridContainer/Seed6" to="." method="_on_seed_6_pressed"]
+[connection signal="pressed" from="GridContainer/Seed7" to="." method="_on_seed_7_pressed"]
+[connection signal="pressed" from="Panel/Button" to="." method="_on_button_pressed"]
