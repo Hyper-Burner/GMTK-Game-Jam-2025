@@ -10,7 +10,7 @@
 			"nutrients": 0,
 			"soil_ph": 0
 		},
-		"growth_duration": 52,
+		"growth_duration": 20,
 		"optimal_conditions": {
 			"hydration": 75,
 			"nutrients": 75,
