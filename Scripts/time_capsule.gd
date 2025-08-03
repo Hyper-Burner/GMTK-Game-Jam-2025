@@ -42,7 +42,7 @@ func _on_loop_started():
 func _on_loop_ended():
 	# Close time capsule when loop ends
 	time_capsule_panel.visible = false
-	in_loop = true
+	in_loop = false
 
 func _on_inventory_changed(item_id: String, new_quantity: int):
 	# Only update display if time capsule is currently visible
@@ -51,7 +51,9 @@ func _on_inventory_changed(item_id: String, new_quantity: int):
 	
 func _on_time_capsule_button_pressed() -> void:
 	# Toggle the time capsule panel visibility
-	toggle_time_capsule_panel()
+	if in_loop:
+		toggle_time_capsule_panel()
+	State.set_current_action("None")
 
 func toggle_time_capsule_panel():
 	time_capsule_panel.visible = !time_capsule_panel.visible

@@ -89,10 +89,10 @@ metadata/_edit_lock_ = true
 
 [node name="Summary" type="Label" parent="EndLoop"]
 layout_mode = 0
-offset_left = 198.667
-offset_top = 21.3333
-offset_right = 461.667
-offset_bottom = 71.3333
+offset_left = 190.0
+offset_top = 19.0
+offset_right = 453.0
+offset_bottom = 69.0
 theme_override_colors/font_color = Color(0.373363, 0.787601, 0.633092, 1)
 theme_override_colors/font_shadow_color = Color(0.354913, 0.312184, 0.711008, 1)
 theme_override_fonts/font = ExtResource("5_6iyac")
