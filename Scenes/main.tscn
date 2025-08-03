@@ -1,14 +1,18 @@
-[gd_scene load_steps=21 format=3 uid="uid://rjuf0oqtkuyo"]
+[gd_scene load_steps=25 format=3 uid="uid://rjuf0oqtkuyo"]
 
 [ext_resource type="PackedScene" uid="uid://brv3pfacurip8" path="res://Scenes/inspect_info.tscn" id="1_8gbba"]
 [ext_resource type="PackedScene" uid="uid://doa0566bfhb2q" path="res://Scenes/tile_map.tscn" id="2_bo1nx"]
 [ext_resource type="PackedScene" uid="uid://5s4n8kmxc8y5" path="res://Scenes/ui.tscn" id="2_kry3j"]
 [ext_resource type="PackedScene" uid="uid://sfrbshm573rc" path="res://Scenes/loop_summary.tscn" id="4_jjvhh"]
+[ext_resource type="FontFile" uid="uid://c2wuaas7w3iob" path="res://TextFiles/static/Quicksand-Bold.ttf" id="5_6iyac"]
 [ext_resource type="Script" uid="uid://whq3hj5mq581" path="res://Scripts/top_row_organizer.gd" id="5_21xkr"]
+[ext_resource type="FontFile" uid="uid://bstup872yi8m4" path="res://TextFiles/static/Quicksand-SemiBold.ttf" id="6_fdnlq"]
 [ext_resource type="Texture2D" uid="uid://bhsxyuowv8u4p" path="res://Textures/Crops.png" id="6_hptm8"]
 [ext_resource type="Script" uid="uid://hhmu8r1x1weg" path="res://Scripts/bottom_row_organizer.gd" id="7_6bp64"]
-[ext_resource type="Texture2D" uid="uid://dkgo5tklxjqfn" path="res://Textures/ui_and_effects.png" id="8_344ge"]
 [ext_resource type="Script" uid="uid://heave3iec1oj" path="res://Scripts/pre_loop.gd" id="8_ynf5e"]
+[ext_resource type="Texture2D" uid="uid://dkm6hywt41irb" path="res://Textures/intro_text1.png" id="11_fdnlq"]
+[ext_resource type="Texture2D" uid="uid://cuqu0cuky53nu" path="res://Textures/intro_text2.png" id="12_jkdf5"]
+[ext_resource type="Texture2D" uid="uid://drcynwq1xx5ng" path="res://Textures/intro_text3.png" id="13_wsu2k"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6iyac"]
 atlas = ExtResource("6_hptm8")
@@ -42,17 +46,17 @@ region = Rect2(1089, 20, 30, 44)
 atlas = ExtResource("6_hptm8")
 region = Rect2(1248, 20, 32, 44)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_ynf5e"]
-atlas = ExtResource("8_344ge")
-region = Rect2(163, 34, 26, 28)
+[sub_resource type="AtlasTexture" id="AtlasTexture_hibaj"]
+atlas = ExtResource("11_fdnlq")
+region = Rect2(11, 10, 162, 48)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_hptm8"]
-atlas = ExtResource("8_344ge")
-region = Rect2(74, 73.6164, 43.804, 50.1844)
+[sub_resource type="AtlasTexture" id="AtlasTexture_pdsj5"]
+atlas = ExtResource("12_jkdf5")
+region = Rect2(43, 10, 105, 47)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_d1ilt"]
-atlas = ExtResource("8_344ge")
-region = Rect2(132.996, 69.0422, 53.8486, 54.0079)
+[sub_resource type="AtlasTexture" id="AtlasTexture_ee4r6"]
+atlas = ExtResource("13_wsu2k")
+region = Rect2(7, 8, 169, 54)
 
 [node name="Main" type="Node2D"]
 
@@ -81,7 +85,9 @@ offset_left = 198.667
 offset_top = 21.3333
 offset_right = 461.667
 offset_bottom = 71.3333
-theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0.373363, 0.787601, 0.633092, 1)
+theme_override_colors/font_shadow_color = Color(0.354913, 0.312184, 0.711008, 1)
+theme_override_fonts/font = ExtResource("5_6iyac")
 theme_override_font_sizes/font_size = 28
 text = "Loop Summary"
 horizontal_alignment = 1
@@ -94,7 +100,8 @@ offset_left = 60.0
 offset_top = 58.6667
 offset_right = 187.0
 offset_bottom = 81.6667
-theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0.222868, 0.648185, 0.264745, 1)
+theme_override_fonts/font = ExtResource("6_fdnlq")
 text = "Crops harvested"
 metadata/_edit_lock_ = true
 
@@ -252,7 +259,7 @@ offset_left = 60.0
 offset_top = 186.667
 offset_right = 227.0
 offset_bottom = 209.667
-theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0.223529, 0.701961, 0.835294, 1)
 text = "Seeds in time capsule"
 metadata/_edit_lock_ = true
 
@@ -407,33 +414,37 @@ theme_override_font_sizes/font_size = 15
 [node name="PreLoop" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = -40.0
+offset_top = -8.0
+offset_bottom = 32.0
 script = ExtResource("8_ynf5e")
 
 [node name="Ready" type="TextureRect" parent="PreLoop"]
 layout_mode = 0
-offset_left = 304.0
-offset_top = 152.0
-offset_right = 344.0
-offset_bottom = 192.0
-texture = SubResource("AtlasTexture_ynf5e")
+offset_left = 200.0
+offset_top = 136.0
+offset_right = 362.0
+offset_bottom = 184.0
+scale = Vector2(2, 2)
+texture = SubResource("AtlasTexture_hibaj")
 metadata/_edit_lock_ = true
 
 [node name="Set" type="TextureRect" parent="PreLoop"]
 layout_mode = 0
-offset_left = 304.0
-offset_top = 144.0
-offset_right = 347.0
-offset_bottom = 194.0
-texture = SubResource("AtlasTexture_hptm8")
+offset_left = 240.0
+offset_top = 136.0
+offset_right = 345.0
+offset_bottom = 186.0
+scale = Vector2(2, 2)
+texture = SubResource("AtlasTexture_pdsj5")
 metadata/_edit_lock_ = true
 
 [node name="Plant" type="TextureRect" parent="PreLoop"]
 layout_mode = 0
-offset_left = 296.0
-offset_top = 144.0
-offset_right = 349.0
-offset_bottom = 198.0
-texture = SubResource("AtlasTexture_d1ilt")
+offset_left = 193.0
+offset_top = 130.0
+offset_right = 362.0
+offset_bottom = 184.0
+scale = Vector2(2, 2)
+texture = SubResource("AtlasTexture_ee4r6")
 metadata/_edit_lock_ = true
