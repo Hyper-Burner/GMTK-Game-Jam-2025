@@ -1,7 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://brv3pfacurip8"]
+[gd_scene load_steps=12 format=3 uid="uid://brv3pfacurip8"]
 
 [ext_resource type="Script" uid="uid://cxyf7iq6xqv37" path="res://Scripts/inspect_info.gd" id="1_87jq0"]
+[ext_resource type="Texture2D" uid="uid://cb3s5tsg6ntv4" path="res://Textures/inspect_popup.png" id="2_3ha5h"]
 [ext_resource type="Texture2D" uid="uid://dkgo5tklxjqfn" path="res://Textures/ui_and_effects.png" id="2_b108f"]
+[ext_resource type="Texture2D" uid="uid://bg1wj3f18jte" path="res://Textures/soil_bar.png" id="3_sk7hw"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_givyc"]
 atlas = ExtResource("2_b108f")
@@ -91,7 +93,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.3, 0.5),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector2(180, 180), Vector2(180, 0), Vector2(0, 0)]
+"values": [Vector2(120, 140), Vector2(120, 10), Vector2(0, 10)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -115,7 +117,7 @@ tracks/3/keys = {
 "times": PackedFloat32Array(0, 0.3, 0.5),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector2(180, 180), Vector2(180, 10), Vector2(0, 10)]
+"values": [Vector2(120, 140), Vector2(120, 10), Vector2(0, 10)]
 }
 
 [sub_resource type="Animation" id="Animation_b108f"]
@@ -143,7 +145,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.2, 0.5),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector2(0, 10), Vector2(180, 10), Vector2(180, 180)]
+"values": [Vector2(0, 10), Vector2(120, 10), Vector2(120, 140)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -167,7 +169,7 @@ tracks/3/keys = {
 "times": PackedFloat32Array(0, 0.2, 0.5),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector2(0, 0), Vector2(180, 10), Vector2(180, 180)]
+"values": [Vector2(0, 10), Vector2(120, 10), Vector2(120, 140)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_3ha5h"]
@@ -180,31 +182,39 @@ _data = {
 [node name="Control2" type="CanvasLayer"]
 script = ExtResource("1_87jq0")
 
-[node name="TextureRect" type="ColorRect" parent="."]
+[node name="TextureRect" type="TextureRect" parent="."]
 custom_minimum_size = Vector2(180, 180)
 anchors_preset = -1
-anchor_right = 0.281
-anchor_bottom = 0.5
-offset_right = 0.160004
-color = Color(0.152941, 0.603922, 1, 1)
+anchor_right = 0.187
+anchor_bottom = 0.389
+offset_right = 60.32
+offset_bottom = 39.96
+texture = ExtResource("2_3ha5h")
 
 [node name="List" type="VBoxContainer" parent="TextureRect"]
-layout_mode = 0
-offset_right = 180.0
-offset_bottom = 180.0
+custom_minimum_size = Vector2(120, 140)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 60.0
+offset_bottom = 40.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="CropName" type="Label" parent="TextureRect/List"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 12
 text = "Crop Name"
 
-[node name="Growth" type="ProgressBar" parent="TextureRect/List/CropName"]
+[node name="Growth" type="TextureProgressBar" parent="TextureRect/List/CropName"]
 layout_mode = 2
 offset_left = 93.0
 offset_top = 3.0
 offset_right = 170.0
 offset_bottom = 30.0
 max_value = 4.0
+texture_progress = ExtResource("3_sk7hw")
 
 [node name="CropDescription" type="Label" parent="TextureRect/List"]
 custom_minimum_size = Vector2(180, 30)
@@ -225,10 +235,11 @@ layout_mode = 2
 layout_mode = 2
 texture = SubResource("AtlasTexture_givyc")
 
-[node name="FertilizerBar" type="ProgressBar" parent="TextureRect/List/Fertilizer"]
+[node name="FertilizerBar" type="TextureProgressBar" parent="TextureRect/List/Fertilizer"]
 custom_minimum_size = Vector2(140, 0)
 layout_mode = 2
 max_value = 255.0
+texture_progress = ExtResource("3_sk7hw")
 
 [node name="Hydration" type="HBoxContainer" parent="TextureRect/List"]
 layout_mode = 2
@@ -237,10 +248,11 @@ layout_mode = 2
 layout_mode = 2
 texture = SubResource("AtlasTexture_3ha5h")
 
-[node name="HydrationBar" type="ProgressBar" parent="TextureRect/List/Hydration"]
+[node name="HydrationBar" type="TextureProgressBar" parent="TextureRect/List/Hydration"]
 custom_minimum_size = Vector2(140, 0)
 layout_mode = 2
 max_value = 255.0
+texture_progress = ExtResource("3_sk7hw")
 
 [node name="SoilPH" type="HBoxContainer" parent="TextureRect/List"]
 layout_mode = 2
@@ -249,12 +261,14 @@ layout_mode = 2
 layout_mode = 2
 texture = SubResource("AtlasTexture_sk7hw")
 
-[node name="SoilPHBar" type="ProgressBar" parent="TextureRect/List/SoilPH"]
+[node name="SoilPHBar" type="TextureProgressBar" parent="TextureRect/List/SoilPH"]
 custom_minimum_size = Vector2(140, 0)
 layout_mode = 2
 max_value = 255.0
+texture_progress = ExtResource("3_sk7hw")
 
 [node name="Animation" type="AnimationPlayer" parent="TextureRect"]
 libraries = {
 &"": SubResource("AnimationLibrary_3ha5h")
 }
+speed_scale = 1.5

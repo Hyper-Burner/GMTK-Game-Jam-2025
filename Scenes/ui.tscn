@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://5s4n8kmxc8y5"]
+[gd_scene load_steps=7 format=3 uid="uid://5s4n8kmxc8y5"]
 
 [ext_resource type="Script" uid="uid://c3yyagh42ab2r" path="res://Scripts/ui.gd" id="1_jxero"]
 [ext_resource type="Texture2D" uid="uid://dkgo5tklxjqfn" path="res://Textures/ui_and_effects.png" id="2_nf4gj"]
+[ext_resource type="PackedScene" uid="uid://mr3aa8n6upuw" path="res://Scenes/time_capsule.tscn" id="3_nf4gj"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2246s"]
 atlas = ExtResource("2_nf4gj")
@@ -85,3 +86,6 @@ offset_left = 346.0
 offset_top = 320.0
 offset_right = 602.0
 offset_bottom = 360.0
+
+[node name="TimeCapsule" parent="." instance=ExtResource("3_nf4gj")]
+layout_mode = 1

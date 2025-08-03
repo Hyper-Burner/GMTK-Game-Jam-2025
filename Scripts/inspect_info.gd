@@ -1,13 +1,13 @@
 extends CanvasLayer
 
-@onready var panel : ColorRect = $TextureRect
+@onready var panel : TextureRect = $TextureRect
 @onready var crop_name : Label = $TextureRect/List/CropName
 @onready var crop_desc : Label = $TextureRect/List/CropDescription
 @onready var harvestable : Label = $TextureRect/List/Harvestable
-@onready var growth : ProgressBar = $TextureRect/List/CropName/Growth
-@onready var fertilizer : ProgressBar = $TextureRect/List/Fertilizer/FertilizerBar
-@onready var hydration : ProgressBar = $TextureRect/List/Hydration/HydrationBar
-@onready var ph : ProgressBar = $TextureRect/List/SoilPH/SoilPHBar
+@onready var growth : TextureProgressBar = $TextureRect/List/CropName/Growth
+@onready var fertilizer : TextureProgressBar = $TextureRect/List/Fertilizer/FertilizerBar
+@onready var hydration : TextureProgressBar = $TextureRect/List/Hydration/HydrationBar
+@onready var ph : TextureProgressBar = $TextureRect/List/SoilPH/SoilPHBar
 @onready var animation: AnimationPlayer = $TextureRect/Animation
 
 const TILE_SIZE = 32
@@ -72,6 +72,7 @@ func _on_inspecting_mode_entered(position : Vector2, tile_data):
 	if tile_data["crop"]:
 		crop_name.text = tile_data["crop"].crop_name
 		growth.visible = true
+		growth.max_value = tile_data["crop"].max_growth_stage
 		growth.value = tile_data["crop"].current_growth_stage
 		crop_desc.text = tile_data["crop"].crop_desc
 		harvestable.text = "Harvestable " + str(tile_data["crop"].harvestable)
