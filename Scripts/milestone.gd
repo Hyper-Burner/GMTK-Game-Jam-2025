@@ -74,7 +74,7 @@ func _check_milestone_met() -> bool:
 				print("Milestone not met: Need %d x ID %s, have %d." % [required_quantity, crop_id_str, current_quantity])
 				break
 
-	# [cite_start]If all checked requirements were met, then the milestone is completed. [cite: 9]
+	#If all checked requirements were met, then the milestone is completed. [cite: 9]
 	if met_all:
 		print("Milestone '%s' Met!" % current_milestone_data.get("description", "Unknown Milestone"))
 	

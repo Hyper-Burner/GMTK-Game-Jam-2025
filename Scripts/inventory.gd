@@ -1,7 +1,7 @@
 extends Node
 # Items available in the current loop's inventory (item_id: quantity). Resets each loop.
 # Keys are now String.
-@export var starting_inventory: Dictionary = {"Tuloop": 6}
+@export var starting_inventory: Dictionary = {"Tuloop": 5}
 @export var seed_inventory: Dictionary = {}
 @export var crop_inventory: Dictionary = {}
 @export var time_capsule_inventory: Dictionary = {}

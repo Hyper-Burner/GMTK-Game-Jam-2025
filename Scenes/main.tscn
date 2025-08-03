@@ -135,6 +135,7 @@ stretch_mode = 3
 metadata/_edit_lock_ = true
 
 [node name="Label" type="Label" parent="EndLoop/Harvested/TopRow/Potato"]
+layout_mode = 0
 offset_left = 38.8374
 offset_top = 8.92889
 offset_right = 93.8376
@@ -151,6 +152,7 @@ stretch_mode = 3
 metadata/_edit_lock_ = true
 
 [node name="Label" type="Label" parent="EndLoop/Harvested/TopRow/Strawberry"]
+layout_mode = 0
 offset_left = 38.8374
 offset_top = 8.92889
 offset_right = 93.8376
@@ -167,6 +169,7 @@ stretch_mode = 3
 metadata/_edit_lock_ = true
 
 [node name="Label" type="Label" parent="EndLoop/Harvested/TopRow/Plant 4"]
+layout_mode = 0
 offset_left = 38.8374
 offset_top = 8.92889
 offset_right = 93.8376
@@ -183,6 +186,7 @@ stretch_mode = 3
 metadata/_edit_lock_ = true
 
 [node name="Label" type="Label" parent="EndLoop/Harvested/TopRow/Plant 5"]
+layout_mode = 0
 offset_left = 38.8374
 offset_top = 16.4572
 offset_right = 93.8376
@@ -199,6 +203,7 @@ stretch_mode = 3
 metadata/_edit_lock_ = true
 
 [node name="Label" type="Label" parent="EndLoop/Harvested/TopRow/Plant 6"]
+layout_mode = 0
 offset_left = 38.8374
 offset_top = 16.4572
 offset_right = 93.8376
@@ -215,6 +220,7 @@ stretch_mode = 3
 metadata/_edit_lock_ = true
 
 [node name="Label" type="Label" parent="EndLoop/Harvested/TopRow/Plant 7"]
+layout_mode = 0
 offset_left = 38.8374
 offset_top = 16.4572
 offset_right = 93.8376
@@ -231,6 +237,7 @@ stretch_mode = 3
 metadata/_edit_lock_ = true
 
 [node name="Label" type="Label" parent="EndLoop/Harvested/TopRow/Plant 8"]
+layout_mode = 0
 offset_left = 38.8374
 offset_top = 16.4572
 offset_right = 93.8376
@@ -286,6 +293,7 @@ stretch_mode = 3
 metadata/_edit_lock_ = true
 
 [node name="Label" type="Label" parent="EndLoop/Time Capsule/BottomRow/Potato"]
+layout_mode = 0
 offset_left = 38.8374
 offset_top = 8.92889
 offset_right = 93.8376
@@ -302,6 +310,7 @@ stretch_mode = 3
 metadata/_edit_lock_ = true
 
 [node name="Label" type="Label" parent="EndLoop/Time Capsule/BottomRow/Strawberry"]
+layout_mode = 0
 offset_left = 38.8374
 offset_top = 8.92889
 offset_right = 93.8376
@@ -318,6 +327,7 @@ stretch_mode = 3
 metadata/_edit_lock_ = true
 
 [node name="Label" type="Label" parent="EndLoop/Time Capsule/BottomRow/Plant 4"]
+layout_mode = 0
 offset_left = 38.8374
 offset_top = 8.92889
 offset_right = 93.8376
@@ -334,6 +344,7 @@ stretch_mode = 3
 metadata/_edit_lock_ = true
 
 [node name="Label" type="Label" parent="EndLoop/Time Capsule/BottomRow/Plant 5"]
+layout_mode = 0
 offset_left = 38.8374
 offset_top = 16.4572
 offset_right = 93.8376
@@ -350,6 +361,7 @@ stretch_mode = 3
 metadata/_edit_lock_ = true
 
 [node name="Label" type="Label" parent="EndLoop/Time Capsule/BottomRow/Plant 6"]
+layout_mode = 0
 offset_left = 38.8374
 offset_top = 16.4572
 offset_right = 93.8376
@@ -366,6 +378,7 @@ stretch_mode = 3
 metadata/_edit_lock_ = true
 
 [node name="Label" type="Label" parent="EndLoop/Time Capsule/BottomRow/Plant 7"]
+layout_mode = 0
 offset_left = 38.8374
 offset_top = 16.4572
 offset_right = 93.8376
@@ -382,6 +395,7 @@ stretch_mode = 3
 metadata/_edit_lock_ = true
 
 [node name="Label" type="Label" parent="EndLoop/Time Capsule/BottomRow/Plant 8"]
+layout_mode = 0
 offset_left = 38.8374
 offset_top = 16.4572
 offset_right = 93.8376
