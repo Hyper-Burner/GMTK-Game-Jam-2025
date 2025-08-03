@@ -22,12 +22,13 @@ grow_vertical = 2
 script = ExtResource("1_ov7qn")
 
 [node name="TimeCapsuleButton" type="TextureButton" parent="."]
-z_index = 100
+z_index = 1000
+z_as_relative = false
 layout_mode = 0
-offset_left = 571.0
-offset_top = 287.0
-offset_right = 635.0
-offset_bottom = 351.0
+offset_left = 541.0
+offset_top = 263.0
+offset_right = 641.0
+offset_bottom = 363.0
 texture_normal = SubResource("AtlasTexture_yv6ci")
 texture_hover = SubResource("AtlasTexture_goxuk")
 
@@ -42,30 +43,30 @@ expand_mode = 1
 
 [node name="TimeCapsuleSection" type="Control" parent="TimeCapsulePanel"]
 anchors_preset = 0
-offset_left = 59.0
-offset_top = 59.0
-offset_right = 579.0
-offset_bottom = 173.0
+offset_left = 15.0
+offset_top = 19.0
+offset_right = 440.0
+offset_bottom = 139.0
 
 [node name="Label" type="Label" parent="TimeCapsulePanel/TimeCapsuleSection"]
 layout_mode = 0
-offset_left = -41.0
-offset_top = -37.0
-offset_right = 63.0
-offset_bottom = -14.0
+offset_left = -1.0
+offset_top = -3.0
+offset_right = 103.0
+offset_bottom = 20.0
 text = "Time Capsule"
 
 [node name="GridContainer" type="GridContainer" parent="TimeCapsulePanel/TimeCapsuleSection"]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = -0.029
-anchor_top = -0.123
-anchor_right = 0.663
-anchor_bottom = 0.684
-offset_left = 0.0800009
-offset_top = 0.0220003
-offset_right = 5.23999
-offset_bottom = 0.0240021
+anchor_left = 0.064
+anchor_top = 0.183
+anchor_right = 0.918
+anchor_bottom = 1.0
+offset_left = -0.200005
+offset_top = 0.0400009
+offset_right = -0.150024
+offset_bottom = -1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/h_separation = 20
@@ -74,30 +75,29 @@ columns = 4
 
 [node name="SeedInventorySection" type="Control" parent="TimeCapsulePanel"]
 anchors_preset = 0
-offset_left = 59.0
-offset_top = 184.0
-offset_right = 577.0
-offset_bottom = 306.0
+offset_left = 14.0
+offset_top = 139.0
+offset_right = 433.0
+offset_bottom = 267.0
 
 [node name="Label" type="Label" parent="TimeCapsulePanel/SeedInventorySection"]
 layout_mode = 0
-offset_left = -43.0
-offset_top = -57.0
-offset_right = 17.0
-offset_bottom = -8.0
+offset_top = -8.0
+offset_right = 60.0
+offset_bottom = 41.0
 text = "Seeds"
 
 [node name="GridContainer" type="GridContainer" parent="TimeCapsulePanel/SeedInventorySection"]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = -0.035
-anchor_top = -0.311
-anchor_right = 0.659
-anchor_bottom = 0.451
-offset_left = 2.13
-offset_top = 0.942001
-offset_right = 8.63797
-offset_bottom = 1.978
+anchor_left = 0.072
+anchor_top = 0.141
+anchor_right = 0.933
+anchor_bottom = 0.852
+offset_left = -0.168001
+offset_top = -0.0480003
+offset_right = 0.072998
+offset_bottom = -0.0560074
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/h_separation = 20
