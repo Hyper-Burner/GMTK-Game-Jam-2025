@@ -6,10 +6,12 @@ extends Control
 @onready var scythe : TextureButton = $Tools/Scythe
 @onready var soil_scanner : TextureButton = $Tools/SoilScanner
 @onready var milestone_text : Label = $Milestone/Label
+@onready var timer: AnimatedSprite2D = $Timer
 
 func _ready():
 	Signals.timer_updated.connect(_on_time_updated)
 	Signals.milestone_updated.connect(_on_milestone_updated)
+	Signals.loop_started.connect(start_timer)
 	seed_pouch.pressed.connect(_on_seed_pouch_pressed)
 	scythe.pressed.connect(_on_scythe_pressed)
 	soil_scanner.pressed.connect(_on_soil_scanner_pressed)
@@ -46,3 +48,6 @@ func _on_milestone_updated(milestone : Dictionary):
 func truncate_to(value: float, decimals: int) -> float:
 	var factor = 10.0 ** decimals
 	return float(int(value * factor)) / factor
+
+func start_timer():
+	timer.play("default")
