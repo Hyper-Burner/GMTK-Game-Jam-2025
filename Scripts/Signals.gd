@@ -43,10 +43,6 @@ signal loop_duration_changed(new_duration: float)
 # --- New Signals for Game Modes ---
 # Emitted when the current active game interaction mode changes.
 signal game_mode_changed(new_mode: int)
-# Emitted when placement mode is activated for a specific item.
-signal planting_mode_entered(item: String)
-# Emitted when placement mode is exited (e.g., by canceling or placing).
-signal planting_mode_exited()
 # Emitted when Harvest mode is activated (useful for UI cursor changes).
 signal harvest_mode_active()
 # Emitted when Inspect mode is activated (useful for UI cursor changes).
