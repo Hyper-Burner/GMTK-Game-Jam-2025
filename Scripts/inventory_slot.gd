@@ -26,7 +26,7 @@ func _ready() -> void:
 	background.mouse_filter = Control.MOUSE_FILTER_STOP
 	_clear_slot()
 	# Connect to the input event to handle clicks directly on this Control node.
-	connect("gui_input", Callable(self, "_on_gui_input"))
+	#connect("gui_input", Callable(self, "_on_gui_input"))
 
 
 func _clear_slot() -> void:

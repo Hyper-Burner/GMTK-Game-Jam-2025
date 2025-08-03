@@ -6,11 +6,9 @@ extends HBoxContainer
 
 # The number of slots to create in the hotbar.
 const NUM_SLOTS: int = 8
-# Path to the InventorySlot scene file.
-const HOTBAR_SLOT_SCENE_PATH: String = "res://scenes/inventory_slot.tscn"
 
 # A reference to the loaded hotbar slot scene.
-var hotbar_slot_scene: PackedScene = preload(HOTBAR_SLOT_SCENE_PATH)
+var hotbar_slot_scene: PackedScene = preload("res://Scenes/inventory_slot.tscn")
 # An array to hold references to the instantiated hotbar slot nodes.
 var hotbar_slots: Array = []
 

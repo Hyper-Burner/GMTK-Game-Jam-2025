@@ -19,11 +19,11 @@ config/icon="uid://c6obd5yxxy4nm"
 [autoload]
 
 Global="*res://Scripts/GameManager.gd"
-Signals="*res://Scripts/signals.gd"
 TileMapData="*res://Scripts/tile_map_data.gd"
 State="*res://Scripts/state.gd"
 Inventory="*res://Scripts/inventory.gd"
 Milestone="*res://Scripts/milestone.gd"
+Signals="*res://Scripts/Signals.gd"
 
 [display]
 
