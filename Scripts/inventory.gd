@@ -1,10 +1,10 @@
 extends Node
 # Items available in the current loop's inventory (item_id: quantity). Resets each loop.
 # Keys are now String.
-var starting_inventory: Dictionary = {"Strawberry": 100}
-var seed_inventory: Dictionary = {}
-var crop_inventory: Dictionary = {}
-var time_capsule_inventory: Dictionary = {}
+@export var starting_inventory: Dictionary = {"Tuloop": 6}
+@export var seed_inventory: Dictionary = {}
+@export var crop_inventory: Dictionary = {}
+@export var time_capsule_inventory: Dictionary = {}
 
 func _ready() -> void:
 	Signals.plant_unlocked.connect(plant_unlocked)

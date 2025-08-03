@@ -3,20 +3,20 @@
 		"description": "Harvest some basic seeds to prove your farming skills.",
 		"requirements": {
 			"harvested_crops": {
-				"Potato": 5
+				"Tuloop": 5
 			}
 		},
 		"rewards": {
-			"unlocked_plants": "Strawberry",
+			"unlocked_plants": "Ringshroom",
 			"unlocked_upgrades": [
 				{
 					"type": "seed",
-					"seed_name": "Strawberry",
+					"seed_name": "Ringshroom",
 					"quantity": 5
 				},
 				{
 					"type": "seed",
-					"seed_name": "Potato",
+					"seed_name": "Tuloop",
 					"quantity": 10
 				}
 			]
@@ -26,12 +26,12 @@
 		"description": "Learn to use Time Capsule",
 		"requirements": {
 			"harvested_crops": {
-				"Strawberry": 5,
-				"Potato": 15
+				"Ringshroom": 5,
+				"Tuloop": 15
 			}
 		},
 		"rewards": {
-			"unlocked_plants": "Spring Onion",
+			"unlocked_plants": "Hoopberry",
 			"unlocked_upgrades": [
 				{
 					"type": "time_capsule_expansion",
@@ -39,7 +39,7 @@
 				},
 				{
 					"type": "seed",
-					"seed_name": "Spring Onion",
+					"seed_name": "Hoopberry",
 					"value": 3
 				}
 			]
@@ -49,26 +49,26 @@
 		"description": "Soil Level",
 		"requirements": {
 			"harvested_crops": {
-				"Strawberry": 15,
-				"Potato": 10,
-				"Spring Onion": 2
+				"Ringshroom": 15,
+				"Tuloop": 10,
+				"Hoopberry": 2
 			}
 		},
 		"rewards": {
 			"unlocked_upgrades": [
 				{
 					"unlock_type": "seed",
-					"seed_name": "Strawberry",
+					"seed_name": "Ringshroom",
 					"quantity": 10
 				},
 				{
 					"unlock_type": "seed",
-					"seed_name": "Potato",
+					"seed_name": "Tuloop",
 					"quantity": 10
 				},
 				{
 					"unlock_type": "seed",
-					"seed_name": "Spring Onion",
+					"seed_name": "Hoopberry",
 					"quantity": 10
 				}
 			]
@@ -78,9 +78,9 @@
 		"description": "Thinking ahead",
 		"requirements": {
 			"harvested_crops": {
-				"Potato": 40,
-				"Strawberry": 15,
-				"Spring Onion": 15
+				"Tuloop": 40,
+				"Ringshroom": 15,
+				"Hoopberry": 15
 			}
 		},
 		"rewards": {

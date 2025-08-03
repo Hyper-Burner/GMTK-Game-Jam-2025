@@ -1,11 +1,10 @@
 {
-	"Strawberry": {
-		"seed_name": "Strawberry Seeds",
+	"Tuloop": {
 		"description": "A sweet, juicy favorite with an appealing red color.",
-		"frame_coords": [5, 0],
+		"frame_coords": [0, 0],
 		"growth_stages": 5,
-		"crop_yield": 3,
-		"seed_yield": 3,
+		"crop_yield": 1,
+		"seed_yield": 2,
 		"condition_change": {
 			"hydration": 0,
 			"nutrients": 0,
@@ -19,9 +18,9 @@
 		},
 		"optimal_growth_speed_scale": 44,
 	},
-	"Spring Onion": {
+	"Ringshroom": {
 		"description": "These grow wild during the spring.",
-		"frame_coords": [0, 3],
+		"frame_coords": [0, 5],
 		"growth_stages": 5,
 		"crop_yield": 1,
 		"seed_yield": 3,
@@ -38,9 +37,9 @@
 		},
 		"optimal_growth_duration": 16,
 	},
-	"Potato": {
+	"Hoopberry": {
 		"description": "A widely cultivated tuber.",
-		"frame_coords": [0, 5],
+		"frame_coords": [0, 10],
 		"growth_stages": 5,
 		"crop_yield": 1,
 		"seed_yield": 2,
@@ -57,9 +56,9 @@
 		},
 		"optimal_growth_duration": 20,
 	},
-	"Onion": {
+	"Daffotwirl": {
 		"description": "Adds a wonderful zestiness to dishes. High quality onion can be pretty spicy.",
-		"frame_coords": [0, 7],
+		"frame_coords": [0, 15],
 		"growth_stages": 5,
 		"crop_yield": 1,
 		"seed_yield": 2,
@@ -76,9 +75,9 @@
 		},
 		"optimal_growth_duration": 28,
 	},
-	"Onion2": {
+	"Curlbrush": {
 		"description": "Adds a wonderful zestiness to dishes. High quality onion can be pretty spicy.",
-		"frame_coords": [0, 7],
+		"frame_coords": [0, 20],
 		"growth_stages": 5,
 		"crop_yield": 1,
 		"seed_yield": 2,
@@ -95,9 +94,9 @@
 		},
 		"optimal_growth_duration": 28,
 	},
-	"Onion3": {
+	"Twirlvine": {
 		"description": "Adds a wonderful zestiness to dishes. High quality onion can be pretty spicy.",
-		"frame_coords": [0, 7],
+		"frame_coords": [0, 25],
 		"growth_stages": 5,
 		"crop_yield": 1,
 		"seed_yield": 2,
@@ -114,9 +113,9 @@
 		},
 		"optimal_growth_duration": 28,
 	},
-	"Onion4": {
+	"Sproot Loop": {
 		"description": "Adds a wonderful zestiness to dishes. High quality onion can be pretty spicy.",
-		"frame_coords": [0, 7],
+		"frame_coords": [0, 30],
 		"growth_stages": 5,
 		"crop_yield": 1,
 		"seed_yield": 2,
@@ -133,9 +132,9 @@
 		},
 		"optimal_growth_duration": 28,
 	},
-	"Onion5": {
+	"Sparkly Ringflower": {
 		"description": "Adds a wonderful zestiness to dishes. High quality onion can be pretty spicy.",
-		"frame_coords": [0, 7],
+		"frame_coords": [0, 35],
 		"growth_stages": 5,
 		"crop_yield": 1,
 		"seed_yield": 2,

@@ -7,7 +7,7 @@ extends Node2D
 var seeds: Dictionary = JSON.parse_string(FileAccess.get_file_as_string("res://TextFiles/crops.json"))
 var crops = preload("res://Scenes/crop.tscn")
 
-var selected_seed: String = "Strawberry"
+var selected_seed: String = "Tuloop"
 
 func _physics_process(delta: float) -> void:
 	if State.current_action == State.Actions.PLANTING:

@@ -5,7 +5,7 @@ var current_milestone_data: Dictionary = {}
 
 # Tracks harvested crops/generated resources *within the current loop* for milestone requirements.
 # Resets each loop.
-var current_loop_score: Dictionary = {}
+var current_loop_score: Dictionary = Inventory.crop_inventory
 
 # Index of the current active milestone in `milestone_stages`.
 # This will now represent the numerical progression,
@@ -118,7 +118,7 @@ func _apply_milestone_reward() -> void:
 					if not seed_name.is_empty():
 						# You'll need a way to add these seeds to the player's inventory or unlocked seeds list
 						# Example: Global.add_unlocked_seed(seed_name, quantity)
-						Inventory.add_item_to_current_inventory(seed_name,quantity)
+						Inventory.add_item_to_starting_inventory(seed_name,quantity)
 						print("Unlocked seed: %d x %s" % [quantity, seed_name])
 						# EMIT GLOBAL SIGNAL if you have one for seed unlocks
 				"item": # Handle new "item" type for unlocks
