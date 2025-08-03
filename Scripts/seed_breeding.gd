@@ -31,7 +31,7 @@ func _on_seed_7_pressed() -> void:
 	selected_seed_image.texture.region = Rect2(1131, 55, 9, 9) 
 
 func _on_button_pressed() -> void:
-	currently_breeding
+	breed_seed()
 
 func _on_timer_timeout() -> void:
 	#Inventory.remove_item_from_inventory(Inventory.seed_inventory)

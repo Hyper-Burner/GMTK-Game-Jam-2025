@@ -1,8 +1,12 @@
-[gd_scene load_steps=5 format=3 uid="uid://bt7k6ggqwmj3s"]
+[gd_scene load_steps=6 format=3 uid="uid://bt7k6ggqwmj3s"]
 
 [ext_resource type="Script" uid="uid://b4ruxl5h6pqmr" path="res://Scripts/seed_breeding.gd" id="1_6pk40"]
 [ext_resource type="Texture2D" uid="uid://bhsxyuowv8u4p" path="res://Textures/crops.png" id="1_100hk"]
 [ext_resource type="Texture2D" uid="uid://d4mk6mtwgfsd0" path="res://Textures/seed_breeding.png" id="1_thlpr"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_thlpr"]
+atlas = ExtResource("1_100hk")
+region = Rect2(11, 55, 9, 9)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6pk40"]
 atlas = ExtResource("1_100hk")
@@ -32,33 +36,27 @@ grow_horizontal = 2
 grow_vertical = 2
 columns = 4
 
-[node name="Seed1" type="Button" parent="GridContainer"]
+[node name="Seed1" type="TextureButton" parent="GridContainer"]
 layout_mode = 2
-text = "1"
+texture_normal = SubResource("AtlasTexture_thlpr")
 
-[node name="Seed2" type="Button" parent="GridContainer"]
+[node name="Seed2" type="TextureButton" parent="GridContainer"]
 layout_mode = 2
-text = "2"
 
-[node name="Seed3" type="Button" parent="GridContainer"]
+[node name="Seed3" type="TextureButton" parent="GridContainer"]
 layout_mode = 2
-text = "3"
 
-[node name="Seed4" type="Button" parent="GridContainer"]
+[node name="Seed4" type="TextureButton" parent="GridContainer"]
 layout_mode = 2
-text = "4"
 
-[node name="Seed5" type="Button" parent="GridContainer"]
+[node name="Seed5" type="TextureButton" parent="GridContainer"]
 layout_mode = 2
-text = "5"
 
-[node name="Seed6" type="Button" parent="GridContainer"]
+[node name="Seed6" type="TextureButton" parent="GridContainer"]
 layout_mode = 2
-text = "6"
 
-[node name="Seed7" type="Button" parent="GridContainer"]
+[node name="Seed7" type="TextureButton" parent="GridContainer"]
 layout_mode = 2
-text = "7"
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 1
@@ -83,6 +81,11 @@ offset_right = -25.0
 grow_horizontal = 2
 texture = SubResource("AtlasTexture_6pk40")
 
+[node name="HSlider" type="HSlider" parent="Panel"]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 16.0
+
 [node name="Button" type="Button" parent="Panel"]
 layout_mode = 1
 anchors_preset = -1
@@ -95,11 +98,6 @@ offset_bottom = -15.0
 grow_horizontal = 2
 grow_vertical = 0
 text = "Breed"
-
-[node name="HSlider" type="HSlider" parent="Panel"]
-layout_mode = 0
-offset_right = 8.0
-offset_bottom = 16.0
 
 [node name="Timer" type="Timer" parent="."]
 
