@@ -169,16 +169,8 @@ func start_loop() -> void:
 	print("before reset",Inventory.seed_inventory)
 	Inventory.reset_inventory()       # Clear transient inventory for the new loop.
 	Milestone.current_loop_score.clear()
-	
-	#test time_capsule items
-	#Inventory.time_capsule_inventory = { "sig" : 69 }
-	# Transfer time-capsuled items from the previous loop.
-	for key in Inventory.time_capsule_inventory:
-		Inventory.add_item_to_inventory(Inventory.seed_inventory, str(key), Inventory.time_capsule_inventory[key])
-
 	print(Inventory.seed_inventory)
 	print(Inventory.time_capsule_inventory)
-	Inventory.time_capsule_inventory.clear() # Clear capsule contents for the current loop's packing.
 	# EMIT GLOBAL SIGNAL
 	Signals.loop_started.emit()
 

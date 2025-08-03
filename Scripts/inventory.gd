@@ -8,6 +8,7 @@ extends Node
 
 func _ready() -> void:
 	Signals.plant_unlocked.connect(plant_unlocked)
+	
 # --- Inventory & Item Management ---
 # item_id is now a String.
 func add_item_to_inventory(inventory: Dictionary, item_id: String, quantity: int = 1) -> void:
