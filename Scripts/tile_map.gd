@@ -10,16 +10,21 @@ var crops = preload("res://Scenes/crop.tscn")
 func _ready():
 	Signals.slot_selected.connect(change_selected_seed)
 
-func _physics_process(delta: float) -> void:
-	if State.current_action == State.Actions.PLANTING:
+func _process(delta: float) -> void:
+	var tile_position = get_tile_position(get_global_mouse_position())
+	highlight.clear()
+	if TileMapData.tile_map_data[tile_position[0]][tile_position[1]]:
 		highlight.clear()
-		highlight.set_cell(get_tile_position(get_global_mouse_position()), 0, Vector2i(0, 0))
-	elif State.current_action == State.Actions.HARVESTING:
-		highlight.clear()
-		highlight.set_cell(get_tile_position(get_global_mouse_position()), 0, Vector2i(0, 0))
-	elif State.current_action == State.Actions.INSPECTING:
-		highlight.clear()
-		highlight.set_cell(get_tile_position(get_global_mouse_position()), 0, Vector2i(0, 0))
+		highlight.set_cell(tile_position, 0, Vector2i(0, 0))
+	#if State.current_action == State.Actions.PLANTING:
+		#highlight.clear()
+		#highlight.set_cell(get_tile_position(get_global_mouse_position()), 0, Vector2i(0, 0))
+	#elif State.current_action == State.Actions.HARVESTING:
+		#highlight.clear()
+		#highlight.set_cell(get_tile_position(get_global_mouse_position()), 0, Vector2i(0, 0))
+	#elif State.current_action == State.Actions.INSPECTING:
+		#highlight.clear()
+		#highlight.set_cell(get_tile_position(get_global_mouse_position()), 0, Vector2i(0, 0))
 
 func get_tile_position(global_position: Vector2) -> Vector2i:
 	var local_position = ground.to_local(global_position)
