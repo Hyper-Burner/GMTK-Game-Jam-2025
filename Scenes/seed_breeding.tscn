@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://bt7k6ggqwmj3s"]
 
-[ext_resource type="Script" uid="uid://b4ruxl5h6pqmr" path="res://Scripts/seed_breeding.gd" id="1_6pk40"]
-[ext_resource type="Texture2D" uid="uid://bhsxyuowv8u4p" path="res://Textures/crops.png" id="1_100hk"]
+[ext_resource type="Script" path="res://Scripts/seed_breeding.gd" id="1_6pk40"]
+[ext_resource type="Texture2D" uid="uid://bhsxyuowv8u4p" path="res://Textures/Crops.png" id="1_100hk"]
 [ext_resource type="Texture2D" uid="uid://d4mk6mtwgfsd0" path="res://Textures/seed_breeding.png" id="1_thlpr"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_thlpr"]

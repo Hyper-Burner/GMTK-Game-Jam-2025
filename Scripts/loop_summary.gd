@@ -42,8 +42,8 @@ func _on_loop_ended():
 	pop_up()
 	var top_row = get_node("Harvested/TopRow")
 	var bottom_row = get_node("Time Capsule/BottomRow")
-	top_row.set_targets({"Tuloop": 500, "Hoopberry" : 126, "Sproot Loop" : 999, "Ringshroom" : 0})
-	bottom_row.set_targets({"Ringshroom": 400, "Hoopberry" : 666, "Sproot Loop" : 999, "Sparkly Sunflower" : 891})
+	top_row.set_targets(Milestone.current_loop_score)
+	bottom_row.set_targets(Inventory.time_capsule_inventory)
 	await get_tree().create_timer(0.75).timeout
 	Signals.top_row_done.connect(func():
 		bottom_row.start_increment(LOAD_DURATION)

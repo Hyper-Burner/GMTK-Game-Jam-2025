@@ -34,6 +34,8 @@ signal plant_unlocked(plant_id: String,quantity: int)
 signal upgrade_unlocked(upgrade_id: String)
 # Emitted when the time capsule capacity changes.
 signal time_capsule_capacity_changed(new_capacity: int)
+# Emitted when items are moved to/from time capsule
+signal time_capsule_updated(item_id: String, quantity: int, moved_to_capsule: bool)
 # Emitted when soil properties on a specific tile change.
 signal soil_properties_changed(grid_x: int, grid_y: int, new_properties: Dictionary)
 # Emitted when the total loop duration changes (e.g., from an upgrade).
@@ -53,3 +55,4 @@ signal inspect_mode_active()
 # --- NEW SIGNAL FOR PREVIEW CONTROLLER COMMUNICATION ---
 # Emitted when the mouse moves over a grid cell while in placement mode.
 signal update_placement_preview(grid_coords: Vector2i, is_valid: bool)
+signal slot_selected(item_id: String, slot_index:int)
