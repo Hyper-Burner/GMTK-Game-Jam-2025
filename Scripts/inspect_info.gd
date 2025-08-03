@@ -1,4 +1,4 @@
-extends CanvasLayer
+extends Control
 
 @onready var panel : TextureRect = $TextureRect
 @onready var crop_name : Label = $TextureRect/List/CropName

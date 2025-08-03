@@ -28,13 +28,16 @@ func add_item_to_inventory(inventory: Dictionary, item_id: String, quantity: int
 func remove_item_from_inventory(inventory:Dictionary, item_name: String, quantity: int = 1) -> bool:
 	"""Removes items from the current loop's inventory."""
 	if not inventory.has(item_name) or inventory[item_name] < quantity:
-		push_warning("Not enough of item ID %s in inventory to remove %d. Current: %d" % [item_name, quantity, seed_inventory.get(item_name, 0)])
+		push_warning("Not enough of item ID %s in inventory to remove %d. Current: %d" % [item_name, quantity, inventory.get(item_name, 0)])
 		return false
 	
-	seed_inventory[item_name] -= quantity	
+	inventory[item_name] -= quantity	
+	if inventory[item_name] <= 0:
+		inventory.erase(item_name)
+	
 	# EMIT GLOBAL SIGNAL
-	Signals.inventory_changed.emit(item_name, seed_inventory.get(item_name, 0))
-	print("Removed %d x ID %s from inventory. Current: %s" % [quantity, item_name, seed_inventory])
+	Signals.inventory_changed.emit(item_name, inventory.get(item_name, 0))
+	print("Removed %d x ID %s from inventory. Current: %s" % [quantity, item_name, inventory])
 	return true
 	
 func add_item_to_starting_inventory(item_id: String, quantity: int = 1):
