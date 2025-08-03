@@ -21,9 +21,9 @@ texture = ExtResource("3_u62nx")
 
 [node name="Continue" type="TextureButton" parent="."]
 layout_mode = 0
-offset_left = 544.0
-offset_top = 272.0
-offset_right = 608.0
-offset_bottom = 336.0
-scale = Vector2(0.5, 0.5)
+offset_left = 532.0
+offset_top = 255.0
+offset_right = 596.0
+offset_bottom = 319.0
+scale = Vector2(0.8, 0.8)
 texture_normal = ExtResource("3_07j7q")

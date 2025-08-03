@@ -15,6 +15,11 @@ signal loop_started()
 signal loop_ended()
 # New loop after first 
 signal loop_continued()
+# In Pre_loop
+signal in_pre_loop()
+# Pre_loop done
+signal pre_loop_done()
+signal pre_loop_ready()
 # Top Row Signal for summary
 signal top_row_done()
 # Emitted regularly to update the timer display.

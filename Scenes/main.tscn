@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://rjuf0oqtkuyo"]
+[gd_scene load_steps=13 format=3 uid="uid://rjuf0oqtkuyo"]
 
 [ext_resource type="PackedScene" uid="uid://brv3pfacurip8" path="res://Scenes/inspect_info.tscn" id="1_8gbba"]
 [ext_resource type="PackedScene" uid="uid://doa0566bfhb2q" path="res://Scenes/tile_map.tscn" id="2_bo1nx"]
@@ -7,6 +7,20 @@
 [ext_resource type="Script" uid="uid://whq3hj5mq581" path="res://Scripts/top_row_organizer.gd" id="5_21xkr"]
 [ext_resource type="Texture2D" uid="uid://vy7kfwpi6goc" path="res://PlaceholderAssets/Objects/BluePlant32.png" id="5_kry3j"]
 [ext_resource type="Script" uid="uid://hhmu8r1x1weg" path="res://Scripts/bottom_row_organizer.gd" id="7_6bp64"]
+[ext_resource type="Texture2D" uid="uid://dkgo5tklxjqfn" path="res://Textures/ui_and_effects.png" id="8_344ge"]
+[ext_resource type="Script" uid="uid://heave3iec1oj" path="res://Scripts/pre_loop.gd" id="8_ynf5e"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ynf5e"]
+atlas = ExtResource("8_344ge")
+region = Rect2(163, 34, 26, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hptm8"]
+atlas = ExtResource("8_344ge")
+region = Rect2(74, 73.6164, 43.804, 50.1844)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d1ilt"]
+atlas = ExtResource("8_344ge")
+region = Rect2(132.996, 69.0422, 53.8486, 54.0079)
 
 [node name="Main" type="Node2D"]
 
@@ -176,3 +190,37 @@ offset_right = 102.059
 offset_bottom = 32.4118
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 15
+
+[node name="PreLoop" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("8_ynf5e")
+
+[node name="Ready" type="TextureRect" parent="PreLoop"]
+layout_mode = 0
+offset_left = 304.0
+offset_top = 152.0
+offset_right = 344.0
+offset_bottom = 192.0
+texture = SubResource("AtlasTexture_ynf5e")
+metadata/_edit_lock_ = true
+
+[node name="Set" type="TextureRect" parent="PreLoop"]
+layout_mode = 0
+offset_left = 304.0
+offset_top = 144.0
+offset_right = 347.0
+offset_bottom = 194.0
+texture = SubResource("AtlasTexture_hptm8")
+metadata/_edit_lock_ = true
+
+[node name="Plant" type="TextureRect" parent="PreLoop"]
+layout_mode = 0
+offset_left = 296.0
+offset_top = 144.0
+offset_right = 349.0
+offset_bottom = 198.0
+texture = SubResource("AtlasTexture_d1ilt")
+metadata/_edit_lock_ = true

@@ -7,7 +7,7 @@ const DATA_PATH_ITEMS: String = "res://TextFiles/items.json"
 const DATA_PATH_MILESTONES: String = "res://TextFiles/milestones.json"
 
 const DEFAULT_LOOP_DURATION: float = 50 # seconds
-const DEFAULT_TIME_CAPSULE_CAPACITY: int =4
+const DEFAULT_TIME_CAPSULE_CAPACITY: int = 4
 
 const DEFAULT_STARTING_SEEDS_ID: String = "Potato"
 
@@ -39,6 +39,7 @@ var loop_duration: float = DEFAULT_LOOP_DURATION
 # --- Volatile / Current Loop State ---
 # The remaining time in the current loop.
 var current_loop_time: float = 0.0
+var pre_loop_done: bool
 
 # The ID of the item currently selected for placement (only relevant in PLACEMENT mode).
 var selected_item_for_placement: String = "" # Now a String ("" for no item selected)
@@ -52,7 +53,9 @@ func _ready() -> void:
 
 	_load_all_game_data()
 	Inventory.reset_inventory()
-	Signals.loop_continued.connect(start_loop)
+	Signals.loop_continued.connect(_pre_loop)
+	Signals.pre_loop_ready.connect(_pre_loop)
+	Signals.pre_loop_done.connect(start_loop)
 	# Set the initial milestone.
 	if not milestone_stages.is_empty():
 		# IMPORTANT: We need to set the initial milestone by its key (e.g., "First Harvest")
@@ -66,13 +69,17 @@ func _ready() -> void:
 			push_error("ERROR: No starting milestone found in '%s'. Game may not progress." % DATA_PATH_MILESTONES)
 	else:
 		push_error("ERROR: No milestone stages loaded from '%s'. Game may not progress." % DATA_PATH_MILESTONES)
-	start_loop()
 	
-
+	
+func _pre_loop():
+	pre_loop_done = false
+	current_loop_time = loop_duration
+	Signals.timer_updated.emit(current_loop_time,loop_duration)
+	Signals.in_pre_loop.emit()
 
 func _process(delta: float) -> void: # Changed to _process for smoother mouse following
 	# Update game loop timer
-	if current_loop_time > 0:
+	if current_loop_time > 0 && pre_loop_done:
 		current_loop_time -= delta
 		# EMIT GLOBAL SIGNAL
 		Signals.timer_updated.emit(current_loop_time, loop_duration) # Corrected to use .emit() and pass loop_duration
@@ -159,8 +166,7 @@ func _load_all_game_data() -> void:
 # --- Loop Management ---
 func start_loop() -> void:
 	"""Initiates a new game loop, resetting transient states and delivering time-capsuled items."""
-	current_loop_time = loop_duration # Reset timer for the
-	# new loop.
+	pre_loop_done = true
 	print("before reset",Inventory.seed_inventory)
 	Inventory.reset_inventory()       # Clear transient inventory for the new loop.
 	Milestone.current_loop_score.clear()

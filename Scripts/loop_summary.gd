@@ -1,12 +1,13 @@
 extends Control
 
 @onready var continue_button: TextureButton = $Continue
+@onready var ui_board: TextureRect = $TextureRect
 var tween: Tween
 var screen_size
 
 func _ready():
 	visible = false
-	print("Popup pos before tween:", position)
+	ui_board.self_modulate.a = 0.8
 	# Ensure manual positioning works
 	set_anchors_preset(Control.PRESET_TOP_LEFT)
 	self.size = Vector2(0, 315)  # Optional: set if size is undefined in editor
@@ -22,22 +23,15 @@ func _ready():
 func pop_up():
 	var target_y = screen_size.y - size.y
 	tween = create_tween()
-	tween.tween_property(self, "position", Vector2(80, target_y), 1.5)\
+	tween.tween_property(self, "position", Vector2(80, target_y), 0.8)\
 		.set_trans(Tween.TRANS_SINE)\
 		.set_ease(Tween.EASE_OUT)
-	
-	print("Visible:", visible)
-	print("Popup size:", size)
-	print("Popup pos after tween:", position)
-	print("Viewport size:", get_viewport().size)
 	
 func slide_out():
 	if tween and tween.is_running():
 		tween.kill()  # Stop any ongoing animation
-
-	var screen_size = get_viewport().size
 	tween = create_tween()
-	tween.tween_property(self, "position", Vector2(80, screen_size.y), 1.5)\
+	tween.tween_property(self, "position", Vector2(80, screen_size.y), 0.8)\
 		.set_trans(Tween.TRANS_SINE)\
 		.set_ease(Tween.EASE_IN)
 		
