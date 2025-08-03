@@ -9,17 +9,12 @@ extends Control
 @onready var timer: AnimatedSprite2D = $Timer
 
 func _ready():
-	Signals.timer_updated.connect(_on_time_updated)
 	Signals.milestone_updated.connect(_on_milestone_updated)
 	Signals.loop_started.connect(start_timer)
 	Signals.loop_ended.connect(stop_timer)
 	seed_pouch.pressed.connect(_on_seed_pouch_pressed)
 	scythe.pressed.connect(_on_scythe_pressed)
 	soil_scanner.pressed.connect(_on_soil_scanner_pressed)
-	
-
-func _on_time_updated(new_time : float, other : float) -> void:
-	time_label.text = str(truncate_to(new_time, 1))
 
 
 func _on_seed_pouch_pressed():

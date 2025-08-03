@@ -40,13 +40,13 @@
 				{
 					"type": "seed",
 					"seed_name": "Hoopberry",
-					"value": 3
+					"quantity": 3
 				}
 			]
 		}
 	},
 	"Third Harvest": {
-		"description": "Soil Level",
+		"description": "A widely cultivated tuber.",
 		"requirements": {
 			"harvested_crops": {
 				"Ringshroom": 15,
@@ -55,6 +55,7 @@
 			}
 		},
 		"rewards": {
+			"unlocked_plants": "Daffotwirl",
 			"unlocked_upgrades": [
 				{
 					"unlock_type": "seed",
@@ -70,6 +71,11 @@
 					"unlock_type": "seed",
 					"seed_name": "Hoopberry",
 					"quantity": 10
+				},
+				{
+					"unlock_type": "seed",
+					"seed_name": "Daffotwirl",
+					"quantity": 5
 				}
 			]
 		}
@@ -84,10 +90,133 @@
 			}
 		},
 		"rewards": {
+			"unlocked_plants": "Curlbrush",
 			"unlocked_upgrades": [
 				{
 					"type": "item",
 					"item_name": "merger"
+				},
+				{
+					"type": "seed",
+					"seed_name": "Hoopberry",
+					"quantity": 10
+				},
+				{
+					"type": "seed",
+					"seed_name": "Curlbrush",
+					"quantity": 5
+				}
+			]
+		}
+	},
+	"A Glimmer of Light": {
+		"description": "A new plant grows from the soil, drawn to the sun.",
+		"requirements": {
+			"harvested_crops": {
+				"Ringshroom": 25,
+				"Hoopberry": 25,
+				"Daffotwirl": 10
+			}
+		},
+		"rewards": {
+			"unlocked_plants": "Twirlvine",
+			"unlocked_upgrades": [
+				{
+					"type": "seed",
+					"seed_name": "Daffotwirl",
+					"quantity": 15
+				},
+				{
+					"type": "seed",
+					"seed_name": "Twirlvine",
+					"quantity": 5
+				}
+			]
+		}
+	},
+	"Deep in the Dirt": {
+		"description": "Master the art of cultivating both sun-loving and shade-dwelling plants.",
+		"requirements": {
+			"harvested_crops": {
+				"Tuloop": 60,
+				"Curlbrush": 35,
+				"Twirlvine": 20
+			}
+		},
+		"rewards": {
+			"unlocked_upgrades": [
+				{
+					"type": "time_capsule_expansion",
+					"value": 6
+				},
+				{
+					"type": "seed",
+					"seed_name": "Twirlvine",
+					"quantity": 15
+				},
+				{
+					"type": "seed",
+					"seed_name": "Daffotwirl",
+					"quantity": 10
+				}
+			]
+		}
+	},
+	"The Sprouting Loop": {
+		"description": "The cycle continues, revealing a strange new form.",
+		"requirements": {
+			"harvested_crops": {
+				"Daffotwirl": 50,
+				"Hoopberry": 40,
+				"Curlbrush": 40
+			}
+		},
+		"rewards": {
+			"unlocked_plants": "Sproot Loop",
+			"unlocked_upgrades": [
+				{
+					"type": "seed",
+					"seed_name": "Sproot Loop",
+					"quantity": 10
+				},
+				{
+					"type": "seed",
+					"seed_name": "Tuloop",
+					"quantity": 25
+				}
+			]
+		}
+	},
+	"Sparkle and Shine": {
+		"description": "You've proven your skill. Now, reach for the rarest.",
+		"requirements": {
+			"harvested_crops": {
+				"Tuloop": 100,
+				"Ringshroom": 75,
+				"Hoopberry": 75,
+				"Daffotwirl": 50,
+				"Curlbrush": 50,
+				"Twirlvine": 50,
+				"Sproot Loop": 25,
+				"Sparkly Ringflower": 10
+			}
+		},
+		"rewards": {
+			"unlocked_plants": "Sparkly Ringflower",
+			"unlocked_upgrades": [
+				{
+					"type": "seed",
+					"seed_name": "Sparkly Ringflower",
+					"quantity": 5
+				},
+				{
+					"type": "seed",
+					"seed_name": "Sproot Loop",
+					"quantity": 15
+				},
+				{
+					"type": "time_capsule_expansion",
+					"value": 10
 				}
 			]
 		}

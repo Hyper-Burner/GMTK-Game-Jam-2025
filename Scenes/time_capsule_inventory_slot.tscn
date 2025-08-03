@@ -22,6 +22,7 @@ offset_top = -23.0
 grow_horizontal = 0
 grow_vertical = 0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 text = "0"
 
 [node name="Label" type="Label" parent="."]
@@ -30,6 +31,8 @@ anchors_preset = 10
 anchor_right = 1.0
 offset_bottom = 23.0
 grow_horizontal = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 
 [node name="Icon" type="TextureRect" parent="."]
 layout_mode = 1
@@ -53,4 +56,7 @@ anchor_right = 0.6
 anchor_bottom = 0.6
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_colors/icon_normal_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
 flat = true

@@ -6,8 +6,7 @@ const DATA_PATH_CROPS: String = "res://TextFiles/crops.json"
 const DATA_PATH_ITEMS: String = "res://TextFiles/items.json"
 const DATA_PATH_MILESTONES: String = "res://TextFiles/milestones.json"
 
-const DEFAULT_LOOP_DURATION: float = 10 # seconds
-const DEFAULT_TIME_CAPSULE_CAPACITY: int = 4
+const DEFAULT_LOOP_DURATION: float = 60 # seconds
 
 const DEFAULT_STARTING_SEEDS_ID: String = "Potato"
 
@@ -25,11 +24,10 @@ var unlocked_plant_types: Array[String] = [DEFAULT_STARTING_SEEDS_ID] # Starts w
 # List of upgrade IDs that the player has permanently unlocked.
 var unlocked_upgrades: Array[String] = [] # Assuming upgrade IDs remain strings
 # The current maximum number of unique item stacks that can be sent to the next loop.
-var time_capsule_capacity: int = DEFAULT_TIME_CAPSULE_CAPACITY
+var time_capsule_capacity: int = 4
 # The contents to be transferred to the NEXT loop (item_id: quantity).
-
 # Persistent dictionary storing which items are placed on each grid tile (e.g., {"0,0": item_id_string}).
-# This data also persists across loops. Values are now String (or "" for empty).
+# This data also persists across loops. Values are now String (or "" for 	empty).
 var placed_items_grid: Dictionary = {}
 # The current total duration of a single time loop. Can be upgraded.
 var loop_duration: float = DEFAULT_LOOP_DURATION

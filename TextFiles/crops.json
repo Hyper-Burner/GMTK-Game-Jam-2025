@@ -1,6 +1,6 @@
 {
 	"Tuloop": {
-		"description": "A sweet, juicy favorite with an appealing red color.",
+		"description": "A perfectly round, juicy fruit that looks like a little loop, a favorite among early farmers.",
 		"frame_coords": [0, 0],
 		"growth_stages": 5,
 		"crop_yield": 1,
@@ -16,10 +16,10 @@
 			"nutrients": 20,
 			"soil_ph": 20
 		},
-		"optimal_growth_duration": 5,
+		"optimal_growth_duration": 5
 	},
 	"Ringshroom": {
-		"description": "These grow wild during the spring.",
+		"description": "A whimsical mushroom with a spiraling cap, like a decorative ring. It requires a bit more soil care than a Tuloop.",
 		"frame_coords": [5, 0],
 		"growth_stages": 5,
 		"crop_yield": 1,
@@ -35,10 +35,10 @@
 			"nutrients": 30,
 			"soil_ph": 60
 		},
-		"optimal_growth_duration": 20,
+		"optimal_growth_duration": 10
 	},
 	"Hoopberry": {
-		"description": "A widely cultivated tuber.",
+		"description": "A berry that grows in an arching hoop, perfect for making tiny wreaths. It thrives in specific, highly hydrated conditions.",
 		"frame_coords": [10, 0],
 		"growth_stages": 5,
 		"crop_yield": 1,
@@ -54,101 +54,101 @@
 			"nutrients": 5,
 			"soil_ph": 5
 		},
-		"optimal_growth_duration": 15,
+		"optimal_growth_duration": 15
 	},
 	"Daffotwirl": {
-		"description": "Adds a wonderful zestiness to dishes. High quality onion can be pretty spicy.",
+		"description": "A bright, twisting flower that twirls as it grows towards the sun, adding zest to the garden.",
 		"frame_coords": [15, 0],
 		"growth_stages": 5,
 		"crop_yield": 1,
 		"seed_yield": 2,
 		"condition_change": {
-			"hydration": 0,
-			"nutrients": 0,
+			"hydration": -5,
+			"nutrients": 15,
 			"soil_ph": 0
 		},
-		"growth_duration": 40,
+		"growth_duration": 45,
 		"optimal_conditions": {
 			"hydration": 25,
 			"nutrients": 75,
 			"soil_ph": 75
 		},
-		"optimal_growth_duration": 28,
+		"optimal_growth_duration": 20
 	},
 	"Curlbrush": {
-		"description": "Adds a wonderful zestiness to dishes. High quality onion can be pretty spicy.",
+		"description": "A peculiar plant with brush-like leaves that curl into a tight loop, helping to balance the soil's chemistry.",
 		"frame_coords": [20, 0],
 		"growth_stages": 5,
 		"crop_yield": 1,
 		"seed_yield": 2,
 		"condition_change": {
-			"hydration": 0,
-			"nutrients": 0,
-			"soil_ph": 0
+			"hydration": -10,
+			"nutrients": -10,
+			"soil_ph": 20
 		},
-		"growth_duration": 40,
+		"growth_duration": 50,
 		"optimal_conditions": {
-			"hydration": 25,
-			"nutrients": 75,
-			"soil_ph": 75
+			"hydration": 50,
+			"nutrients": 50,
+			"soil_ph": 25
 		},
-		"optimal_growth_duration": 28,
+		"optimal_growth_duration": 22
 	},
 	"Twirlvine": {
-		"description": "Adds a wonderful zestiness to dishes. High quality onion can be pretty spicy.",
+		"description": "A vigorous vine that twirls its way around anything it can find, thriving in moist, acidic environments.",
 		"frame_coords": [25, 0],
 		"growth_stages": 5,
 		"crop_yield": 1,
 		"seed_yield": 2,
 		"condition_change": {
-			"hydration": 0,
-			"nutrients": 0,
-			"soil_ph": 0
+			"hydration": 20,
+			"nutrients": -15,
+			"soil_ph": -5
 		},
-		"growth_duration": 40,
+		"growth_duration": 55,
 		"optimal_conditions": {
-			"hydration": 25,
-			"nutrients": 75,
-			"soil_ph": 75
+			"hydration": 80,
+			"nutrients": 10,
+			"soil_ph": 10
 		},
-		"optimal_growth_duration": 28,
+		"optimal_growth_duration": 25
 	},
 	"Sproot Loop": {
-		"description": "Adds a wonderful zestiness to dishes. High quality onion can be pretty spicy.",
+		"description": "A bizarre plant that grows in a complete, unending loop, absorbing all nutrients and leaving the soil barren.",
 		"frame_coords": [30, 0],
 		"growth_stages": 5,
 		"crop_yield": 1,
 		"seed_yield": 2,
 		"condition_change": {
-			"hydration": 0,
-			"nutrients": 0,
-			"soil_ph": 0
+			"hydration": -20,
+			"nutrients": -25,
+			"soil_ph": -20
 		},
-		"growth_duration": 40,
+		"growth_duration": 60,
 		"optimal_conditions": {
-			"hydration": 25,
-			"nutrients": 75,
-			"soil_ph": 75
+			"hydration": 15,
+			"nutrients": 90,
+			"soil_ph": 90
 		},
-		"optimal_growth_duration": 28,
+		"optimal_growth_duration": 30
 	},
 	"Sparkly Ringflower": {
-		"description": "Adds a wonderful zestiness to dishes. High quality onion can be pretty spicy.",
+		"description": "The rarest and most beautiful crop. Its petals form a dazzling, sparkling ring that requires a delicate balance of conditions to flourish.",
 		"frame_coords": [35, 0],
 		"growth_stages": 5,
 		"crop_yield": 1,
 		"seed_yield": 2,
 		"condition_change": {
-			"hydration": 0,
-			"nutrients": 0,
-			"soil_ph": 0
+			"hydration": -10,
+			"nutrients": 5,
+			"soil_ph": -5
 		},
-		"growth_duration": 40,
+		"growth_duration": 80,
 		"optimal_conditions": {
-			"hydration": 25,
-			"nutrients": 75,
-			"soil_ph": 75
+			"hydration": 50,
+			"nutrients": 50,
+			"soil_ph": 50
 		},
-		"optimal_growth_duration": 28,
+		"optimal_growth_duration": 40
 	}
 }

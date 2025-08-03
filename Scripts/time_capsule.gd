@@ -8,7 +8,7 @@ extends Control
 @onready var time_capsule_button : TextureButton = $TimeCapsuleButton  # Add reference to the button
 
 const INVENTORY_SLOT = preload("res://Scenes/time_capsule_inventory_slot.tscn")
-const MAX_TIME_CAPSULE_CAPACITY = 5
+var MAX_TIME_CAPSULE_CAPACITY = Global.time_capsule_capacity
 
 # Store references to current inventory slot UI elements
 var seed_inventory_slots : Array[Control] = []
