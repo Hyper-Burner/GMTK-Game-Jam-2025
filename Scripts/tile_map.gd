@@ -12,9 +12,9 @@ func _ready():
 
 func _process(delta: float) -> void:
 	var tile_position = get_tile_position(get_global_mouse_position())
+	print(tile_position)
 	highlight.clear()
-	if TileMapData.tile_map_data[tile_position[0]][tile_position[1]]:
-		highlight.clear()
+	if ground.get_cell_tile_data(tile_position).get_custom_data("Farmland"):
 		highlight.set_cell(tile_position, 0, Vector2i(0, 0))
 	#if State.current_action == State.Actions.PLANTING:
 		#highlight.clear()
