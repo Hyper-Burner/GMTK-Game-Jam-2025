@@ -12,6 +12,7 @@ func _ready():
 	Signals.timer_updated.connect(_on_time_updated)
 	Signals.milestone_updated.connect(_on_milestone_updated)
 	Signals.loop_started.connect(start_timer)
+	Signals.loop_ended.connect(stop_timer)
 	seed_pouch.pressed.connect(_on_seed_pouch_pressed)
 	scythe.pressed.connect(_on_scythe_pressed)
 	soil_scanner.pressed.connect(_on_soil_scanner_pressed)
@@ -50,3 +51,6 @@ func truncate_to(value: float, decimals: int) -> float:
 
 func start_timer():
 	timer.play("default")
+
+func stop_timer():
+	timer.stop()
