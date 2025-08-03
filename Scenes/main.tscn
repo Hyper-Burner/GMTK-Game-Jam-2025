@@ -16,11 +16,11 @@
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6iyac"]
 atlas = ExtResource("6_hptm8")
-region = Rect2(289, 34, 30, 30)
+region = Rect2(128, 35, 32, 29)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fdnlq"]
 atlas = ExtResource("6_hptm8")
-region = Rect2(128, 35, 32, 29)
+region = Rect2(289, 34, 30, 30)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jkdf5"]
 atlas = ExtResource("6_hptm8")
@@ -117,14 +117,14 @@ columns = 4
 script = ExtResource("5_21xkr")
 metadata/_edit_lock_ = true
 
-[node name="Spring Onion" type="TextureRect" parent="EndLoop/Harvested/TopRow"]
+[node name="Tuloop" type="TextureRect" parent="EndLoop/Harvested/TopRow"]
 layout_mode = 2
 size_flags_horizontal = 3
 texture = SubResource("AtlasTexture_6iyac")
 stretch_mode = 3
 metadata/_edit_lock_ = true
 
-[node name="Label" type="Label" parent="EndLoop/Harvested/TopRow/Spring Onion"]
+[node name="Label" type="Label" parent="EndLoop/Harvested/TopRow/Tuloop"]
 layout_mode = 0
 offset_left = 38.8374
 offset_top = 8.92889
@@ -134,14 +134,14 @@ scale = Vector2(0.564124, 0.814914)
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 15
 
-[node name="Potato" type="TextureRect" parent="EndLoop/Harvested/TopRow"]
+[node name="Ringshroom" type="TextureRect" parent="EndLoop/Harvested/TopRow"]
 layout_mode = 2
 size_flags_horizontal = 3
 texture = SubResource("AtlasTexture_fdnlq")
 stretch_mode = 3
 metadata/_edit_lock_ = true
 
-[node name="Label" type="Label" parent="EndLoop/Harvested/TopRow/Potato"]
+[node name="Label" type="Label" parent="EndLoop/Harvested/TopRow/Ringshroom"]
 layout_mode = 0
 offset_left = 38.8374
 offset_top = 8.92889
@@ -151,14 +151,14 @@ scale = Vector2(0.564124, 0.814914)
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 15
 
-[node name="Strawberry" type="TextureRect" parent="EndLoop/Harvested/TopRow"]
+[node name="Hoopberry" type="TextureRect" parent="EndLoop/Harvested/TopRow"]
 layout_mode = 2
 size_flags_horizontal = 3
 texture = SubResource("AtlasTexture_jkdf5")
 stretch_mode = 3
 metadata/_edit_lock_ = true
 
-[node name="Label" type="Label" parent="EndLoop/Harvested/TopRow/Strawberry"]
+[node name="Label" type="Label" parent="EndLoop/Harvested/TopRow/Hoopberry"]
 layout_mode = 0
 offset_left = 38.8374
 offset_top = 8.92889
@@ -168,14 +168,14 @@ scale = Vector2(0.564124, 0.814914)
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 15
 
-[node name="Plant 4" type="TextureRect" parent="EndLoop/Harvested/TopRow"]
+[node name="Daffotwirl" type="TextureRect" parent="EndLoop/Harvested/TopRow"]
 layout_mode = 2
 size_flags_horizontal = 3
 texture = SubResource("AtlasTexture_wsu2k")
 stretch_mode = 3
 metadata/_edit_lock_ = true
 
-[node name="Label" type="Label" parent="EndLoop/Harvested/TopRow/Plant 4"]
+[node name="Label" type="Label" parent="EndLoop/Harvested/TopRow/Daffotwirl"]
 layout_mode = 0
 offset_left = 38.8374
 offset_top = 8.92889
@@ -185,14 +185,14 @@ scale = Vector2(0.564124, 0.814914)
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 15
 
-[node name="Plant 5" type="TextureRect" parent="EndLoop/Harvested/TopRow"]
+[node name="Curlbush" type="TextureRect" parent="EndLoop/Harvested/TopRow"]
 layout_mode = 2
 size_flags_horizontal = 3
 texture = SubResource("AtlasTexture_k12tt")
 stretch_mode = 3
 metadata/_edit_lock_ = true
 
-[node name="Label" type="Label" parent="EndLoop/Harvested/TopRow/Plant 5"]
+[node name="Label" type="Label" parent="EndLoop/Harvested/TopRow/Curlbush"]
 layout_mode = 0
 offset_left = 38.8374
 offset_top = 16.4572
@@ -202,14 +202,14 @@ scale = Vector2(0.564124, 0.814914)
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 15
 
-[node name="Plant 6" type="TextureRect" parent="EndLoop/Harvested/TopRow"]
+[node name="Twirlvine" type="TextureRect" parent="EndLoop/Harvested/TopRow"]
 layout_mode = 2
 size_flags_horizontal = 3
 texture = SubResource("AtlasTexture_h1bgf")
 stretch_mode = 3
 metadata/_edit_lock_ = true
 
-[node name="Label" type="Label" parent="EndLoop/Harvested/TopRow/Plant 6"]
+[node name="Label" type="Label" parent="EndLoop/Harvested/TopRow/Twirlvine"]
 layout_mode = 0
 offset_left = 38.8374
 offset_top = 16.4572
@@ -219,14 +219,14 @@ scale = Vector2(0.564124, 0.814914)
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 15
 
-[node name="Plant 7" type="TextureRect" parent="EndLoop/Harvested/TopRow"]
+[node name="Sproot Loop" type="TextureRect" parent="EndLoop/Harvested/TopRow"]
 layout_mode = 2
 size_flags_horizontal = 3
 texture = SubResource("AtlasTexture_b3802")
 stretch_mode = 3
 metadata/_edit_lock_ = true
 
-[node name="Label" type="Label" parent="EndLoop/Harvested/TopRow/Plant 7"]
+[node name="Label" type="Label" parent="EndLoop/Harvested/TopRow/Sproot Loop"]
 layout_mode = 0
 offset_left = 38.8374
 offset_top = 16.4572
@@ -236,14 +236,14 @@ scale = Vector2(0.564124, 0.814914)
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 15
 
-[node name="Plant 8" type="TextureRect" parent="EndLoop/Harvested/TopRow"]
+[node name="Sparkly Sunflower" type="TextureRect" parent="EndLoop/Harvested/TopRow"]
 layout_mode = 2
 size_flags_horizontal = 3
 texture = SubResource("AtlasTexture_fevyy")
 stretch_mode = 3
 metadata/_edit_lock_ = true
 
-[node name="Label" type="Label" parent="EndLoop/Harvested/TopRow/Plant 8"]
+[node name="Label" type="Label" parent="EndLoop/Harvested/TopRow/Sparkly Sunflower"]
 layout_mode = 0
 offset_left = 38.8374
 offset_top = 16.4572
@@ -275,14 +275,14 @@ columns = 4
 script = ExtResource("7_6bp64")
 metadata/_edit_lock_ = true
 
-[node name="Spring Onion" type="TextureRect" parent="EndLoop/Time Capsule/BottomRow"]
+[node name="Tuloop" type="TextureRect" parent="EndLoop/Time Capsule/BottomRow"]
 layout_mode = 2
 size_flags_horizontal = 3
 texture = SubResource("AtlasTexture_6iyac")
 stretch_mode = 3
 metadata/_edit_lock_ = true
 
-[node name="Label" type="Label" parent="EndLoop/Time Capsule/BottomRow/Spring Onion"]
+[node name="Label" type="Label" parent="EndLoop/Time Capsule/BottomRow/Tuloop"]
 layout_mode = 0
 offset_left = 38.8374
 offset_top = 8.92889
@@ -292,14 +292,14 @@ scale = Vector2(0.564124, 0.814914)
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 15
 
-[node name="Potato" type="TextureRect" parent="EndLoop/Time Capsule/BottomRow"]
+[node name="Ringshroom" type="TextureRect" parent="EndLoop/Time Capsule/BottomRow"]
 layout_mode = 2
 size_flags_horizontal = 3
 texture = SubResource("AtlasTexture_fdnlq")
 stretch_mode = 3
 metadata/_edit_lock_ = true
 
-[node name="Label" type="Label" parent="EndLoop/Time Capsule/BottomRow/Potato"]
+[node name="Label" type="Label" parent="EndLoop/Time Capsule/BottomRow/Ringshroom"]
 layout_mode = 0
 offset_left = 38.8374
 offset_top = 8.92889
@@ -309,14 +309,14 @@ scale = Vector2(0.564124, 0.814914)
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 15
 
-[node name="Strawberry" type="TextureRect" parent="EndLoop/Time Capsule/BottomRow"]
+[node name="Hoopberry" type="TextureRect" parent="EndLoop/Time Capsule/BottomRow"]
 layout_mode = 2
 size_flags_horizontal = 3
 texture = SubResource("AtlasTexture_jkdf5")
 stretch_mode = 3
 metadata/_edit_lock_ = true
 
-[node name="Label" type="Label" parent="EndLoop/Time Capsule/BottomRow/Strawberry"]
+[node name="Label" type="Label" parent="EndLoop/Time Capsule/BottomRow/Hoopberry"]
 layout_mode = 0
 offset_left = 38.8374
 offset_top = 8.92889
@@ -326,14 +326,14 @@ scale = Vector2(0.564124, 0.814914)
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 15
 
-[node name="Plant 4" type="TextureRect" parent="EndLoop/Time Capsule/BottomRow"]
+[node name="Daffotwirl" type="TextureRect" parent="EndLoop/Time Capsule/BottomRow"]
 layout_mode = 2
 size_flags_horizontal = 3
 texture = SubResource("AtlasTexture_wsu2k")
 stretch_mode = 3
 metadata/_edit_lock_ = true
 
-[node name="Label" type="Label" parent="EndLoop/Time Capsule/BottomRow/Plant 4"]
+[node name="Label" type="Label" parent="EndLoop/Time Capsule/BottomRow/Daffotwirl"]
 layout_mode = 0
 offset_left = 38.8374
 offset_top = 8.92889
@@ -343,14 +343,14 @@ scale = Vector2(0.564124, 0.814914)
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 15
 
-[node name="Plant 5" type="TextureRect" parent="EndLoop/Time Capsule/BottomRow"]
+[node name="Curlbush" type="TextureRect" parent="EndLoop/Time Capsule/BottomRow"]
 layout_mode = 2
 size_flags_horizontal = 3
 texture = SubResource("AtlasTexture_k12tt")
 stretch_mode = 3
 metadata/_edit_lock_ = true
 
-[node name="Label" type="Label" parent="EndLoop/Time Capsule/BottomRow/Plant 5"]
+[node name="Label" type="Label" parent="EndLoop/Time Capsule/BottomRow/Curlbush"]
 layout_mode = 0
 offset_left = 38.8374
 offset_top = 16.4572
@@ -360,14 +360,14 @@ scale = Vector2(0.564124, 0.814914)
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 15
 
-[node name="Plant 6" type="TextureRect" parent="EndLoop/Time Capsule/BottomRow"]
+[node name="Twirlvine" type="TextureRect" parent="EndLoop/Time Capsule/BottomRow"]
 layout_mode = 2
 size_flags_horizontal = 3
 texture = SubResource("AtlasTexture_h1bgf")
 stretch_mode = 3
 metadata/_edit_lock_ = true
 
-[node name="Label" type="Label" parent="EndLoop/Time Capsule/BottomRow/Plant 6"]
+[node name="Label" type="Label" parent="EndLoop/Time Capsule/BottomRow/Twirlvine"]
 layout_mode = 0
 offset_left = 38.8374
 offset_top = 16.4572
@@ -377,14 +377,14 @@ scale = Vector2(0.564124, 0.814914)
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 15
 
-[node name="Plant 7" type="TextureRect" parent="EndLoop/Time Capsule/BottomRow"]
+[node name="Sproot Loop" type="TextureRect" parent="EndLoop/Time Capsule/BottomRow"]
 layout_mode = 2
 size_flags_horizontal = 3
 texture = SubResource("AtlasTexture_b3802")
 stretch_mode = 3
 metadata/_edit_lock_ = true
 
-[node name="Label" type="Label" parent="EndLoop/Time Capsule/BottomRow/Plant 7"]
+[node name="Label" type="Label" parent="EndLoop/Time Capsule/BottomRow/Sproot Loop"]
 layout_mode = 0
 offset_left = 38.8374
 offset_top = 16.4572
@@ -394,14 +394,14 @@ scale = Vector2(0.564124, 0.814914)
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 15
 
-[node name="Plant 8" type="TextureRect" parent="EndLoop/Time Capsule/BottomRow"]
+[node name="Sparkly Sunflower" type="TextureRect" parent="EndLoop/Time Capsule/BottomRow"]
 layout_mode = 2
 size_flags_horizontal = 3
 texture = SubResource("AtlasTexture_fevyy")
 stretch_mode = 3
 metadata/_edit_lock_ = true
 
-[node name="Label" type="Label" parent="EndLoop/Time Capsule/BottomRow/Plant 8"]
+[node name="Label" type="Label" parent="EndLoop/Time Capsule/BottomRow/Sparkly Sunflower"]
 layout_mode = 0
 offset_left = 38.8374
 offset_top = 16.4572
