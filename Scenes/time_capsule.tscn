@@ -1,8 +1,8 @@
 [gd_scene load_steps=6 format=3 uid="uid://mr3aa8n6upuw"]
 
 [ext_resource type="Script" uid="uid://bim0te88icyye" path="res://Scripts/time_capsule.gd" id="1_ov7qn"]
-[ext_resource type="PackedScene" uid="uid://dhajj7w86ogjo" path="res://Scenes/inventory_slot.tscn" id="1_x7tk7"]
 [ext_resource type="Texture2D" uid="uid://dkgo5tklxjqfn" path="res://Textures/ui_and_effects.png" id="2_hatof"]
+[ext_resource type="Texture2D" uid="uid://1aeuewa17nbc" path="res://Textures/results_ui.png" id="3_yv6ci"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_yv6ci"]
 atlas = ExtResource("2_hatof")
@@ -21,7 +21,8 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_ov7qn")
 
-[node name="TextureButton" type="TextureButton" parent="."]
+[node name="TimeCapsuleButton" type="TextureButton" parent="."]
+z_index = 100
 layout_mode = 0
 offset_left = 571.0
 offset_top = 287.0
@@ -30,51 +31,76 @@ offset_bottom = 351.0
 texture_normal = SubResource("AtlasTexture_yv6ci")
 texture_hover = SubResource("AtlasTexture_goxuk")
 
-[node name="TimeCapsuleMenu" type="TextureRect" parent="."]
+[node name="TimeCapsulePanel" type="TextureRect" parent="."]
 layout_mode = 0
-offset_left = 55.0
-offset_top = 51.0
-offset_right = 588.0
-offset_bottom = 285.0
+offset_left = 94.0
+offset_top = 40.0
+offset_right = 545.0
+offset_bottom = 325.0
+texture = ExtResource("3_yv6ci")
+expand_mode = 1
 
-[node name="TimeCapsuleSeeds" type="GridContainer" parent="TimeCapsuleMenu"]
-visible = false
+[node name="TimeCapsuleSection" type="Control" parent="TimeCapsulePanel"]
+anchors_preset = 0
+offset_left = 59.0
+offset_top = 59.0
+offset_right = 579.0
+offset_bottom = 173.0
+
+[node name="Label" type="Label" parent="TimeCapsulePanel/TimeCapsuleSection"]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = -41.0
+offset_top = -37.0
+offset_right = 63.0
+offset_bottom = -14.0
+text = "Time Capsule"
+
+[node name="GridContainer" type="GridContainer" parent="TimeCapsulePanel/TimeCapsuleSection"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.029
+anchor_top = -0.123
+anchor_right = 0.663
+anchor_bottom = 0.684
+offset_left = 0.0800009
+offset_top = 0.0220003
+offset_right = 5.23999
+offset_bottom = 0.0240021
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/h_separation = 20
+theme_override_constants/v_separation = 20
 columns = 4
 
-[node name="InventorySlot1" parent="TimeCapsuleMenu/TimeCapsuleSeeds" instance=ExtResource("1_x7tk7")]
-layout_mode = 2
+[node name="SeedInventorySection" type="Control" parent="TimeCapsulePanel"]
+anchors_preset = 0
+offset_left = 59.0
+offset_top = 184.0
+offset_right = 577.0
+offset_bottom = 306.0
 
-[node name="InventorySlot2" parent="TimeCapsuleMenu/TimeCapsuleSeeds" instance=ExtResource("1_x7tk7")]
-layout_mode = 2
-
-[node name="InventorySlot3" parent="TimeCapsuleMenu/TimeCapsuleSeeds" instance=ExtResource("1_x7tk7")]
-layout_mode = 2
-
-[node name="InventorySlot4" parent="TimeCapsuleMenu/TimeCapsuleSeeds" instance=ExtResource("1_x7tk7")]
-layout_mode = 2
-
-[node name="InventorySlot5" parent="TimeCapsuleMenu/TimeCapsuleSeeds" instance=ExtResource("1_x7tk7")]
-layout_mode = 2
-
-[node name="InventorySlot6" parent="TimeCapsuleMenu/TimeCapsuleSeeds" instance=ExtResource("1_x7tk7")]
-layout_mode = 2
-
-[node name="InventorySlot7" parent="TimeCapsuleMenu/TimeCapsuleSeeds" instance=ExtResource("1_x7tk7")]
-layout_mode = 2
-
-[node name="InventorySlot8" parent="TimeCapsuleMenu/TimeCapsuleSeeds" instance=ExtResource("1_x7tk7")]
-layout_mode = 2
-
-[node name="PlayerSeeds" type="GridContainer" parent="TimeCapsuleMenu"]
+[node name="Label" type="Label" parent="TimeCapsulePanel/SeedInventorySection"]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = -43.0
+offset_top = -57.0
+offset_right = 17.0
+offset_bottom = -8.0
+text = "Seeds"
 
-[node name="Panel" type="Panel" parent="."]
-visible = false
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+[node name="GridContainer" type="GridContainer" parent="TimeCapsulePanel/SeedInventorySection"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.035
+anchor_top = -0.311
+anchor_right = 0.659
+anchor_bottom = 0.451
+offset_left = 2.13
+offset_top = 0.942001
+offset_right = 8.63797
+offset_bottom = 1.978
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/h_separation = 20
+theme_override_constants/v_separation = 20
+
+[connection signal="pressed" from="TimeCapsuleButton" to="." method="_on_time_capsule_button_pressed"]
