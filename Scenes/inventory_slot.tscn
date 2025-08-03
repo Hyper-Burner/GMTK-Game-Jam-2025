@@ -1,33 +1,58 @@
-[gd_scene load_steps=3 format=3 uid="uid://dhajj7w86ogjo"]
+[gd_scene load_steps=7 format=3 uid="uid://dhajj7w86ogjo"]
 
 [ext_resource type="Script" uid="uid://cktli203v8olv" path="res://Scripts/inventory_slot.gd" id="1_0v82l"]
+[ext_resource type="Texture2D" uid="uid://wlvbjwr3fpel" path="res://Textures/seeds-Sheet.png" id="2_0cu6i"]
+[ext_resource type="Texture2D" uid="uid://c1c7r7fj4l8gl" path="res://Textures/blank_menu_icon.png" id="2_pnayc"]
+[ext_resource type="Texture2D" uid="uid://c05bljfs2bq5t" path="res://Textures/highlight.png" id="4_6h8ck"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_km6kw"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_0cu6i"]
+resource_local_to_scene = true
+atlas = ExtResource("2_0cu6i")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6h8ck"]
+atlas = ExtResource("4_6h8ck")
+region = Rect2(0, 0, 32, 0)
 
 [node name="InventorySlot" type="Control"]
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_0v82l")
 
-[node name="Background" type="Panel" parent="."]
+[node name="Background" type="TextureRect" parent="."]
 layout_mode = 0
 offset_right = 32.0
 offset_bottom = 32.0
 mouse_filter = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_km6kw")
+texture = ExtResource("2_pnayc")
 
 [node name="ItemIcon" type="TextureRect" parent="Background"]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_right = 32.0
+offset_bottom = 32.0
+texture = SubResource("AtlasTexture_0cu6i")
 stretch_mode = 3
 
 [node name="ItemQuantity" type="Label" parent="Background"]
 layout_mode = 0
-offset_left = 21.0
-offset_top = 12.0
-offset_right = 31.0
-offset_bottom = 35.0
+offset_left = 8.0
+offset_top = 9.0
+offset_right = 32.0
+offset_bottom = 32.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0.717647, 0.835294, 0.956863, 1)
 text = "0"
+horizontal_alignment = 2
+vertical_alignment = 2
+
+[node name="Select" type="TextureRect" parent="."]
+visible = false
+modulate = Color(0, 0, 0, 1)
+layout_mode = 0
+offset_right = 32.0
+offset_bottom = 32.0
+mouse_filter = 2
+texture = SubResource("AtlasTexture_6h8ck")
 
 [connection signal="gui_input" from="." to="." method="_on_gui_input"]
+[connection signal="gui_input" from="Background" to="." method="_on_background_gui_input"]

@@ -7,8 +7,6 @@ extends Node2D
 var seeds: Dictionary = JSON.parse_string(FileAccess.get_file_as_string("res://TextFiles/crops.json"))
 var crops = preload("res://Scenes/crop.tscn")
 
-var selected_seed: String = "Tuloop"
-
 func _ready():
 	Signals.slot_selected.connect(change_selected_seed)
 
@@ -35,7 +33,7 @@ func get_world_position(tile_position: Vector2i) -> Vector2:
 	
 func planting(tile_position: Vector2i):
 	if ground.get_cell_tile_data(tile_position).get_custom_data("Farmland"):
-		var instance = TileMapData.plant_seed(tile_position, selected_seed)
+		var instance = TileMapData.plant_seed(tile_position, Global.selected_seed)
 		if instance:
 			instance.global_position = get_world_position(tile_position) - Vector2(0, 25)
 			add_child(instance)
@@ -59,4 +57,4 @@ func _input(event: InputEvent) -> void:
 				inspecting(tile_position)
 func change_selected_seed(item_id: String, slot_index:int):
 	print(item_id)
-	selected_seed = item_id
+	Global.selected_seed = item_id

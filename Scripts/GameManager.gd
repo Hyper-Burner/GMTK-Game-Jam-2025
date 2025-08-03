@@ -6,7 +6,7 @@ const DATA_PATH_CROPS: String = "res://TextFiles/crops.json"
 const DATA_PATH_ITEMS: String = "res://TextFiles/items.json"
 const DATA_PATH_MILESTONES: String = "res://TextFiles/milestones.json"
 
-const DEFAULT_LOOP_DURATION: float = 30 # seconds
+const DEFAULT_LOOP_DURATION: float = 10 # seconds
 const DEFAULT_TIME_CAPSULE_CAPACITY: int = 4
 
 const DEFAULT_STARTING_SEEDS_ID: String = "Potato"
@@ -45,6 +45,7 @@ var selected_item_for_placement: String = "" # Now a String ("" for no item sele
 # Reference to the separate preview controller instance.
 var seconds_passed: int = 0
 
+var selected_seed: String = "Tuloop"
 
 func _ready() -> void:
 	# --- IMPORTANT: REMOVED ALL LOCAL SIGNAL DECLARATIONS.

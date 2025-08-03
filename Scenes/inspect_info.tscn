@@ -179,7 +179,7 @@ _data = {
 &"show": SubResource("Animation_b108f")
 }
 
-[node name="Control" type="Control"]
+[node name="Control2" type="Control"]
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_87jq0")
