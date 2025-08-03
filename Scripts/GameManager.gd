@@ -27,8 +27,7 @@ var unlocked_upgrades: Array[String] = [] # Assuming upgrade IDs remain strings
 # The current maximum number of unique item stacks that can be sent to the next loop.
 var time_capsule_capacity: int = DEFAULT_TIME_CAPSULE_CAPACITY
 # The contents to be transferred to the NEXT loop (item_id: quantity).
-# Cleared at start of each loop. Keys are now String.
-var time_capsule_contents: Dictionary = {}
+
 # Persistent dictionary storing which items are placed on each grid tile (e.g., {"0,0": item_id_string}).
 # This data also persists across loops. Values are now String (or "" for empty).
 var placed_items_grid: Dictionary = {}
@@ -170,14 +169,18 @@ func start_loop() -> void:
 	print("before reset",Inventory.seed_inventory)
 	Inventory.reset_inventory()       # Clear transient inventory for the new loop.
 	Milestone.current_loop_score.clear()
+	
+	#test time_capsule items
+	#Inventory.time_capsule_inventory = { "sig" : 69 }
 	# Transfer time-capsuled items from the previous loop.
-	# time_capsule_contents keys are now String.
-	for item_id_str in time_capsule_contents:
-		Inventory.add_item_to_inventory(item_id_str, time_capsule_contents[item_id_str])
-	time_capsule_contents.clear() # Clear capsule contents for the current loop's packing.
+	for key in Inventory.time_capsule_inventory:
+		Inventory.add_item_to_inventory(Inventory.seed_inventory, str(key), Inventory.time_capsule_inventory[key])
+
+	print(Inventory.seed_inventory)
+	print(Inventory.time_capsule_inventory)
+	Inventory.time_capsule_inventory.clear() # Clear capsule contents for the current loop's packing.
 	# EMIT GLOBAL SIGNAL
 	Signals.loop_started.emit()
-	print("Loop Started! Duration: %.1f sec, Capsule Capacity: %d" % [loop_duration, time_capsule_capacity]) #
 
 func _end_loop() -> void:
 	"""
@@ -196,23 +199,7 @@ func _end_loop() -> void:
 	# get_tree().create_timer(1.0).timeout.connect(start_loop)
 
 # item_id is now a String.
-func add_item_to_time_capsule(item_id: String, quantity: int = 1) -> bool:
-	"""
-	Adds an item to the time capsule, provided there's capacity.
-	Items in the time capsule are carried over to the next loop.
-	"""
-	# No validation if user doesn't want it.
-	# The `if not (...) return false` block is entirely removed.
-	if quantity <= 0:
-		push_warning("Attempted to add non-positive quantity of item to time capsule: ID %s, quantity: %d" % [item_id, quantity])
-		return false
-	
-	# Check if adding this item would exceed capacity for unique item stacks.
-	# Only if it's a new item in the capsule OR capacity is full.
-	if not time_capsule_contents.has(item_id) and time_capsule_contents.size() >= time_capsule_capacity:
-		push_warning("Time capsule is full! Cannot add new item ID %s. Current unique items: %d, Capacity: %d" % [item_id, time_capsule_contents.size(), time_capsule_capacity])
-		return false
-	return false # This return false seems to be a bug here, it should likely be true if the item was added.
+
 
 func _on_timeout():
 	seconds_passed += 1
