@@ -160,6 +160,7 @@ position = Vector2(608, 32)
 sprite_frames = SubResource("SpriteFrames_jd57c")
 
 [node name="LoopTimer" type="TextureRect" parent="."]
+visible = false
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
