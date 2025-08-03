@@ -15,6 +15,9 @@ var seed_inventory_slots : Array[Control] = []
 var time_capsule_slots : Array[Control] = []
 
 func _ready():
+	# Add to time_capsule group for easy reference
+	add_to_group("time_capsule")
+	
 	Signals.loop_started.connect(_on_loop_started)
 	Signals.loop_ended.connect(_on_loop_ended)
 	Signals.inventory_changed.connect(_on_inventory_changed)

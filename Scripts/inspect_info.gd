@@ -44,6 +44,14 @@ func _on_inspecting_mode_entered(position : Vector2, tile_data):
 	if !in_loop:
 		panel.visible = false
 		return
+	
+	# Check if time capsule is open - if so, don't show inspect
+	var time_capsule_node = get_tree().get_first_node_in_group("time_capsule")
+	if time_capsule_node and time_capsule_node.has_method("is_time_capsule_open"):
+		if time_capsule_node.is_time_capsule_open():
+			panel.visible = false
+			return
+	
 	# if same tile, toggle the panel visibility.
 	if position == previous_inspect_position:
 		if panel.visible:
