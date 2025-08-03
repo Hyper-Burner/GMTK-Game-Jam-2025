@@ -10,6 +10,7 @@ func _ready():
 
 	
 func _pre_loop():
+	await get_tree().create_timer(1.0).timeout
 	for i in icons.size():
 		for icon in icons:
 			icon.visible = false
@@ -18,10 +19,7 @@ func _pre_loop():
 		icons[i].visible = true
 
 		# Wait for 1 second
-		if i == 0:
-			await get_tree().create_timer(2.0).timeout
-		else:
-			await get_tree().create_timer(1.0).timeout
+		await get_tree().create_timer(1.0).timeout
 
 	# Finally hide the last one
 	icons[icons.size() - 1].visible = false

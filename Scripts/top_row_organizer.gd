@@ -1,4 +1,4 @@
-extends HBoxContainer
+extends GridContainer
 
 var targets: Array = []
 var currents := []

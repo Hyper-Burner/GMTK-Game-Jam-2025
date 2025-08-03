@@ -4,6 +4,7 @@ extends Control
 @onready var ui_board: TextureRect = $TextureRect
 var tween: Tween
 var screen_size
+const LOAD_DURATION = 0.5
 
 func _ready():
 	visible = false
@@ -35,15 +36,14 @@ func slide_out():
 		.set_trans(Tween.TRANS_SINE)\
 		.set_ease(Tween.EASE_IN)
 		
-const LOAD_DURATION = 0.75
 # when a loop ends, show the summary
 func _on_loop_ended():
 	visible = true
 	pop_up()
 	var top_row = get_node("Harvested/TopRow")
 	var bottom_row = get_node("Time Capsule/BottomRow")
-	top_row.set_targets([123, 456, 789])
-	bottom_row.set_targets([800, 12, 500])
+	top_row.set_targets([123, 456, 789, 321, 654, 987, 111, 222])
+	bottom_row.set_targets([800, 12, 500, 1000, 250, 333, 75, 900])
 	await get_tree().create_timer(0.75).timeout
 	Signals.top_row_done.connect(func():
 		bottom_row.start_increment(LOAD_DURATION)
