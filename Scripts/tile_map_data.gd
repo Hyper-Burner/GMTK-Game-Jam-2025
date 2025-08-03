@@ -1,6 +1,6 @@
 extends Node
 
-var crop_text_file = JSON.parse_string(FileAccess.get_file_as_string("res://TextFiles/crops.json"))
+var crop_text_file = Global.crop_data_map
 var crop_script = preload("res://Scripts/crop.gd")
 var tile_map_data = []
 var farm_width: int = 20
@@ -25,6 +25,15 @@ func clear_crops():
 func plant_seed(tile_position: Vector2i, seed: String):
 	var tile = tile_map_data[tile_position[0]][tile_position[1]]
 	if !tile["crop"] and Inventory.remove_item_from_inventory(Inventory.seed_inventory, seed):
+		print("crop optimal: ",crop_text_file[seed]["optimal_conditions"])
+		print("soil conditions: ", tile)
+		if(tile["hydration"] >= crop_text_file[seed]["optimal_conditions"]["hydration"]):
+			if(tile["nutrients"] >= crop_text_file[seed]["optimal_conditions"]["nutrients"]):
+				if(tile["soil_ph"] >= crop_text_file[seed]["optimal_conditions"]["soil_ph"]):
+					var instance = crop_script.instance(seed, true)
+					tile["crop"] = instance
+					return instance
+		
 		var instance = crop_script.instance(seed, false)
 		tile["crop"] = instance
 		return instance
@@ -37,9 +46,9 @@ func harvest_crop(tile_position: Vector2i):
 	if crop and crop.harvestable:
 		var crop_name = crop.crop_name
 		var condition_change = crop_text_file[crop_name]["condition_change"]
-		tile["hydration"] = condition_change["hydration"]
-		tile["nutrients"] = condition_change["nutrients"]
-		tile["soil_ph"] = condition_change["soil_ph"]
+		tile["hydration"] += condition_change["hydration"]
+		tile["nutrients"] += condition_change["nutrients"]
+		tile["soil_ph"] += condition_change["soil_ph"]
 		Signals.harvest_crop.emit(crop_name)
 		Inventory.add_item_to_inventory(Inventory.seed_inventory, crop_name, crop_text_file[crop_name]["seed_yield"])
 		Inventory.add_item_to_inventory(Inventory.crop_inventory, crop_name, crop_text_file[crop_name]["crop_yield"])
