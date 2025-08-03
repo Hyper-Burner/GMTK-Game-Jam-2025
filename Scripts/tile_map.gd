@@ -6,7 +6,7 @@ extends Node2D
 
 var seeds: Dictionary = JSON.parse_string(FileAccess.get_file_as_string("res://TextFiles/crops.json"))
 var crops = preload("res://Scenes/crop.tscn")
-var in_loop: bool = true
+var in_loop: bool = false
 
 func _ready():
 	Signals.loop_started.connect(func():

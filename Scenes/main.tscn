@@ -104,10 +104,10 @@ metadata/_edit_lock_ = true
 
 [node name="Harvested" type="Label" parent="EndLoop"]
 layout_mode = 0
-offset_left = 60.0
-offset_top = 58.6667
-offset_right = 187.0
-offset_bottom = 81.6667
+offset_left = 65.0
+offset_top = 60.0
+offset_right = 192.0
+offset_bottom = 83.0
 theme_override_colors/font_color = Color(0.222868, 0.648185, 0.264745, 1)
 theme_override_fonts/font = ExtResource("6_fdnlq")
 text = "Crops harvested"
@@ -263,12 +263,12 @@ theme_override_font_sizes/font_size = 15
 
 [node name="Time Capsule" type="Label" parent="EndLoop"]
 layout_mode = 0
-offset_left = 60.0
-offset_top = 186.667
-offset_right = 227.0
-offset_bottom = 209.667
+offset_left = 65.0
+offset_top = 190.0
+offset_right = 232.0
+offset_bottom = 213.0
 theme_override_colors/font_color = Color(0.223529, 0.701961, 0.835294, 1)
-text = "Seeds in time capsule"
+text = "Time Capsule"
 metadata/_edit_lock_ = true
 
 [node name="BottomRow" type="GridContainer" parent="EndLoop/Time Capsule"]

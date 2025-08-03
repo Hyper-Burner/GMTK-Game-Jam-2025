@@ -17,7 +17,7 @@ var vp_size : Vector2
 
 func _ready():
 	panel.visible = false
-	
+
 	vp_size = get_viewport().size
 	previous_inspect_position = Vector2(-99,-99)
 	Signals.inspect.connect(_on_inspecting_mode_entered)
@@ -29,22 +29,23 @@ func _ready():
 
 func _on_loop_started():
 	in_loop = true
-	
+
 func _on_loop_ended():
 	in_loop = false
+	panel.visible = false
 
 func show_panel():
 	animation.play("show")
-	
+
 func hide_panel():
 	animation.play("hide")
-	
+
 func _on_inspecting_mode_entered(position : Vector2, tile_data):
 	# if the loop is not active do not show
 	if !in_loop:
 		panel.visible = false
 		return
-	
+
 	# Check if time capsule is open - if so, don't show inspect
 	var time_capsule_node = get_tree().get_first_node_in_group("time_capsule")
 	if time_capsule_node and time_capsule_node.has_method("is_time_capsule_open"):
@@ -60,23 +61,23 @@ func _on_inspecting_mode_entered(position : Vector2, tile_data):
 			show_panel()
 		#panel.visible = !panel.visible
 		return
-	
+
 	previous_inspect_position = position
-	
+
 
 	# if the inspect position is in the bottom half of the screen, place it above the inspect position
 	if (position.y >= vp_size.y / 2):
 		position.y -= panel.size.y + TILE_SIZE / 2
-		
+
 	# inspect position is in the top half -> place it below the inspect position
 	else:
 		position.y += TILE_SIZE / 2
-		
+
 	position.x -= panel.size.x / 2
 	panel.set_position(position)
 	#panel.visible = true
 	show_panel()
-	
+
 	if tile_data["crop"]:
 		crop_name.text = tile_data["crop"].crop_name
 		growth.visible = true
@@ -93,12 +94,7 @@ func _on_inspecting_mode_entered(position : Vector2, tile_data):
 		growth.visible = false
 		crop_desc.text = ""
 		harvestable.text = ""
-	
+
 	hydration.value = tile_data["hydration"]
 	fertilizer.value = tile_data["nutrients"]
 	ph.value = tile_data["soil_ph"]
-	
-	
-	
-
-	

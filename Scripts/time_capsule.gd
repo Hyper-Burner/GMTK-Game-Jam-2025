@@ -14,6 +14,8 @@ const MAX_TIME_CAPSULE_CAPACITY = 5
 var seed_inventory_slots : Array[Control] = []
 var time_capsule_slots : Array[Control] = []
 
+var in_loop = false
+
 func _ready():
 	# Add to time_capsule group for easy reference
 	add_to_group("time_capsule")
@@ -35,10 +37,12 @@ func _on_loop_started():
 	# Refresh display if time capsule is open
 	if time_capsule_panel.visible:
 		update_inventory_display()
+	in_loop = true
 	
 func _on_loop_ended():
 	# Close time capsule when loop ends
 	time_capsule_panel.visible = false
+	in_loop = true
 
 func _on_inventory_changed(item_id: String, new_quantity: int):
 	# Only update display if time capsule is currently visible

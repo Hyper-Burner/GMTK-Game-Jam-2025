@@ -25,12 +25,13 @@ script = ExtResource("1_ov7qn")
 z_index = 1000
 z_as_relative = false
 layout_mode = 0
-offset_left = 541.0
-offset_top = 263.0
-offset_right = 641.0
-offset_bottom = 363.0
+offset_left = 542.0
+offset_top = 248.0
+offset_right = 642.0
+offset_bottom = 348.0
 texture_normal = SubResource("AtlasTexture_yv6ci")
 texture_hover = SubResource("AtlasTexture_goxuk")
+stretch_mode = 0
 
 [node name="TimeCapsulePanel" type="TextureRect" parent="."]
 layout_mode = 0
