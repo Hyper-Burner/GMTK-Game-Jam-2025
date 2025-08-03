@@ -4,7 +4,7 @@ extends Control
 @onready var crop_name : Label = $TextureRect/List/CropName
 @onready var crop_desc : Label = $TextureRect/List/CropDescription
 @onready var harvestable : Label = $TextureRect/List/Harvestable
-@onready var growth : TextureProgressBar = $TextureRect/List/CropName/Growth
+@onready var growth : TextureProgressBar = $TextureRect/List/GrowthBar
 @onready var fertilizer : TextureProgressBar = $TextureRect/List/Fertilizer/FertilizerBar
 @onready var hydration : TextureProgressBar = $TextureRect/List/Hydration/HydrationBar
 @onready var ph : TextureProgressBar = $TextureRect/List/SoilPH/SoilPHBar
@@ -75,7 +75,10 @@ func _on_inspecting_mode_entered(position : Vector2, tile_data):
 		growth.max_value = tile_data["crop"].max_growth_stage
 		growth.value = tile_data["crop"].current_growth_stage
 		crop_desc.text = tile_data["crop"].crop_desc
-		harvestable.text = "Harvestable " + str(tile_data["crop"].harvestable)
+		if tile_data["crop"].harvestable:
+			harvestable.text = "Harvestable: Yes"
+		else:
+			harvestable.text = "Harvestable: No"
 	else:
 		crop_name.text = "Soil"
 		crop_desc.text = "Its soil lol"

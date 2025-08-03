@@ -28,7 +28,7 @@ func update_display():
 	if quantity_label:
 		quantity_label.text = "x" + str(quantity)
 	if item_button:
-		item_button.text = item_id + " (" + str(quantity) + ")"
+		item_button.text = item_id  # Only show item name, not quantity
 	
 	# Update icon if available
 	if item_icon:
@@ -57,15 +57,12 @@ func load_and_set_icon(item_id: String):
 				frame_size
 			)
 			item_icon.texture = atlas_texture
-			print("Set SEED icon for time capsule slot %s at coords [0, %d] with 32x32 frames" % [item_id, frame_coords[1]])
 		else:
 			# Fallback to full texture
 			item_icon.texture = seeds_texture
-			print("Using full seeds-Sheet.png texture for time capsule slot %s (invalid frame_coords)" % item_id)
 	else:
 		# Use full texture as fallback
 		item_icon.texture = seeds_texture
-		print("Using full seeds-Sheet.png texture for time capsule slot %s (no frame_coords)" % item_id)
 
 func load_crop_data(item_id: String) -> Dictionary:
 	# Load crop data from JSON file
@@ -81,33 +78,10 @@ func load_crop_data(item_id: String) -> Dictionary:
 			if data.has(item_id):
 				return data[item_id]
 	
-	print("Could not load crop data for time capsule slot: %s" % item_id)
 	return {}
 
 func _on_button_pressed():
-	print("Time capsule slot clicked: %s" % item_id)
 	item_clicked.emit(item_id, self)
-
-func set_quantity(new_quantity: int):
-	quantity = new_quantity
-	update_display()
-
-func get_item_id() -> String:
-	return item_id
-
-func get_quantity() -> int:
-	return quantity
-
-# Time capsule specific functionality
-func highlight_for_transfer():
-	# Add visual feedback when item can be transferred
-	if item_button:
-		item_button.modulate = Color.YELLOW
-
-func remove_highlight():
-	# Remove visual feedback
-	if item_button:
-		item_button.modulate = Color.WHITE
 
 func animate_transfer():
 	# Optional: add animation when item is transferred
