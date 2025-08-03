@@ -45,9 +45,10 @@ func add_item_to_starting_inventory(item_id: String, quantity: int = 1):
 	
 func set_inventory_to(new_inventory: Dictionary):
 	seed_inventory = new_inventory.duplicate()
+	for i in Inventory.starting_inventory.size():
+		Signals.inventory_changed.emit(Inventory.starting_inventory.keys()[i], Inventory.starting_inventory.values()[i])
 	
 func reset_inventory():
-	print("inside reset", starting_inventory)
 	set_inventory_to(starting_inventory)
 	
 func plant_unlocked(new_seed: String, quantity: int):

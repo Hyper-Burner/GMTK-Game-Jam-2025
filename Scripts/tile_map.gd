@@ -9,6 +9,9 @@ var crops = preload("res://Scenes/crop.tscn")
 
 var selected_seed: String = "Tuloop"
 
+func _ready():
+	Signals.slot_selected.connect(change_selected_seed)
+
 func _physics_process(delta: float) -> void:
 	if State.current_action == State.Actions.PLANTING:
 		if ground.get_cell_tile_data(get_tile_position(get_global_mouse_position())):
@@ -56,3 +59,6 @@ func _input(event: InputEvent) -> void:
 				harvesting(tile_position)
 			elif State.current_action == State.Actions.INSPECTING:
 				inspecting(tile_position)
+func change_selected_seed(item_id: String, slot_index:int):
+	print(item_id)
+	selected_seed = item_id

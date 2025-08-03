@@ -20,7 +20,7 @@
 	},
 	"Ringshroom": {
 		"description": "These grow wild during the spring.",
-		"frame_coords": [0, 5],
+		"frame_coords": [5, 0],
 		"growth_stages": 5,
 		"crop_yield": 1,
 		"seed_yield": 3,
@@ -39,7 +39,7 @@
 	},
 	"Hoopberry": {
 		"description": "A widely cultivated tuber.",
-		"frame_coords": [0, 10],
+		"frame_coords": [0, 2],
 		"growth_stages": 5,
 		"crop_yield": 1,
 		"seed_yield": 2,
@@ -58,7 +58,7 @@
 	},
 	"Daffotwirl": {
 		"description": "Adds a wonderful zestiness to dishes. High quality onion can be pretty spicy.",
-		"frame_coords": [0, 15],
+		"frame_coords": [0, 3],
 		"growth_stages": 5,
 		"crop_yield": 1,
 		"seed_yield": 2,
@@ -77,7 +77,7 @@
 	},
 	"Curlbrush": {
 		"description": "Adds a wonderful zestiness to dishes. High quality onion can be pretty spicy.",
-		"frame_coords": [0, 20],
+		"frame_coords": [0, 4],
 		"growth_stages": 5,
 		"crop_yield": 1,
 		"seed_yield": 2,
@@ -96,7 +96,7 @@
 	},
 	"Twirlvine": {
 		"description": "Adds a wonderful zestiness to dishes. High quality onion can be pretty spicy.",
-		"frame_coords": [0, 25],
+		"frame_coords": [0, 5],
 		"growth_stages": 5,
 		"crop_yield": 1,
 		"seed_yield": 2,
@@ -115,7 +115,7 @@
 	},
 	"Sproot Loop": {
 		"description": "Adds a wonderful zestiness to dishes. High quality onion can be pretty spicy.",
-		"frame_coords": [0, 30],
+		"frame_coords": [0, 6],
 		"growth_stages": 5,
 		"crop_yield": 1,
 		"seed_yield": 2,
@@ -134,7 +134,7 @@
 	},
 	"Sparkly Ringflower": {
 		"description": "Adds a wonderful zestiness to dishes. High quality onion can be pretty spicy.",
-		"frame_coords": [0, 35],
+		"frame_coords": [0, 7],
 		"growth_stages": 5,
 		"crop_yield": 1,
 		"seed_yield": 2,

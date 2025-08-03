@@ -53,3 +53,4 @@ signal inspect_mode_active()
 # --- NEW SIGNAL FOR PREVIEW CONTROLLER COMMUNICATION ---
 # Emitted when the mouse moves over a grid cell while in placement mode.
 signal update_placement_preview(grid_coords: Vector2i, is_valid: bool)
+signal slot_selected(item_id: String, slot_index:int)

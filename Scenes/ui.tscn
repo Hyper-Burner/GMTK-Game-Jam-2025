@@ -1,8 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://5s4n8kmxc8y5"]
+[gd_scene load_steps=9 format=3 uid="uid://5s4n8kmxc8y5"]
 
 [ext_resource type="Script" uid="uid://c3yyagh42ab2r" path="res://Scripts/ui.gd" id="1_jxero"]
 [ext_resource type="Texture2D" uid="uid://dkgo5tklxjqfn" path="res://Textures/ui_and_effects.png" id="2_nf4gj"]
 [ext_resource type="PackedScene" uid="uid://mr3aa8n6upuw" path="res://Scenes/time_capsule.tscn" id="3_nf4gj"]
+[ext_resource type="PackedScene" uid="uid://dhajj7w86ogjo" path="res://Scenes/inventory_slot.tscn" id="4_2246s"]
+[ext_resource type="Script" uid="uid://rvvif1l8l88s" path="res://Scripts/inventory_container.gd" id="4_q7pk6"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2246s"]
 atlas = ExtResource("2_nf4gj")
@@ -80,12 +82,38 @@ custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 texture_normal = SubResource("AtlasTexture_m78vo")
 
-[node name="TimeCapsulePanel2" type="Panel" parent="."]
-layout_mode = 0
-offset_left = 346.0
-offset_top = 320.0
-offset_right = 602.0
-offset_bottom = 360.0
-
 [node name="TimeCapsule" parent="." instance=ExtResource("3_nf4gj")]
 layout_mode = 1
+
+[node name="Inventory Container" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 157.0
+offset_top = 321.0
+offset_right = 441.0
+offset_bottom = 353.0
+theme_override_constants/separation = 36
+script = ExtResource("4_q7pk6")
+
+[node name="InventorySlot" parent="Inventory Container" instance=ExtResource("4_2246s")]
+layout_mode = 2
+
+[node name="InventorySlot2" parent="Inventory Container" instance=ExtResource("4_2246s")]
+layout_mode = 2
+
+[node name="InventorySlot3" parent="Inventory Container" instance=ExtResource("4_2246s")]
+layout_mode = 2
+
+[node name="InventorySlot4" parent="Inventory Container" instance=ExtResource("4_2246s")]
+layout_mode = 2
+
+[node name="InventorySlot5" parent="Inventory Container" instance=ExtResource("4_2246s")]
+layout_mode = 2
+
+[node name="InventorySlot6" parent="Inventory Container" instance=ExtResource("4_2246s")]
+layout_mode = 2
+
+[node name="InventorySlot7" parent="Inventory Container" instance=ExtResource("4_2246s")]
+layout_mode = 2
+
+[node name="InventorySlot8" parent="Inventory Container" instance=ExtResource("4_2246s")]
+layout_mode = 2

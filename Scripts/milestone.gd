@@ -130,4 +130,5 @@ func _apply_milestone_reward() -> void:
 						# EMIT GLOBAL SIGNAL if you have one for item unlocks
 					push_warning("Unknown upgrade type in milestone reward: %s" % upgrade_item["type"])
 	current_milestone_index += 1
+	
 	_set_current_milestone() 
